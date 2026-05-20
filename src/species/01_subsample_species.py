@@ -26,6 +26,7 @@ import os
 import subprocess
 from collections import defaultdict
 from pathlib import Path
+import numpy as np
 
 import pandas as pd
 
@@ -63,25 +64,27 @@ def parse_gtdb_metadata(gtdb_dir: Path) -> pd.DataFrame:
 
         # Parse lineage string: d__;p__;c__;o__;f__;g__;s__
         lineage_col = "gtdb_taxonomy"
-        if lineage_col in df.columns:
-            lineage_parsed = df[lineage_col].str.split(";", expand=True)
-            lineage_parsed.columns = ["domain_t","phylum_t","class_t","order_t","family_t","genus_t","species_t"]
-            for col in lineage_parsed.columns:
-                lineage_parsed[col] = lineage_parsed[col].str.split("__").str[-1].str.strip()
-            df = pd.concat([df[["accession"]], lineage_parsed], axis=1)
-        else:
+        if lineage_col not in df.columns:
             raise ValueError(f"Column '{lineage_col}' not found in {fname}")
 
-        df["domain"] = domain
-        df = df.rename(columns={
-            "phylum_t": "phylum",
-            "class_t": "class_",
-            "order_t": "order_",
-            "family_t": "family",
-            "genus_t": "genus",
-            "species_t": "species",
-        })
-        rows.append(df[["accession","domain","phylum","class_","order_","family","genus","species"]])
+        lineage_parsed = df[lineage_col].str.split(";", expand=True)
+        lineage_parsed.columns = ["domain_t","phylum_t","class_t","order_t","family_t","genus_t","species_t"]
+        for col in lineage_parsed.columns:
+            lineage_parsed[col] = lineage_parsed[col].str.split("__").str[-1].str.strip()
+
+        # Build clean dataframe explicitly, column by column
+        out = pd.DataFrame()
+        out["accession"] = df["accession"].values
+        out["domain"]    = domain
+        out["phylum"]    = lineage_parsed["phylum_t"].values
+        out["class_"]    = lineage_parsed["class_t"].values
+        out["order_"]    = lineage_parsed["order_t"].values
+        out["family"]    = lineage_parsed["family_t"].values
+        out["genus"]     = lineage_parsed["genus_t"].values
+        out["species"]   = lineage_parsed["species_t"].values
+
+        print(f"  {fname}: {len(out)} representatives, {out['phylum'].nunique()} phyla")
+        rows.append(out)
 
     return pd.concat(rows, ignore_index=True)
 
@@ -96,17 +99,19 @@ def stratified_subsample(meta: pd.DataFrame, n_phyla: int, species_per_phylum: i
     Selects top `n_phyla` phyla by species count (to ensure enough representatives),
     then randomly samples `species_per_phylum` species per phylum.
     """
+    rng = np.random.default_rng(seed)
     phylum_counts = meta["phylum"].value_counts()
     top_phyla = phylum_counts[phylum_counts >= species_per_phylum].head(n_phyla).index.tolist()
 
-    sampled = (
-        meta[meta["phylum"].isin(top_phyla)]
-        .groupby("phylum", group_keys=False)
-        .apply(lambda g: g.sample(min(len(g), species_per_phylum), random_state=seed))
-    )
+    pieces = []
+    for phylum, grp in meta[meta["phylum"].isin(top_phyla)].groupby("phylum"):
+        sample = grp.sample(min(len(grp), species_per_phylum), random_state=seed)
+        pieces.append(sample)
+
+    sampled = pd.concat(pieces, ignore_index=True)
     print(f"Subsampled {len(sampled)} genomes across {sampled['phylum'].nunique()} phyla")
     print(sampled["phylum"].value_counts().to_string())
-    return sampled.reset_index(drop=True)
+    return sampled
 
 
 # ---------------------------------------------------------------------------
@@ -127,7 +132,10 @@ def download_genomes(accessions: list[str], out_dir: Path, datasets_bin: str) ->
 
     for i in range(0, len(todo), batch_size):
         batch = todo[i : i + batch_size]
-        batch_str = " ".join(batch)
+        # Strip GTDB prefixes (GB_, RS_) before passing to NCBI
+        clean_batch = [a.replace("GB_", "").replace("RS_", "") for a in batch]
+        batch_str = " ".join(clean_batch)
+
         zip_path = genome_dir / f"batch_{i}.zip"
 
         cmd = (
