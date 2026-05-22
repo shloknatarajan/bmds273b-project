@@ -4,26 +4,35 @@
 Generates UMAP projections of Evo 2 embeddings at selected layers,
 colored by phylum and by domain (Bacteria / Archaea).
 
-Run after 05_train_probes.py — it uses the same cached HDF5 embeddings.
+Run after 04_extract_embeddings_evo2.py — it uses the same cached
+HDF5 embeddings.
+
+By default we plot a curated set of layers that always includes
+**layer 26** (the layer the Evo 2 paper highlights) plus a sampling of
+other interesting depths (embedding layer, an early block, a mid block,
+the final block). Pass ``--layers all`` to visualize every extracted
+layer, or pass a comma-separated list to override the selection.
 
 Outputs
 -------
-results/umap/
+processed_data/results/umap/
     layer_{i:02d}_phylum.png
     layer_{i:02d}_domain.png
 
 Usage
 -----
-  python 06_umap_visualization.py \
-      --embeddings_dir data/embeddings/evo2 \
-      --fragments      data/fragments/fragments.tsv \
-      --out_dir        results/umap \
-      --layers         0,12,24   # embedding layer, mid, final
-      --n_neighbors    15 \
-      --min_dist       0.1
+  # Default: 0, 16, 26, 32 (whichever of these are available)
+  python 06_umap_visualization.py
+
+  # All available layers (slow — one UMAP fit per layer)
+  python 06_umap_visualization.py --layers all
+
+  # Just the paper-highlighted layer
+  python 06_umap_visualization.py --layers 26
 """
 
 import argparse
+import re
 from pathlib import Path
 
 import h5py
@@ -38,6 +47,15 @@ except ImportError:
     raise ImportError("Install umap-learn: pip install umap-learn")
 
 
+LAYER_FILE_RE = re.compile(r"layer_(\d+)\.h5$")
+
+# Default curated layers — embedding, early, mid, paper-highlighted, final
+DEFAULT_LAYERS = "0,16,26,32"
+
+# Layer highlighted by the Evo 2 paper as the most informative single layer.
+PAPER_LAYER = 26
+
+
 PHYLUM_PALETTE = [
     "#e41a1c","#377eb8","#4daf4a","#984ea3","#ff7f00",
     "#a65628","#f781bf","#999999","#66c2a5","#fc8d62",
@@ -48,8 +66,37 @@ PHYLUM_PALETTE = [
 DOMAIN_PALETTE = {"Bacteria": "#4393c3", "Archaea": "#d6604d"}
 
 
-def load_layer_embeddings(emb_dir: Path, layer_idx: int, row_mask: np.ndarray) -> np.ndarray:
-    with h5py.File(emb_dir / f"layer_{layer_idx:02d}.h5", "r") as fh:
+def discover_layer_files(emb_dir: Path) -> dict[int, Path]:
+    """Map layer index -> HDF5 path for every layer file present."""
+    out: dict[int, Path] = {}
+    for p in emb_dir.glob("layer_*.h5"):
+        m = LAYER_FILE_RE.search(p.name)
+        if m:
+            out[int(m.group(1))] = p
+    return dict(sorted(out.items()))
+
+
+def resolve_layers(layers_arg: str, available: dict[int, Path]) -> list[int]:
+    """
+    Turn the --layers CLI argument into an explicit ordered list of
+    indices that exist in ``available``. Requested layers that have not
+    been extracted are skipped with a warning.
+    """
+    if layers_arg.strip().lower() == "all":
+        return sorted(available.keys())
+
+    requested = [int(x) for x in layers_arg.split(",") if x.strip()]
+    resolved: list[int] = []
+    for idx in requested:
+        if idx in available:
+            resolved.append(idx)
+        else:
+            print(f"  WARNING: layer {idx} not present in embeddings dir; skipping.")
+    return resolved
+
+
+def load_layer_embeddings(layer_path: Path, row_mask: np.ndarray) -> np.ndarray:
+    with h5py.File(layer_path, "r") as fh:
         rows = np.where(row_mask)[0]
         X = fh["embeddings"][rows, :]
     return X.astype(np.float32)
@@ -79,7 +126,6 @@ def plot_umap(embedding_2d: np.ndarray, labels: np.ndarray,
             s=8, alpha=0.7, label=lbl, rasterized=True,
         )
 
-    # Compact legend outside plot
     n_cols = max(1, len(unique_labels) // 20)
     ax.legend(
         markerscale=2, fontsize=7, ncol=n_cols,
@@ -98,12 +144,13 @@ def plot_umap(embedding_2d: np.ndarray, labels: np.ndarray,
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--embeddings_dir", default="data/embeddings/evo2")
-    parser.add_argument("--fragments",      default="data/fragments/fragments.tsv")
-    parser.add_argument("--out_dir",        default="results/umap")
-    parser.add_argument("--layers",         default="0",
-                        help="Comma-separated layer indices to visualize. "
-                             "E.g. '0,12,24' for embedding, mid, and final layers.")
+    parser.add_argument("--embeddings_dir", default="processed_data/embeddings/evo2")
+    parser.add_argument("--fragments",      default="processed_data/fragments.tsv")
+    parser.add_argument("--out_dir",        default="processed_data/results/umap")
+    parser.add_argument("--layers",         default=DEFAULT_LAYERS,
+                        help=f"Comma-separated layer indices, or 'all'. "
+                             f"Default: '{DEFAULT_LAYERS}'. Layer "
+                             f"{PAPER_LAYER} is the paper-highlighted one.")
     parser.add_argument("--split",          default="test",
                         help="Which split to visualize (test recommended).")
     parser.add_argument("--max_points",     type=int, default=5000,
@@ -117,10 +164,26 @@ def main():
     out_dir.mkdir(parents=True, exist_ok=True)
     emb_dir = Path(args.embeddings_dir)
 
+    available = discover_layer_files(emb_dir)
+    if not available:
+        raise FileNotFoundError(
+            f"No layer_*.h5 files found in {emb_dir}. "
+            f"Run 04_extract_embeddings_evo2.py first."
+        )
+    print(f"Found {len(available)} layer file(s) in {emb_dir}: "
+          f"{sorted(available.keys())}")
+
+    layer_indices = resolve_layers(args.layers, available)
+    if not layer_indices:
+        raise RuntimeError(
+            f"None of the requested layers ({args.layers}) are present. "
+            f"Available: {sorted(available.keys())}."
+        )
+    print(f"Visualizing layers: {layer_indices}")
+
     df = pd.read_csv(args.fragments, sep="\t")
     split_mask = (df["split"] == args.split).values
 
-    # Optional subsampling for speed
     split_indices = np.where(split_mask)[0]
     rng = np.random.default_rng(args.seed)
     if len(split_indices) > args.max_points:
@@ -133,23 +196,26 @@ def main():
     phylum_labels = df.loc[chosen_mask, "phylum"].values
     domain_labels = df.loc[chosen_mask, "domain"].values
 
-    layer_indices = [int(x) for x in args.layers.split(",")]
-
     for layer_idx in layer_indices:
-        print(f"\n=== UMAP for layer {layer_idx} ===")
-        X = load_layer_embeddings(emb_dir, layer_idx, chosen_mask)
+        layer_path = available[layer_idx]
+        tag = " [paper highlight]" if layer_idx == PAPER_LAYER else ""
+        print(f"\n=== UMAP for layer {layer_idx}{tag} ===")
+        X = load_layer_embeddings(layer_path, chosen_mask)
         print(f"  Embedding shape: {X.shape}")
         print("  Running UMAP ...")
         emb_2d = run_umap(X, args.n_neighbors, args.min_dist, args.seed)
 
+        title_suffix = " — Evo 2 paper layer" if layer_idx == PAPER_LAYER else ""
         plot_umap(
             emb_2d, phylum_labels, PHYLUM_PALETTE,
-            title=f"Evo 2 7B — Layer {layer_idx} — Colored by Phylum ({args.split} set)",
+            title=(f"Evo 2 7B — Layer {layer_idx}{title_suffix} — "
+                   f"Phylum ({args.split} set)"),
             out_path=out_dir / f"layer_{layer_idx:02d}_phylum.png",
         )
         plot_umap(
             emb_2d, domain_labels, DOMAIN_PALETTE,
-            title=f"Evo 2 7B — Layer {layer_idx} — Colored by Domain ({args.split} set)",
+            title=(f"Evo 2 7B — Layer {layer_idx}{title_suffix} — "
+                   f"Domain ({args.split} set)"),
             out_path=out_dir / f"layer_{layer_idx:02d}_domain.png",
         )
 
