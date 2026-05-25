@@ -15,7 +15,7 @@ Inputs
 processed_data/
     species_index.tsv   — accession column uses GTDB-style prefixes
                           (e.g. ``GB_GCA_964402295.1``, ``RS_GCF_...``)
-data/trees/
+processed_data/trees/
     bac120_r232.tree  (or bac120.tree)
     ar53_r232.tree    (or ar53.tree)
 
@@ -118,7 +118,7 @@ def build_distance_matrix(tree: Tree, accessions: list[str]) -> tuple[np.ndarray
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--tree_dir",      default="data/trees")
+    parser.add_argument("--tree_dir",      default="processed_data/trees")
     parser.add_argument("--species_index", default="processed_data/species_index.tsv")
     parser.add_argument("--out_dir",       default="processed_data/phylo")
     args = parser.parse_args()
