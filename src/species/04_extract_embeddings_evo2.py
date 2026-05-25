@@ -116,10 +116,11 @@ def main():
     parser.add_argument("--device",    default="cuda:0")
     parser.add_argument(
         "--layers",
-        default="blocks.28.mlp.l3",
-        help="Comma-separated layer NAMES (e.g. "
-             "'blocks.15.mlp.l3,blocks.26.mlp.l3,blocks.28.mlp.l3'). "
-             "The 7B model has 32 blocks (0..31).",
+        default="blocks.0.mlp.l3,blocks.16.mlp.l3,blocks.24.mlp.l3,"
+                "blocks.26.mlp.l3,blocks.28.mlp.l3,blocks.31.mlp.l3",
+        help="Comma-separated layer NAMES. Default spans the network: "
+             "0 (input), 16 (mid), 24/26/28 (paper-highlighted region), "
+             "31 (final). The 7B model has 32 blocks (0..31).",
     )
     parser.add_argument("--resume", action="store_true")
     args = parser.parse_args()

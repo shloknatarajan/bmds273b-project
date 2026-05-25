@@ -3,10 +3,12 @@
 ------------------
 Trains probes on the cached Evo 2 embeddings for two tasks:
 
-Task A - Species classification
-  Input:  mean-pooled embedding from one layer
-  Output: species label (multi-class)
-  Probes: L2 logistic regression + shallow MLP
+Task A - Classification probes
+  Targets: species (200 classes; train/val/test species are DISJOINT,
+           so test F1 is ~0 by construction — kept as a "no-information
+           baseline" reference) and phylum (20 classes; fully overlapping
+           across splits, the real generalization metric).
+  Probes:  L2 logistic regression + shallow MLP
   Metrics: macro F1, macro AUC (OvR), macro AUPRC
 
 Task B - Phylogenetic distance correlation
@@ -20,25 +22,23 @@ Layer naming
 Script 04 saves one HDF5 per requested layer using the safe-filename
 convention (dots replaced with underscores), e.g. ``blocks.28.mlp.l3``
 becomes ``blocks_28_mlp_l3.h5``. The original layer name is preserved
-in the file's ``layer_name`` attribute and is used as the display label
-in the output TSVs.
+in the file's ``layer_name`` attribute and used as the display label.
 
 Outputs
 -------
 processed_data/results/
-    classification_results.tsv  - (layer, probe, f1, auc, auprc)
+    classification_results.tsv  - (layer, probe, target, f1, auc, auprc)
     phylo_correlation.tsv       - (layer, cosine_rho, euclidean_rho, ...)
-    layer_curves.png            - probe metrics vs layer (multi-layer runs)
-    phylo_curves.png            - Spearman rho vs layer (multi-layer runs)
+    layer_curves_<target>.png   - probe metrics vs layer (multi-layer)
+    phylo_curves.png            - Spearman rho vs layer (multi-layer)
+    single_layer_summary.png    - bar chart (single-layer run)
 
 Usage
 -----
-  # Run on every cached layer (default)
-  python 05_train_probes.py
-
-  # Restrict to specific layers (either dotted or underscored form works)
+  python 05_train_probes.py                            # all cached layers
+  python 05_train_probes.py --skip_mlp                 # faster (logistic only)
+  python 05_train_probes.py --targets phylum           # phylum only
   python 05_train_probes.py --probe_layers blocks.28.mlp.l3
-  python 05_train_probes.py --probe_layers blocks_15_mlp_l3,blocks_28_mlp_l3
 """
 
 import argparse
@@ -70,7 +70,6 @@ except ImportError:
 # ---------------------------------------------------------------------------
 
 def _block_index(layer_name: str) -> int:
-    """Pull the block index out of a name like 'blocks.28.mlp.l3' for sorting."""
     parts = layer_name.split(".")
     for i, p in enumerate(parts):
         if p == "blocks" and i + 1 < len(parts) and parts[i + 1].isdigit():
@@ -79,11 +78,6 @@ def _block_index(layer_name: str) -> int:
 
 
 def discover_layer_files(emb_dir: Path) -> dict[str, Path]:
-    """
-    Map display layer name (e.g. 'blocks.28.mlp.l3') -> HDF5 path for every
-    .h5 file present in emb_dir. Falls back to the filename stem if the
-    'layer_name' attribute is missing.
-    """
     found: dict[str, Path] = {}
     for p in sorted(emb_dir.glob("*.h5")):
         try:
@@ -101,18 +95,15 @@ def resolve_requested_layers(
     requested: str,
     available: dict[str, Path],
 ) -> list[str]:
-    """Turn the --probe_layers argument into an ordered list of display names."""
     if requested.strip().lower() == "all":
         return list(available.keys())
 
-    # Build lookup tolerant of dotted vs. underscored form.
     canonical = {}
     for name in available:
         canonical[name] = name
         canonical[name.replace(".", "_")] = name
 
-    resolved: list[str] = []
-    missing: list[str] = []
+    resolved, missing = [], []
     for token in (s.strip() for s in requested.split(",") if s.strip()):
         if token in canonical:
             resolved.append(canonical[token])
@@ -123,9 +114,7 @@ def resolve_requested_layers(
             f"Requested layers not found in embeddings dir: {missing}. "
             f"Available: {sorted(available.keys())}"
         )
-    # Preserve user-specified order, dedupe.
-    seen = set()
-    ordered: list[str] = []
+    seen, ordered = set(), []
     for name in resolved:
         if name not in seen:
             ordered.append(name)
@@ -137,19 +126,18 @@ def resolve_requested_layers(
 # Data loading
 # ---------------------------------------------------------------------------
 
-def load_split(
+def load_embeddings_for_split(
     df: pd.DataFrame,
     layer_path: Path,
     split: str,
-) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
-    """Returns (X, species_labels, accessions) for a given split."""
+) -> tuple[np.ndarray, pd.DataFrame]:
+    """Returns (X, metadata_df) where metadata_df has the same row order as X."""
     mask = (df["split"] == split).values
     row_indices = np.where(mask)[0]
     with h5py.File(layer_path, "r") as fh:
         X = fh["embeddings"][row_indices, :]
-    species = df.loc[mask, "species"].values
-    accessions = df.loc[mask, "accession"].values
-    return X, species, accessions
+    meta = df.loc[mask].reset_index(drop=True)
+    return X, meta
 
 
 def load_phylo_distances(phylo_dir: Path) -> tuple[np.ndarray, np.ndarray]:
@@ -166,6 +154,7 @@ def train_classification_probe(
     X_val:   np.ndarray, y_val:   np.ndarray,
     X_test:  np.ndarray, y_test:  np.ndarray,
     probe_type: str = "logistic",
+    classes_all: np.ndarray | None = None,
 ) -> dict:
     scaler = StandardScaler()
     X_train_s = scaler.fit_transform(X_train)
@@ -176,7 +165,7 @@ def train_classification_probe(
         best_f1, best_model = -1.0, None
         for C in [0.01, 0.1, 1.0, 10.0]:
             clf = LogisticRegression(
-                C=C, max_iter=1000, solver="lbfgs", n_jobs=-1,
+                C=C, max_iter=2000, solver="lbfgs", n_jobs=-1,
             )
             clf.fit(X_train_s, y_train)
             val_f1 = f1_score(
@@ -205,18 +194,23 @@ def train_classification_probe(
     y_pred = clf.predict(X_test_s)
     f1 = f1_score(y_test, y_pred, average="macro", zero_division=0)
 
-    classes = clf.classes_
-    try:
-        y_proba = clf.predict_proba(X_test_s)
-        auc = roc_auc_score(
-            y_test, y_proba, multi_class="ovr",
-            average="macro", labels=classes,
-        )
-        y_bin = label_binarize(y_test, classes=classes)
-        auprc = average_precision_score(y_bin, y_proba, average="macro")
-    except Exception:
-        auc = float("nan")
-        auprc = float("nan")
+    # AUC / AUPRC are only meaningful when train classes cover the test
+    # classes (i.e. the phylum/domain case, not the held-out-species case).
+    train_classes = set(clf.classes_.tolist())
+    test_classes  = set(np.unique(y_test).tolist())
+    auc = float("nan")
+    auprc = float("nan")
+    if test_classes.issubset(train_classes):
+        try:
+            y_proba = clf.predict_proba(X_test_s)
+            auc = roc_auc_score(
+                y_test, y_proba, multi_class="ovr",
+                average="macro", labels=clf.classes_,
+            )
+            y_bin = label_binarize(y_test, classes=clf.classes_)
+            auprc = average_precision_score(y_bin, y_proba, average="macro")
+        except Exception:
+            pass
 
     return {"f1": float(f1), "auc": float(auc), "auprc": float(auprc)}
 
@@ -275,7 +269,6 @@ def phylo_correlation_for_layer(
 # ---------------------------------------------------------------------------
 
 def _layer_tick_labels(layers: list[str]) -> list[str]:
-    """Abbreviate long layer names to '<block>.<...>' for plot tick labels."""
     short = []
     for name in layers:
         idx = _block_index(name)
@@ -283,18 +276,25 @@ def _layer_tick_labels(layers: list[str]) -> list[str]:
     return short
 
 
-def plot_layer_curves(clf_df: pd.DataFrame, out_path: Path):
+def plot_layer_curves_per_target(
+    clf_df: pd.DataFrame, target: str, out_path: Path,
+):
     if not HAS_MPL or clf_df.empty:
         return
-    layers = list(clf_df["layer"].drop_duplicates())
+    sub = clf_df[clf_df["target"] == target]
+    if sub.empty:
+        return
+    layers = list(sub["layer"].drop_duplicates())
+    if len(layers) < 2:
+        return  # bars cover the single-layer case
     x = np.arange(len(layers))
     ticks = _layer_tick_labels(layers)
 
     fig, axes = plt.subplots(1, 3, figsize=(15, 5))
-    for probe in clf_df["probe"].unique():
-        sub = clf_df[clf_df["probe"] == probe].set_index("layer").reindex(layers)
+    for probe in sub["probe"].unique():
+        ser = sub[sub["probe"] == probe].set_index("layer").reindex(layers)
         for ax, metric in zip(axes, ["f1", "auc", "auprc"]):
-            ax.plot(x, sub[metric].values, marker="o", label=probe)
+            ax.plot(x, ser[metric].values, marker="o", label=probe)
     for ax, metric in zip(axes, ["f1", "auc", "auprc"]):
         ax.set_xticks(x)
         ax.set_xticklabels(ticks, rotation=45, ha="right")
@@ -302,7 +302,7 @@ def plot_layer_curves(clf_df: pd.DataFrame, out_path: Path):
         ax.set_ylabel(metric.upper())
         ax.set_title(f"Layer-wise {metric.upper()}")
         ax.legend()
-    fig.suptitle("Evo 2 7B - Species Classification Probes")
+    fig.suptitle(f"Evo 2 7B - Classification Probes ({target})")
     plt.tight_layout()
     fig.savefig(out_path, dpi=150)
     plt.close()
@@ -310,7 +310,7 @@ def plot_layer_curves(clf_df: pd.DataFrame, out_path: Path):
 
 
 def plot_phylo_curves(phylo_df: pd.DataFrame, out_path: Path):
-    if not HAS_MPL or phylo_df.empty:
+    if not HAS_MPL or phylo_df.empty or len(phylo_df) < 2:
         return
     layers = list(phylo_df["layer"])
     x = np.arange(len(layers))
@@ -336,33 +336,34 @@ def plot_phylo_curves(phylo_df: pd.DataFrame, out_path: Path):
     print(f"Saved {out_path}")
 
 
-def plot_single_layer_bars(
+def plot_single_layer_summary(
     clf_df: pd.DataFrame, phylo_df: pd.DataFrame, out_path: Path,
 ):
-    """Compact summary when only one layer is available."""
     if not HAS_MPL:
         return
-    fig, axes = plt.subplots(1, 2, figsize=(11, 4))
+    targets = list(clf_df["target"].drop_duplicates()) if not clf_df.empty else []
+    n_cols = max(1, len(targets)) + (1 if not phylo_df.empty else 0)
+    fig, axes = plt.subplots(1, n_cols, figsize=(5 * n_cols, 4), squeeze=False)
+    axes = axes[0]
 
-    if not clf_df.empty:
-        ax = axes[0]
-        probes  = list(clf_df["probe"])
+    for ax, target in zip(axes, targets):
+        sub = clf_df[clf_df["target"] == target]
+        probes = list(sub["probe"])
         metrics = ["f1", "auc", "auprc"]
-        width = 0.25
+        width = 0.35
         positions = np.arange(len(metrics))
         for i, probe in enumerate(probes):
-            row = clf_df[clf_df["probe"] == probe].iloc[0]
-            ax.bar(positions + i * width,
-                   [row[m] for m in metrics],
-                   width=width, label=probe)
+            row = sub[sub["probe"] == probe].iloc[0]
+            vals = [row[m] if np.isfinite(row[m]) else 0.0 for m in metrics]
+            ax.bar(positions + i * width, vals, width=width, label=probe)
         ax.set_xticks(positions + width * (len(probes) - 1) / 2)
         ax.set_xticklabels([m.upper() for m in metrics])
         ax.set_ylim(0, 1.0)
-        ax.set_title("Classification probes")
+        ax.set_title(f"target={target}")
         ax.legend()
 
     if not phylo_df.empty:
-        ax = axes[1]
+        ax = axes[len(targets)]
         row = phylo_df.iloc[0]
         ax.bar(["cosine", "euclidean"],
                [row["cosine_rho"], row["euclidean_rho"]],
@@ -371,8 +372,7 @@ def plot_single_layer_bars(
         ax.set_ylabel("Spearman rho")
         ax.set_title("Phylo distance correlation")
 
-    layer_name = (clf_df["layer"].iloc[0]
-                  if not clf_df.empty
+    layer_name = (clf_df["layer"].iloc[0] if not clf_df.empty
                   else phylo_df["layer"].iloc[0])
     fig.suptitle(f"Evo 2 7B - {layer_name}")
     plt.tight_layout()
@@ -385,6 +385,9 @@ def plot_single_layer_bars(
 # Main
 # ---------------------------------------------------------------------------
 
+DEFAULT_TARGETS = "species,phylum"
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--embeddings_dir", default="processed_data/embeddings/evo2")
@@ -393,7 +396,11 @@ def main():
     parser.add_argument("--out_dir",        default="processed_data/results")
     parser.add_argument("--probe_layers",   default="all",
                         help="Comma-separated layer names (dotted or "
-                             "underscored form), or 'all' (default).")
+                             "underscored), or 'all' (default).")
+    parser.add_argument("--targets",        default=DEFAULT_TARGETS,
+                        help=f"Comma-separated classification targets. "
+                             f"Default: '{DEFAULT_TARGETS}'. Valid columns "
+                             f"from fragments.tsv: species, phylum, domain.")
     parser.add_argument("--skip_mlp",       action="store_true",
                         help="Only run logistic regression (faster).")
     args = parser.parse_args()
@@ -415,15 +422,32 @@ def main():
     print(f"Probing layers: {layer_names}")
 
     df = pd.read_csv(args.fragments, sep="\t")
-    le = LabelEncoder()
-    le.fit(df["species"])
-    print(f"Fragments: {len(df)}, species classes: {len(le.classes_)}")
+
+    targets = [t.strip() for t in args.targets.split(",") if t.strip()]
+    unknown = [t for t in targets if t not in df.columns]
+    if unknown:
+        raise ValueError(
+            f"Unknown target column(s): {unknown}. "
+            f"Available columns: {df.columns.tolist()}"
+        )
+
+    # Diagnostic: report train/test class overlap per target so it's
+    # obvious when a target is a held-out-class generalization task.
+    label_encoders: dict[str, LabelEncoder] = {}
+    for target in targets:
+        le = LabelEncoder()
+        le.fit(df[target])
+        label_encoders[target] = le
+        train_classes = set(df.loc[df["split"] == "train", target].unique())
+        test_classes  = set(df.loc[df["split"] == "test",  target].unique())
+        overlap = train_classes & test_classes
+        print(f"  target={target}: {len(le.classes_)} total classes, "
+              f"{len(train_classes)} train / {len(test_classes)} test, "
+              f"overlap={len(overlap)}"
+              + ("  [HELD-OUT — F1 will be ~0]" if not overlap else ""))
 
     phylo_mat, phylo_accs = load_phylo_distances(Path(args.phylo_dir))
     print(f"Phylo matrix: {phylo_mat.shape}, {len(phylo_accs)} accessions")
-
-    test_mask = (df["split"] == "test").values
-    test_accessions = df.loc[test_mask, "accession"].values
 
     clf_rows, phylo_rows = [], []
     probe_types = ["logistic"] if args.skip_mlp else ["logistic", "mlp"]
@@ -432,9 +456,9 @@ def main():
         layer_path = available[layer_name]
         print(f"\n=== {layer_name} ({layer_path.name}) ===")
 
-        X_train, y_train_raw, _              = load_split(df, layer_path, "train")
-        X_val,   y_val_raw,   _              = load_split(df, layer_path, "val")
-        X_test,  y_test_raw,  test_accs_layer = load_split(df, layer_path, "test")
+        X_train, m_train = load_embeddings_for_split(df, layer_path, "train")
+        X_val,   m_val   = load_embeddings_for_split(df, layer_path, "val")
+        X_test,  m_test  = load_embeddings_for_split(df, layer_path, "test")
 
         if not np.isfinite(X_train).all():
             n_bad = (~np.isfinite(X_train)).sum()
@@ -443,23 +467,28 @@ def main():
                 f"values in the train split - re-run 04_extract_embeddings_evo2.py."
             )
 
-        y_train = le.transform(y_train_raw)
-        y_val   = le.transform(y_val_raw)
-        y_test  = le.transform(y_test_raw)
+        for target in targets:
+            le = label_encoders[target]
+            y_train = le.transform(m_train[target].values)
+            y_val   = le.transform(m_val[target].values)
+            y_test  = le.transform(m_test[target].values)
 
-        for probe in probe_types:
-            print(f"  Training {probe} probe ...")
-            metrics = train_classification_probe(
-                X_train, y_train, X_val, y_val, X_test, y_test, probe,
-            )
-            print(f"    F1={metrics['f1']:.3f}  "
-                  f"AUC={metrics['auc']:.3f}  "
-                  f"AUPRC={metrics['auprc']:.3f}")
-            clf_rows.append({"layer": layer_name, "probe": probe, **metrics})
+            for probe in probe_types:
+                print(f"  [{target}] training {probe} probe ...")
+                metrics = train_classification_probe(
+                    X_train, y_train, X_val, y_val, X_test, y_test, probe,
+                )
+                print(f"    F1={metrics['f1']:.3f}  "
+                      f"AUC={metrics['auc']:.3f}  "
+                      f"AUPRC={metrics['auprc']:.3f}")
+                clf_rows.append({
+                    "layer": layer_name, "probe": probe,
+                    "target": target, **metrics,
+                })
 
         print("  Computing phylo correlation ...")
         phylo_res = phylo_correlation_for_layer(
-            X_test, test_accs_layer, phylo_mat, phylo_accs,
+            X_test, m_test["accession"].values, phylo_mat, phylo_accs,
         )
         print(f"    cosine rho={phylo_res['cosine_rho']:.3f}  "
               f"euclidean rho={phylo_res['euclidean_rho']:.3f}  "
@@ -476,19 +505,23 @@ def main():
     print(f"\nResults saved to:\n  {clf_path}\n  {phylo_path}")
 
     if len(layer_names) >= 2:
-        plot_layer_curves(clf_df, out_dir / "layer_curves.png")
+        for target in targets:
+            plot_layer_curves_per_target(
+                clf_df, target, out_dir / f"layer_curves_{target}.png",
+            )
         plot_phylo_curves(phylo_df, out_dir / "phylo_curves.png")
     else:
-        plot_single_layer_bars(clf_df, phylo_df, out_dir / "single_layer_summary.png")
+        plot_single_layer_summary(clf_df, phylo_df, out_dir / "single_layer_summary.png")
 
     print("\n=== Summary ===")
-    if not clf_df.empty:
-        log_rows = clf_df[clf_df["probe"] == "logistic"]
-        if not log_rows.empty:
-            best = log_rows.sort_values("f1").iloc[-1]
-            print(f"Best classification layer (logistic, F1): "
-                  f"{best['layer']} -> F1={best['f1']:.3f}, "
-                  f"AUC={best['auc']:.3f}, AUPRC={best['auprc']:.3f}")
+    for target in targets:
+        sub = clf_df[(clf_df["target"] == target) & (clf_df["probe"] == "logistic")]
+        if sub.empty:
+            continue
+        best = sub.sort_values("f1").iloc[-1]
+        print(f"Best layer for {target} (logistic, F1): "
+              f"{best['layer']} -> F1={best['f1']:.3f}, "
+              f"AUC={best['auc']:.3f}, AUPRC={best['auprc']:.3f}")
     if not phylo_df.empty:
         best = phylo_df.sort_values("cosine_rho").iloc[-1]
         print(f"Best phylo correlation layer (cosine rho): "
