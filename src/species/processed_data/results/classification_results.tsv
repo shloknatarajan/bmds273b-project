@@ -1,4 +1,8 @@
 layer	probe	target	f1	auc	auprc
+blocks.7.mlp.l3	logistic	species	0.0		
+blocks.7.mlp.l3	mlp	species	0.0		
+blocks.7.mlp.l3	logistic	phylum	0.7249964064204082	0.971051052631579	0.8155233681006024
+blocks.7.mlp.l3	mlp	phylum	0.7179104772807321	0.9674555263157893	0.7997899800941558
 blocks.16.mlp.l3	logistic	species	0.0		
 blocks.16.mlp.l3	mlp	species	0.0		
 blocks.16.mlp.l3	logistic	phylum	0.6912288299682127	0.9608502631578949	0.7708982995605603
@@ -7,3 +11,7 @@ blocks.26.mlp.l3	logistic	species	0.0
 blocks.26.mlp.l3	mlp	species	0.0		
 blocks.26.mlp.l3	logistic	phylum	0.7012360170543201	0.9596186842105261	0.777269194950531
 blocks.26.mlp.l3	mlp	phylum	0.6835940388042367	0.948437763157895	0.7556028934569518
+blocks.31.mlp.l3	logistic	species	0.0		
+blocks.31.mlp.l3	mlp	species	0.0		
+blocks.31.mlp.l3	logistic	phylum	0.21666208349856012	0.8169271052631579	0.2355607292547907
+blocks.31.mlp.l3	mlp	phylum	0.13615186287905146	0.7406144736842106	0.17194765789924552
