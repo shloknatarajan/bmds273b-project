@@ -1,0 +1,25 @@
+layer	probe	target	f1	auc	auprc
+encoder.layer.0	logistic	species	0.0		
+encoder.layer.0	mlp	species	0.0		
+encoder.layer.0	logistic	phylum	0.3285044268929869	0.8568410526315791	0.34029515624835743
+encoder.layer.0	mlp	phylum	0.3299045435826584	0.8505444736842106	0.34634218822022544
+encoder.layer.5	logistic	species	0.0		
+encoder.layer.5	mlp	species	0.0		
+encoder.layer.5	logistic	phylum	0.35601423071396043	0.8563936842105262	0.36291951619473045
+encoder.layer.5	mlp	phylum	0.35857126073079704	0.8581505263157896	0.36394656001440345
+encoder.layer.9	logistic	species	0.0		
+encoder.layer.9	mlp	species	0.0		
+encoder.layer.9	logistic	phylum	0.34650018429031426	0.8634210526315789	0.3581020150628013
+encoder.layer.9	mlp	phylum	0.3257013404652801	0.8476647368421053	0.33968146682840217
+encoder.layer.10	logistic	species	0.0		
+encoder.layer.10	mlp	species	0.0		
+encoder.layer.10	logistic	phylum	0.3427995695489607	0.8613621052631577	0.3536402717403848
+encoder.layer.10	mlp	phylum	0.3353826403565519	0.839716052631579	0.3379823815953608
+encoder.layer.11	logistic	species	0.0		
+encoder.layer.11	mlp	species	0.0		
+encoder.layer.11	logistic	phylum	0.33474741923043344	0.8531060526315789	0.33707799438632574
+encoder.layer.11	mlp	phylum	0.3108969367323454	0.829733157894737	0.31436516595074326
+pooler	logistic	species	0.0		
+pooler	mlp	species	0.0		
+pooler	logistic	phylum	0.31001310134169746	0.8398236842105262	0.30869485641522687
+pooler	mlp	phylum	0.3090190064737175	0.8199886842105265	0.2898590883938341
