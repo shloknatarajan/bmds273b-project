@@ -1,0 +1,64 @@
+✓ Initialized. View run at 
+https://modal.com/apps/autogkb/main/ap-4caz5ZKR6Ee3QJKg1YFg8W
+✓ Created objects.
+├── 🔨 Created mount /home/ec2-user/bmds273b-project/src/modal_app.py
+├── 🔨 Created mount /home/ec2-user/bmds273b-project/src
+├── 🔨 Created function extract.
+├── 🔨 Created function download.
+├── 🔨 Created function build.
+└── 🔨 Created function extract_dnabert.
+stage=smoke models=['dnabert_s'] limit=20 resume=False
++ /usr/local/bin/python /root/src/extract_embeddings.py --model dnabert_s --windows /vol/regulatory/windows_smoke_dnabert_s.tsv --out_dir /vol/regulatory/embeddings/_smoke_dnabert_s --device cuda
+A new version of the following files was downloaded from https://huggingface.co/zhihan1996/DNABERT-S:
+- configuration_bert.py
+. Make sure to double-check they do not contain any added malicious code. To avoid downloading new versions of the code file, you can pin a revision.
+A new version of the following files was downloaded from https://huggingface.co/zhihan1996/DNABERT-S:
+- flash_attn_triton.py
+. Make sure to double-check they do not contain any added malicious code. To avoid downloading new versions of the code file, you can pin a revision.
+A new version of the following files was downloaded from https://huggingface.co/zhihan1996/DNABERT-S:
+- bert_padding.py
+. Make sure to double-check they do not contain any added malicious code. To avoid downloading new versions of the code file, you can pin a revision.
+A new version of the following files was downloaded from https://huggingface.co/zhihan1996/DNABERT-S:
+- bert_layers.py
+- flash_attn_triton.py
+- bert_padding.py
+. Make sure to double-check they do not contain any added malicious code. To avoid downloading new versions of the code file, you can pin a revision.
+/usr/local/lib/python3.10/site-packages/torch/_utils.py:776: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
+  return self.fget.__get__(instance, owner)()
+20 windows from /vol/regulatory/windows_smoke_dnabert_s.tsv
+Loading dnabert_s (fp32) ...
+  n_layers=12, hidden_dim=768
+Traceback (most recent call last):
+  File "/root/src/extract_embeddings.py", line 233, in <module>
+    main()
+  File "/root/src/extract_embeddings.py", line 200, in main
+    probe = embed_one(seqs[0], tok, model, args.device, max_tok)
+  File "/usr/local/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+    return func(*args, **kwargs)
+  File "/root/src/extract_embeddings.py", line 135, in embed_one
+    return [pool_hidden(hs) for hs in out.hidden_states]
+AttributeError: 'tuple' object has no attribute 'hidden_states'
+[dnabert_s] RUN FAILED: Command '['/usr/local/bin/python', '/root/src/extract_embeddings.py', '--model', 'dnabert_s', '--windows', '/vol/regulatory/windows_smoke_dnabert_s.tsv', '--out_dir', '/vol/regulatory/embeddings/_smoke_dnabert_s', '--device', 'cuda']' returned non-zero exit status 1.
+
+SUMMARY: 0/1 succeeded: []
+  failed: {'dnabert_s': "run: Command '['/usr/local/bin/python', '/root/src/extract_embeddings.py', '--model', 'dnabert_s', '--windows', '/vol/regulatory/windows_smoke_dnabert_s.tsv', '--out_dir', '/vol/regulatory/embeddings/_smoke_dnabert_s', '--device', 'cuda']' returned non-zero exit status 1."}
+Traceback (most recent call last):
+  File "/pkg/modal/_runtime/container_io_manager.py", line 945, in handle_input_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 189, in run_input_sync
+    values = io_context.call_function_sync()
+  File "/pkg/modal/_runtime/container_io_manager.py", line 225, in call_function_sync
+    expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+  File "/root/modal_app.py", line 188, in extract_dnabert
+    return _extract_impl(model, limit, resume, device="cuda")
+  File "/root/modal_app.py", line 168, in _extract_impl
+    _run(cmd)
+  File "/root/modal_app.py", line 102, in _run
+    subprocess.run(cmd, check=True, cwd="/root")
+  File "/usr/local/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/usr/local/bin/python', '/root/src/extract_embeddings.py', '--model', 'dnabert_s', '--windows', '/vol/regulatory/windows_smoke_dnabert_s.tsv', '--out_dir', '/vol/regulatory/embeddings/_smoke_dnabert_s', '--device', 'cuda']' returned non-zero exit status 1.
+
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/autogkb/main/ap-4caz5ZKR6Ee3QJKg1YFg8W

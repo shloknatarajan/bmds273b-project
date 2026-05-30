@@ -1,0 +1,7 @@
+usage: umap_visualization.py [-h] [--embeddings_root EMBEDDINGS_ROOT]
+                             [--windows WINDOWS] [--out_dir OUT_DIR]
+                             [--model MODEL] [--layers LAYERS] [--split SPLIT]
+                             [--max_points MAX_POINTS]
+                             [--n_neighbors N_NEIGHBORS] [--min_dist MIN_DIST]
+                             [--seed SEED]
+umap_visualization.py: error: unrecognized arguments: --models hyenadna,nt,dnabert_s

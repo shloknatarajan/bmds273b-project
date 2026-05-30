@@ -114,47 +114,81 @@ def _fetch_seq(genome: Fasta, chrom: str, start: int, end: int) -> str | None:
     return None
 
 
-def tile_intervals(
-    intervals: pr.PyRanges,
-    window_size: int,
+def center_window(
+    start: int, end: int, window_size: int, chrom_len: int
+) -> tuple[int, int] | None:
+    """Center a `window_size` window on the midpoint of the site [start, end),
+    clamped to [0, chrom_len].
+
+    This replaces the old "tile only intervals >= window_size" logic, which
+    dropped every cCRE (all <=350 bp). Returns None if the chromosome is
+    shorter than the window.
+    """
+    if chrom_len < window_size:
+        return None
+    mid = (start + end) // 2
+    win_start = mid - window_size // 2
+    win_end = win_start + window_size
+    if win_start < 0:
+        win_start, win_end = 0, window_size
+    elif win_end > chrom_len:
+        win_start, win_end = chrom_len - window_size, chrom_len
+    return win_start, win_end
+
+
+def build_candidates(
+    df: "pd.DataFrame",
     label: str,
+    chrom_lens: dict[str, int],
+    window_size: int,
+) -> list[dict]:
+    """Build one centered candidate window per labeled site (coords only — no
+    sequence yet, so this stays cheap even for ~millions of cCREs).
+
+    Skips sites on chromosomes absent from `chrom_lens` or shorter than the
+    window. Dedups windows that clamp to the same (chrom, start), since nearby
+    sites collapse to the same window.
+    """
+    seen: set[tuple[str, int]] = set()
+    candidates: list[dict] = []
+    for chrom, start, end in zip(df["Chromosome"], df["Start"], df["End"]):
+        chrom = str(chrom)
+        chrom_len = chrom_lens.get(chrom)
+        if chrom_len is None:
+            continue
+        win = center_window(int(start), int(end), window_size, chrom_len)
+        if win is None:
+            continue
+        win_start, win_end = win
+        key = (chrom, win_start)
+        if key in seen:
+            continue
+        seen.add(key)
+        candidates.append(
+            {"chrom": chrom, "start": win_start, "end": win_end, "label": label}
+        )
+    return candidates
+
+
+def materialize(
+    candidates: list[dict],
     genome: Fasta,
     max_n_frac: float,
 ) -> list[dict]:
-    """
-    Tiles all intervals into non-overlapping windows of `window_size` bp,
-    extracts sequence, filters by N content, and computes GC fraction.
+    """Fetch sequence for each (already-subsampled) candidate window, apply the
+    N-content filter, and attach GC fraction + sequence.
+
+    Called only on the bounded candidate *pool*, never the full site list, so
+    memory stays flat regardless of how many cCREs / gene fragments exist.
     """
     records = []
-    df = intervals.as_df()
-
-    for _, row in df.iterrows():
-        chrom = str(row["Chromosome"])
-        start = int(row["Start"])
-        end   = int(row["End"])
-
-        if (end - start) < window_size:
+    for c in candidates:
+        seq = _fetch_seq(genome, c["chrom"], c["start"], c["end"])
+        if seq is None:
             continue
-
-        for win_start in range(start, end - window_size + 1, window_size):
-            win_end = win_start + window_size
-            seq = _fetch_seq(genome, chrom, win_start, win_end)
-            if seq is None:
-                continue
-
-            n_frac = seq.count("N") / len(seq)
-            if n_frac > max_n_frac:
-                continue
-
-            records.append({
-                "chrom":      chrom,
-                "start":      win_start,
-                "end":        win_end,
-                "label":      label,
-                "gc_content": gc_fraction(seq),
-                "seq":        seq,
-            })
-
+        if seq.count("N") / len(seq) > max_n_frac:
+            continue
+        records.append({**c, "gc_content": gc_fraction(seq), "seq": seq})
     return records
 
 # 4. GC-matched sampling
@@ -213,6 +247,9 @@ def main():
                         help="Window size in bp (proposal requires >=10 kb)")
     parser.add_argument("--n_windows",    type=int, default=5_000,
                         help="Max windows per class after GC matching")
+    parser.add_argument("--pool_size",    type=int, default=40_000,
+                        help="Candidate windows per class to materialize before "
+                             "GC matching (caps memory: only these get sequences)")
     parser.add_argument("--gc_bins",      type=int, default=10,
                         help="Number of GC-content bins for matching")
     parser.add_argument("--max_n_frac",   type=float, default=0.05,
@@ -234,19 +271,28 @@ def main():
     # --- Open genome ---
     print(f"\nOpening genome FASTA: {args.genome_fasta}")
     genome = Fasta(args.genome_fasta, as_raw=False, sequence_always_upper=True)
+    chrom_lens = {name: len(genome[name]) for name in genome.keys()}
 
-    # --- Tile and extract sequences ---
-    print(f"\nTiling gene_body intervals (window_size={args.window_size:,} bp) ...")
-    gene_windows = tile_intervals(
-        gene_body_pr, args.window_size, "gene_body", genome, args.max_n_frac
+    # --- Build centered candidate windows (coords only — cheap) ---
+    rng = random.Random(args.seed)
+    print(f"\nBuilding centered candidate windows (window_size={args.window_size:,} bp) ...")
+    gene_cands = build_candidates(
+        gene_body_pr.as_df(), "gene_body", chrom_lens, args.window_size
     )
-    print(f"  {len(gene_windows):,} candidate gene_body windows")
+    reg_cands = build_candidates(
+        regulatory_pr.as_df(), "regulatory", chrom_lens, args.window_size
+    )
+    print(f"  {len(gene_cands):,} gene_body / {len(reg_cands):,} regulatory candidate sites")
 
-    print("Tiling regulatory intervals ...")
-    reg_windows = tile_intervals(
-        regulatory_pr, args.window_size, "regulatory", genome, args.max_n_frac
-    )
-    print(f"  {len(reg_windows):,} candidate regulatory windows")
+    # --- Subsample to a bounded pool, then fetch sequences only for the pool ---
+    rng.shuffle(gene_cands)
+    rng.shuffle(reg_cands)
+    gene_cands = gene_cands[: args.pool_size]
+    reg_cands  = reg_cands[: args.pool_size]
+    print(f"\nMaterializing sequences for pool (<= {args.pool_size:,}/class) ...")
+    gene_windows = materialize(gene_cands, genome, args.max_n_frac)
+    reg_windows  = materialize(reg_cands,  genome, args.max_n_frac)
+    print(f"  {len(gene_windows):,} gene_body / {len(reg_windows):,} regulatory after N-filter")
 
     # --- GC-matched sampling ---
     print(f"\nGC-matched sampling "

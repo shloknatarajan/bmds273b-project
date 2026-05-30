@@ -1,0 +1,66 @@
+✓ Initialized. View run at 
+https://modal.com/apps/autogkb/main/ap-Q0SMsEpKXLDsCcyISOOKjp
+✓ Created objects.
+├── 🔨 Created mount /home/ec2-user/bmds273b-project/src/modal_app.py
+├── 🔨 Created mount /home/ec2-user/bmds273b-project/src
+├── 🔨 Created function extract.
+├── 🔨 Created function download.
+├── 🔨 Created function build.
+└── 🔨 Created function extract_dnabert.
+stage=smoke models=['nt'] limit=300 resume=False
++ /usr/local/bin/python /root/src/extract_embeddings.py --model nt --windows /vol/regulatory/windows_smoke_nt.tsv --out_dir /vol/regulatory/embeddings/_smoke_nt --device cuda
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+300 windows from /vol/regulatory/windows_smoke_nt.tsv
+Loading nt (fp16) ...
+
+[1AFetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]
+[1AFetching 2 files:  50%|█████     | 1/2 [01:02<01:02, 62.59s/it]Fetching 2 files: 100%|██████████| 2/2 [01:02<00:00, 31.29s/it]
+
+[1ALoading weights:   0%|          | 0/524 [00:00<?, ?it/s]
+[1ALoading weights:   4%|▍         | 20/524 [00:00<00:09, 54.70it/s]
+[1ALoading weights:   7%|▋         | 36/524 [00:00<00:07, 65.91it/s]
+[1ALoading weights:  10%|▉         | 52/524 [00:00<00:07, 60.88it/s]
+[1ALoading weights:  13%|█▎        | 68/524 [00:01<00:06, 66.70it/s]
+[1ALoading weights:  16%|█▌        | 84/524 [00:01<00:07, 59.33it/s]
+[1ALoading weights:  19%|█▉        | 100/524 [00:01<00:06, 64.16it/s]
+[1ALoading weights:  22%|██▏       | 116/524 [00:01<00:06, 58.93it/s]
+[1ALoading weights:  25%|██▌       | 132/524 [00:02<00:06, 64.53it/s]
+[1ALoading weights:  28%|██▊       | 148/524 [00:02<00:06, 57.85it/s]
+[1ALoading weights:  31%|███▏      | 164/524 [00:02<00:05, 61.54it/s]
+[1ALoading weights:  34%|███▍      | 180/524 [00:02<00:05, 58.72it/s]
+[1ALoading weights:  37%|███▋      | 196/524 [00:03<00:05, 62.53it/s]
+[1ALoading weights:  40%|████      | 212/524 [00:03<00:05, 60.21it/s]
+[1ALoading weights:  44%|████▎     | 228/524 [00:03<00:04, 60.40it/s]
+[1ALoading weights:  45%|████▍     | 235/524 [00:03<00:04, 61.11it/s]
+[1ALoading weights:  47%|████▋     | 244/524 [00:04<00:05, 53.18it/s]
+[1ALoading weights:  50%|████▉     | 260/524 [00:04<00:04, 58.23it/s]
+[1ALoading weights:  53%|█████▎    | 276/524 [00:04<00:04, 56.04it/s]
+[1ALoading weights:  56%|█████▌    | 292/524 [00:04<00:03, 59.49it/s]
+[1ALoading weights:  59%|█████▉    | 308/524 [00:05<00:03, 55.79it/s]
+[1ALoading weights:  62%|██████▏   | 324/524 [00:05<00:03, 59.50it/s]
+[1ALoading weights:  65%|██████▍   | 340/524 [00:05<00:03, 53.51it/s]
+[1ALoading weights:  68%|██████▊   | 356/524 [00:06<00:03, 54.94it/s]
+[1ALoading weights:  69%|██████▉   | 362/524 [00:06<00:02, 54.78it/s]
+[1ALoading weights:  71%|███████   | 372/524 [00:06<00:03, 49.48it/s]
+[1ALoading weights:  74%|███████▍  | 388/524 [00:06<00:02, 57.36it/s]
+[1ALoading weights:  77%|███████▋  | 404/524 [00:06<00:02, 54.18it/s]
+[1ALoading weights:  80%|████████  | 420/524 [00:07<00:01, 59.47it/s]
+[1ALoading weights:  83%|████████▎ | 436/524 [00:07<00:01, 55.89it/s]
+[1ALoading weights:  86%|████████▋ | 452/524 [00:07<00:01, 59.66it/s]
+[1ALoading weights:  89%|████████▉ | 468/524 [00:08<00:00, 56.17it/s]
+[1ALoading weights:  92%|█████████▏| 484/524 [00:08<00:00, 57.44it/s]
+[1ALoading weights:  95%|█████████▌| 500/524 [00:08<00:00, 51.29it/s]
+[1ALoading weights:  98%|█████████▊| 516/524 [00:08<00:00, 55.75it/s]Loading weights: 100%|██████████| 524/524 [00:08<00:00, 58.50it/s]
+  n_layers=32, hidden_dim=2560
+  actual hidden states=33, hidden_dim=2560
+Extracting (one seq/pass, max_tok=1000) ...
+  1/300 (0.3%)  101/300 (33.7%)  201/300 (67.0%)  300/300 (100.0%)
+Done → /vol/regulatory/embeddings/_smoke_nt/
+  layer_00: (300, 2560)
+  layer_32: (300, 2560)
+[nt] done → /vol/regulatory/embeddings/_smoke_nt
+
+SUMMARY: 1/1 succeeded: ['nt']
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/autogkb/main/ap-Q0SMsEpKXLDsCcyISOOKjp

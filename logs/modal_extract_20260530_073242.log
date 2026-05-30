@@ -1,0 +1,24 @@
+✓ Initialized. View run at 
+https://modal.com/apps/autogkb/main/ap-ZQnnzNzj9kyPeKrgvG754m
+✓ Created objects.
+├── 🔨 Created mount /home/ec2-user/bmds273b-project/src/modal_app.py
+├── 🔨 Created mount /home/ec2-user/bmds273b-project/src
+├── 🔨 Created function download.
+├── 🔨 Created function build.
+└── 🔨 Created function extract.
+stage=extract models=['hyenadna', 'caduceus', 'nt', 'dnabert_s'] limit=None
+Stopping app - uncaught exception raised locally: AttributeError("'Function' object has no attribute 'options'").
+╭───────────────────── Traceback (most recent call last) ──────────────────────╮
+│ /home/ec2-user/bmds273b-project/src/modal_app.py:196 in main                 │
+│                                                                              │
+│   195 │   # then collect — so all four run concurrently rather than serially │
+│ ❱ 196 │   handles = [(m, _spawn_for(m, smoke_limit)) for m in selected]      │
+│   197 │   for m, h in handles:                                               │
+│                                                                              │
+│ /home/ec2-user/bmds273b-project/src/modal_app.py:174 in _spawn_for           │
+│                                                                              │
+│   173 │   cfg = MODEL_CFG[model]                                             │
+│ ❱ 174 │   fn = extract.options(image=cfg["image"], gpu=cfg["gpu"])           │
+│   175 │   return fn.spawn(model, limit)                                      │
+╰──────────────────────────────────────────────────────────────────────────────╯
+AttributeError: 'Function' object has no attribute 'options'

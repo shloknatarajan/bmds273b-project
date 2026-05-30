@@ -1,0 +1,616 @@
+✓ Initialized. View run at 
+https://modal.com/apps/autogkb/main/ap-mwjxvPBRao9sUvdBAVEq4b
+Building image im-MPSYkRAFsSkRxnPYQ8Yall
+
+=> Step 0: FROM base
+
+=> Step 1: RUN apt-get update
+Get:1 http://deb.debian.org/debian bookworm InRelease [151 kB]
+Get:2 http://deb.debian.org/debian bookworm-updates InRelease [55.4 kB]
+Get:3 http://deb.debian.org/debian-security bookworm-security InRelease [48.0 kB]
+Get:4 http://deb.debian.org/debian bookworm/main amd64 Packages [8790 kB]
+Get:5 http://deb.debian.org/debian bookworm-updates/main amd64 Packages.diff/Index [21.8 kB]
+Ign:5 http://deb.debian.org/debian bookworm-updates/main amd64 Packages.diff/Index
+Get:6 http://deb.debian.org/debian bookworm-updates/main amd64 Packages [6924 B]
+Get:7 http://deb.debian.org/debian-security bookworm-security/main amd64 Packages [305 kB]
+Fetched 9379 kB in 1s (7827 kB/s)
+Reading package lists...
+
+=> Step 2: RUN apt-get install -y git
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  git-man less libcbor0.8 libcurl3-gnutls libedit2 liberror-perl libfido2-1
+  libnghttp2-14 libpsl5 librtmp1 libssh2-1 libssl3 libxext6 libxmuu1
+  openssh-client openssl publicsuffix xauth
+Suggested packages:
+  gettext-base git-daemon-run | git-daemon-sysvinit git-doc git-email git-gui
+  gitk gitweb git-cvs git-mediawiki git-svn keychain libpam-ssh monkeysphere
+  ssh-askpass
+The following NEW packages will be installed:
+  git git-man less libcbor0.8 libcurl3-gnutls libedit2 liberror-perl
+  libfido2-1 libnghttp2-14 libpsl5 librtmp1 libssh2-1 libxext6 libxmuu1
+  openssh-client publicsuffix xauth
+The following packages will be upgraded:
+  libssl3 openssl
+2 upgraded, 17 newly installed, 0 to remove and 55 not upgraded.
+Need to get 15.1 MB of archives.
+After this operation, 57.4 MB of additional disk space will be used.
+Get:1 http://deb.debian.org/debian bookworm/main amd64 less amd64 590-2.1~deb12u2 [132 kB]
+Get:2 http://deb.debian.org/debian bookworm/main amd64 libedit2 amd64 3.1-20221030-2 [93.0 kB]
+Get:3 http://deb.debian.org/debian bookworm/main amd64 libcbor0.8 amd64 0.8.0-2+b1 [27.4 kB]
+Get:4 http://deb.debian.org/debian bookworm/main amd64 libssl3 amd64 3.0.20-1~deb12u1 [2034 kB]
+Get:5 http://deb.debian.org/debian bookworm/main amd64 libfido2-1 amd64 1.12.0-2+b1 [77.2 kB]
+Get:6 http://deb.debian.org/debian bookworm/main amd64 openssh-client amd64 1:9.2p1-2+deb12u10 [994 kB]
+Get:7 http://deb.debian.org/debian-security bookworm-security/main amd64 libnghttp2-14 amd64 1.52.0-1+deb12u3 [72.4 kB]
+Get:8 http://deb.debian.org/debian bookworm/main amd64 libpsl5 amd64 0.21.2-1 [58.7 kB]
+Get:9 http://deb.debian.org/debian bookworm/main amd64 librtmp1 amd64 2.4+20151223.gitfa8646d.1-2+b2 [60.8 kB]
+Get:10 http://deb.debian.org/debian bookworm/main amd64 libssh2-1 amd64 1.10.0-3+b1 [179 kB]
+Get:11 http://deb.debian.org/debian bookworm/main amd64 libcurl3-gnutls amd64 7.88.1-10+deb12u14 [386 kB]
+Get:12 http://deb.debian.org/debian bookworm/main amd64 liberror-perl all 0.17029-2 [29.0 kB]
+Get:13 http://deb.debian.org/debian bookworm/main amd64 git-man all 1:2.39.5-0+deb12u3 [2053 kB]
+Get:14 http://deb.debian.org/debian bookworm/main amd64 git amd64 1:2.39.5-0+deb12u3 [7264 kB]
+Get:15 http://deb.debian.org/debian bookworm/main amd64 libxext6 amd64 2:1.3.4-1+b1 [52.9 kB]
+Get:16 http://deb.debian.org/debian bookworm/main amd64 libxmuu1 amd64 2:1.1.3-3 [23.9 kB]
+Get:17 http://deb.debian.org/debian bookworm/main amd64 openssl amd64 3.0.20-1~deb12u1 [1438 kB]
+Get:18 http://deb.debian.org/debian bookworm/main amd64 publicsuffix all 20230209.2326-1 [126 kB]
+Get:19 http://deb.debian.org/debian bookworm/main amd64 xauth amd64 1:1.1.2-1 [36.0 kB]
+debconf: delaying package configuration, since apt-utils is not installed
+Fetched 15.1 MB in 0s (122 MB/s)
+Selecting previously unselected package less.
+(Reading database ... 
+[1A(Reading database ... 5%
+[1A(Reading database ... 10%
+[1A(Reading database ... 15%
+[1A(Reading database ... 20%
+[1A(Reading database ... 25%
+[1A(Reading database ... 30%(Reading database ... 35%
+[1A(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%
+[1A(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%
+[1A(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 16439 files and directories currently installed.)
+Preparing to unpack .../00-less_590-2.1~deb12u2_amd64.deb ...
+Unpacking less (590-2.1~deb12u2) ...
+Selecting previously unselected package libedit2:amd64.
+Preparing to unpack .../01-libedit2_3.1-20221030-2_amd64.deb ...
+Unpacking libedit2:amd64 (3.1-20221030-2) ...
+Selecting previously unselected package libcbor0.8:amd64.
+Preparing to unpack .../02-libcbor0.8_0.8.0-2+b1_amd64.deb ...
+Unpacking libcbor0.8:amd64 (0.8.0-2+b1) ...
+Preparing to unpack .../03-libssl3_3.0.20-1~deb12u1_amd64.deb ...
+Unpacking libssl3:amd64 (3.0.20-1~deb12u1) over (3.0.16-1~deb12u1) ...
+Selecting previously unselected package libfido2-1:amd64.
+Preparing to unpack .../04-libfido2-1_1.12.0-2+b1_amd64.deb ...
+Unpacking libfido2-1:amd64 (1.12.0-2+b1) ...
+Selecting previously unselected package openssh-client.
+Preparing to unpack .../05-openssh-client_1%3a9.2p1-2+deb12u10_amd64.deb ...
+Unpacking openssh-client (1:9.2p1-2+deb12u10) ...
+Selecting previously unselected package libnghttp2-14:amd64.
+Preparing to unpack .../06-libnghttp2-14_1.52.0-1+deb12u3_amd64.deb ...
+Unpacking libnghttp2-14:amd64 (1.52.0-1+deb12u3) ...
+Selecting previously unselected package libpsl5:amd64.
+Preparing to unpack .../07-libpsl5_0.21.2-1_amd64.deb ...
+Unpacking libpsl5:amd64 (0.21.2-1) ...
+Selecting previously unselected package librtmp1:amd64.
+Preparing to unpack .../08-librtmp1_2.4+20151223.gitfa8646d.1-2+b2_amd64.deb ...
+Unpacking librtmp1:amd64 (2.4+20151223.gitfa8646d.1-2+b2) ...
+Selecting previously unselected package libssh2-1:amd64.
+Preparing to unpack .../09-libssh2-1_1.10.0-3+b1_amd64.deb ...
+Unpacking libssh2-1:amd64 (1.10.0-3+b1) ...
+Selecting previously unselected package libcurl3-gnutls:amd64.
+Preparing to unpack .../10-libcurl3-gnutls_7.88.1-10+deb12u14_amd64.deb ...
+Unpacking libcurl3-gnutls:amd64 (7.88.1-10+deb12u14) ...
+Selecting previously unselected package liberror-perl.
+Preparing to unpack .../11-liberror-perl_0.17029-2_all.deb ...
+Unpacking liberror-perl (0.17029-2) ...
+Selecting previously unselected package git-man.
+Preparing to unpack .../12-git-man_1%3a2.39.5-0+deb12u3_all.deb ...
+Unpacking git-man (1:2.39.5-0+deb12u3) ...
+Selecting previously unselected package git.
+Preparing to unpack .../13-git_1%3a2.39.5-0+deb12u3_amd64.deb ...
+Unpacking git (1:2.39.5-0+deb12u3) ...
+Selecting previously unselected package libxext6:amd64.
+Preparing to unpack .../14-libxext6_2%3a1.3.4-1+b1_amd64.deb ...
+Unpacking libxext6:amd64 (2:1.3.4-1+b1) ...
+Selecting previously unselected package libxmuu1:amd64.
+Preparing to unpack .../15-libxmuu1_2%3a1.1.3-3_amd64.deb ...
+Unpacking libxmuu1:amd64 (2:1.1.3-3) ...
+Preparing to unpack .../16-openssl_3.0.20-1~deb12u1_amd64.deb ...
+Unpacking openssl (3.0.20-1~deb12u1) over (3.0.16-1~deb12u1) ...
+Selecting previously unselected package publicsuffix.
+Preparing to unpack .../17-publicsuffix_20230209.2326-1_all.deb ...
+Unpacking publicsuffix (20230209.2326-1) ...
+Selecting previously unselected package xauth.
+Preparing to unpack .../18-xauth_1%3a1.1.2-1_amd64.deb ...
+Unpacking xauth (1:1.1.2-1) ...
+Setting up libpsl5:amd64 (0.21.2-1) ...
+Setting up libcbor0.8:amd64 (0.8.0-2+b1) ...
+Setting up libedit2:amd64 (3.1-20221030-2) ...
+Setting up libssl3:amd64 (3.0.20-1~deb12u1) ...
+Setting up libnghttp2-14:amd64 (1.52.0-1+deb12u3) ...
+Setting up less (590-2.1~deb12u2) ...
+Setting up libxext6:amd64 (2:1.3.4-1+b1) ...
+Setting up liberror-perl (0.17029-2) ...
+Setting up librtmp1:amd64 (2.4+20151223.gitfa8646d.1-2+b2) ...
+Setting up git-man (1:2.39.5-0+deb12u3) ...
+Setting up libssh2-1:amd64 (1.10.0-3+b1) ...
+Setting up libfido2-1:amd64 (1.12.0-2+b1) ...
+Setting up openssl (3.0.20-1~deb12u1) ...
+Setting up publicsuffix (20230209.2326-1) ...
+Setting up libxmuu1:amd64 (2:1.1.3-3) ...
+Setting up openssh-client (1:9.2p1-2+deb12u10) ...
+Setting up libcurl3-gnutls:amd64 (7.88.1-10+deb12u14) ...
+Setting up git (1:2.39.5-0+deb12u3) ...
+Setting up xauth (1:1.1.2-1) ...
+Processing triggers for libc-bin (2.36-9+deb12u10) ...
+Saving image...
+Image saved, took 392.84ms
+
+Built image im-MPSYkRAFsSkRxnPYQ8Yall in 7.22s
+
+
+Building image im-LZMAdhVtscn1GMwBd2GvXP
+
+=> Step 0: FROM base
+
+=> Step 1: RUN python -m pip install accelerate einops h5py 'numpy<2' pandas torch==2.0.1 transformers==4.44.2
+Looking in indexes: http://pypi-mirror.modal.local:5555/simple
+Collecting accelerate
+  Downloading http://pypi-mirror.modal.local:5555/simple/accelerate/accelerate-1.13.0-py3-none-any.whl.metadata (19 kB)
+Collecting einops
+  Downloading http://pypi-mirror.modal.local:5555/simple/einops/einops-0.8.2-py3-none-any.whl.metadata (13 kB)
+Collecting h5py
+  Downloading http://pypi-mirror.modal.local:5555/simple/h5py/h5py-3.16.0-cp310-cp310-manylinux_2_28_x86_64.whl.metadata (3.0 kB)
+Collecting numpy<2
+  Downloading http://pypi-mirror.modal.local:5555/simple/numpy/numpy-1.26.4-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (61 kB)
+Collecting pandas
+  Downloading http://pypi-mirror.modal.local:5555/simple/pandas/pandas-2.3.3-cp310-cp310-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (91 kB)
+Collecting torch==2.0.1
+  Downloading http://pypi-mirror.modal.local:5555/simple/torch/torch-2.0.1-cp310-cp310-manylinux1_x86_64.whl.metadata (24 kB)
+Collecting transformers==4.44.2
+  Downloading http://pypi-mirror.modal.local:5555/simple/transformers/transformers-4.44.2-py3-none-any.whl.metadata (43 kB)
+Collecting filelock (from torch==2.0.1)
+  Downloading http://pypi-mirror.modal.local:5555/simple/filelock/filelock-3.29.0-py3-none-any.whl.metadata (2.0 kB)
+Collecting typing-extensions (from torch==2.0.1)
+  Downloading http://pypi-mirror.modal.local:5555/simple/typing-extensions/typing_extensions-4.15.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting sympy (from torch==2.0.1)
+  Downloading http://pypi-mirror.modal.local:5555/simple/sympy/sympy-1.14.0-py3-none-any.whl.metadata (12 kB)
+Collecting networkx (from torch==2.0.1)
+  Downloading http://pypi-mirror.modal.local:5555/simple/networkx/networkx-3.4.2-py3-none-any.whl.metadata (6.3 kB)
+Collecting jinja2 (from torch==2.0.1)
+  Downloading http://pypi-mirror.modal.local:5555/simple/jinja2/jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+Collecting nvidia-cuda-nvrtc-cu11==11.7.99 (from torch==2.0.1)
+  Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cuda-nvrtc-cu11/nvidia_cuda_nvrtc_cu11-11.7.99-2-py3-none-manylinux1_x86_64.whl.metadata (1.5 kB)
+Collecting nvidia-cuda-runtime-cu11==11.7.99 (from torch==2.0.1)
+  Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cuda-runtime-cu11/nvidia_cuda_runtime_cu11-11.7.99-py3-none-manylinux1_x86_64.whl.metadata (1.6 kB)
+Collecting nvidia-cuda-cupti-cu11==11.7.101 (from torch==2.0.1)
+  Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cuda-cupti-cu11/nvidia_cuda_cupti_cu11-11.7.101-py3-none-manylinux1_x86_64.whl.metadata (1.6 kB)
+Collecting nvidia-cudnn-cu11==8.5.0.96 (from torch==2.0.1)
+  Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cudnn-cu11/nvidia_cudnn_cu11-8.5.0.96-2-py3-none-manylinux1_x86_64.whl.metadata (1.6 kB)
+Collecting nvidia-cublas-cu11==11.10.3.66 (from torch==2.0.1)
+  Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cublas-cu11/nvidia_cublas_cu11-11.10.3.66-py3-none-manylinux1_x86_64.whl.metadata (1.6 kB)
+Collecting nvidia-cufft-cu11==10.9.0.58 (from torch==2.0.1)
+  Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cufft-cu11/nvidia_cufft_cu11-10.9.0.58-py3-none-manylinux2014_x86_64.whl.metadata (1.5 kB)
+Collecting nvidia-curand-cu11==10.2.10.91 (from torch==2.0.1)
+  Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-curand-cu11/nvidia_curand_cu11-10.2.10.91-py3-none-manylinux1_x86_64.whl.metadata (1.6 kB)
+Collecting nvidia-cusolver-cu11==11.4.0.1 (from torch==2.0.1)
+  Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cusolver-cu11/nvidia_cusolver_cu11-11.4.0.1-2-py3-none-manylinux1_x86_64.whl.metadata (1.6 kB)
+Collecting nvidia-cusparse-cu11==11.7.4.91 (from torch==2.0.1)
+  Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cusparse-cu11/nvidia_cusparse_cu11-11.7.4.91-py3-none-manylinux1_x86_64.whl.metadata (1.6 kB)
+Collecting nvidia-nccl-cu11==2.14.3 (from torch==2.0.1)
+  Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-nccl-cu11/nvidia_nccl_cu11-2.14.3-py3-none-manylinux1_x86_64.whl.metadata (1.8 kB)
+Collecting nvidia-nvtx-cu11==11.7.91 (from torch==2.0.1)
+  Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-nvtx-cu11/nvidia_nvtx_cu11-11.7.91-py3-none-manylinux1_x86_64.whl.metadata (1.7 kB)
+Collecting triton==2.0.0 (from torch==2.0.1)
+  Downloading http://pypi-mirror.modal.local:5555/simple/triton/triton-2.0.0-1-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.0 kB)
+Collecting huggingface-hub<1.0,>=0.23.2 (from transformers==4.44.2)
+  Downloading http://pypi-mirror.modal.local:5555/simple/huggingface-hub/huggingface_hub-0.36.2-py3-none-any.whl.metadata (15 kB)
+Collecting packaging>=20.0 (from transformers==4.44.2)
+  Downloading http://pypi-mirror.modal.local:5555/simple/packaging/packaging-26.2-py3-none-any.whl.metadata (3.5 kB)
+Collecting pyyaml>=5.1 (from transformers==4.44.2)
+  Downloading http://pypi-mirror.modal.local:5555/simple/pyyaml/pyyaml-6.0.3-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+Collecting regex!=2019.12.17 (from transformers==4.44.2)
+  Downloading http://pypi-mirror.modal.local:5555/simple/regex/regex-2026.5.9-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (40 kB)
+Collecting requests (from transformers==4.44.2)
+  Downloading http://pypi-mirror.modal.local:5555/simple/requests/requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+Collecting safetensors>=0.4.1 (from transformers==4.44.2)
+  Downloading http://pypi-mirror.modal.local:5555/simple/safetensors/safetensors-0.7.0-cp38-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.1 kB)
+Collecting tokenizers<0.20,>=0.19 (from transformers==4.44.2)
+  Downloading http://pypi-mirror.modal.local:5555/simple/tokenizers/tokenizers-0.19.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.7 kB)
+Collecting tqdm>=4.27 (from transformers==4.44.2)
+  Downloading http://pypi-mirror.modal.local:5555/simple/tqdm/tqdm-4.67.3-py3-none-any.whl.metadata (57 kB)
+Requirement already satisfied: setuptools in /usr/local/lib/python3.10/site-packages (from nvidia-cublas-cu11==11.10.3.66->torch==2.0.1) (65.5.1)
+Requirement already satisfied: wheel in /usr/local/lib/python3.10/site-packages (from nvidia-cublas-cu11==11.10.3.66->torch==2.0.1) (0.45.1)
+Collecting cmake (from triton==2.0.0->torch==2.0.1)
+  Downloading http://pypi-mirror.modal.local:5555/simple/cmake/cmake-4.3.2-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (6.5 kB)
+Collecting lit (from triton==2.0.0->torch==2.0.1)
+  Downloading http://pypi-mirror.modal.local:5555/simple/lit/lit-18.1.8-py3-none-any.whl.metadata (2.5 kB)
+Collecting fsspec>=2023.5.0 (from huggingface-hub<1.0,>=0.23.2->transformers==4.44.2)
+  Downloading http://pypi-mirror.modal.local:5555/simple/fsspec/fsspec-2026.4.0-py3-none-any.whl.metadata (10 kB)
+Collecting hf-xet<2.0.0,>=1.1.3 (from huggingface-hub<1.0,>=0.23.2->transformers==4.44.2)
+  Downloading http://pypi-mirror.modal.local:5555/simple/hf-xet/hf_xet-1.5.0-cp37-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (4.9 kB)
+Collecting psutil (from accelerate)
+  Downloading http://pypi-mirror.modal.local:5555/simple/psutil/psutil-7.2.2-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl.metadata (22 kB)
+Collecting python-dateutil>=2.8.2 (from pandas)
+  Downloading http://pypi-mirror.modal.local:5555/simple/python-dateutil/python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+Collecting pytz>=2020.1 (from pandas)
+  Downloading http://pypi-mirror.modal.local:5555/simple/pytz/pytz-2026.2-py2.py3-none-any.whl.metadata (22 kB)
+Collecting tzdata>=2022.7 (from pandas)
+  Downloading http://pypi-mirror.modal.local:5555/simple/tzdata/tzdata-2026.2-py2.py3-none-any.whl.metadata (1.4 kB)
+Collecting six>=1.5 (from python-dateutil>=2.8.2->pandas)
+  Downloading http://pypi-mirror.modal.local:5555/simple/six/six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+Collecting MarkupSafe>=2.0 (from jinja2->torch==2.0.1)
+  Downloading http://pypi-mirror.modal.local:5555/simple/markupsafe/markupsafe-3.0.3-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+Collecting charset_normalizer<4,>=2 (from requests->transformers==4.44.2)
+  Downloading http://pypi-mirror.modal.local:5555/simple/charset-normalizer/charset_normalizer-3.4.7-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (40 kB)
+Collecting idna<4,>=2.5 (from requests->transformers==4.44.2)
+  Downloading http://pypi-mirror.modal.local:5555/simple/idna/idna-3.17-py3-none-any.whl.metadata (6.4 kB)
+Collecting urllib3<3,>=1.26 (from requests->transformers==4.44.2)
+  Downloading http://pypi-mirror.modal.local:5555/simple/urllib3/urllib3-2.7.0-py3-none-any.whl.metadata (6.9 kB)
+Collecting certifi>=2023.5.7 (from requests->transformers==4.44.2)
+  Downloading http://pypi-mirror.modal.local:5555/simple/certifi/certifi-2026.5.20-py3-none-any.whl.metadata (2.5 kB)
+Collecting mpmath<1.4,>=1.1.0 (from sympy->torch==2.0.1)
+  Downloading http://pypi-mirror.modal.local:5555/simple/mpmath/mpmath-1.3.0-py3-none-any.whl.metadata (8.6 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/torch/torch-2.0.1-cp310-cp310-manylinux1_x86_64.whl (619.9 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 619.9/619.9 MB 119.9 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/transformers/transformers-4.44.2-py3-none-any.whl (9.5 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 9.5/9.5 MB 131.2 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cublas-cu11/nvidia_cublas_cu11-11.10.3.66-py3-none-manylinux1_x86_64.whl (317.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 317.1/317.1 MB 118.5 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cuda-cupti-cu11/nvidia_cuda_cupti_cu11-11.7.101-py3-none-manylinux1_x86_64.whl (11.8 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 11.8/11.8 MB 137.7 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cuda-nvrtc-cu11/nvidia_cuda_nvrtc_cu11-11.7.99-2-py3-none-manylinux1_x86_64.whl (21.0 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 21.0/21.0 MB 136.2 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cuda-runtime-cu11/nvidia_cuda_runtime_cu11-11.7.99-py3-none-manylinux1_x86_64.whl (849 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 849.3/849.3 kB 280.0 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cudnn-cu11/nvidia_cudnn_cu11-8.5.0.96-2-py3-none-manylinux1_x86_64.whl (557.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 557.1/557.1 MB 127.5 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cufft-cu11/nvidia_cufft_cu11-10.9.0.58-py3-none-manylinux2014_x86_64.whl (168.4 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 168.4/168.4 MB 119.7 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-curand-cu11/nvidia_curand_cu11-10.2.10.91-py3-none-manylinux1_x86_64.whl (54.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 54.6/54.6 MB 132.9 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cusolver-cu11/nvidia_cusolver_cu11-11.4.0.1-2-py3-none-manylinux1_x86_64.whl (102.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 102.6/102.6 MB 126.5 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cusparse-cu11/nvidia_cusparse_cu11-11.7.4.91-py3-none-manylinux1_x86_64.whl (173.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 173.2/173.2 MB 122.7 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-nccl-cu11/nvidia_nccl_cu11-2.14.3-py3-none-manylinux1_x86_64.whl (177.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 177.1/177.1 MB 122.5 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-nvtx-cu11/nvidia_nvtx_cu11-11.7.91-py3-none-manylinux1_x86_64.whl (98 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/triton/triton-2.0.0-1-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (63.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 63.3/63.3 MB 119.6 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/numpy/numpy-1.26.4-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (18.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 18.2/18.2 MB 127.2 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/huggingface-hub/huggingface_hub-0.36.2-py3-none-any.whl (566 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 566.4/566.4 kB 134.5 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/hf-xet/hf_xet-1.5.0-cp37-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (4.5 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.5/4.5 MB 286.8 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/tokenizers/tokenizers-0.19.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.6/3.6 MB 128.0 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/accelerate/accelerate-1.13.0-py3-none-any.whl (383 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/einops/einops-0.8.2-py3-none-any.whl (65 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/h5py/h5py-3.16.0-cp310-cp310-manylinux_2_28_x86_64.whl (5.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.1/5.1 MB 117.1 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/pandas/pandas-2.3.3-cp310-cp310-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (12.8 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.8/12.8 MB 126.3 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/fsspec/fsspec-2026.4.0-py3-none-any.whl (203 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/packaging/packaging-26.2-py3-none-any.whl (100 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/python-dateutil/python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/pytz/pytz-2026.2-py2.py3-none-any.whl (510 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/pyyaml/pyyaml-6.0.3-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (770 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 770.3/770.3 kB 359.9 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/regex/regex-2026.5.9-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (794 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 794.1/794.1 kB 181.8 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/safetensors/safetensors-0.7.0-cp38-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (507 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/six/six-1.17.0-py2.py3-none-any.whl (11 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/tqdm/tqdm-4.67.3-py3-none-any.whl (78 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/typing-extensions/typing_extensions-4.15.0-py3-none-any.whl (44 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/tzdata/tzdata-2026.2-py2.py3-none-any.whl (349 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/cmake/cmake-4.3.2-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (29.5 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 29.5/29.5 MB 128.1 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/filelock/filelock-3.29.0-py3-none-any.whl (39 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/jinja2/jinja2-3.1.6-py3-none-any.whl (134 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/markupsafe/markupsafe-3.0.3-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (20 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/lit/lit-18.1.8-py3-none-any.whl (96 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/networkx/networkx-3.4.2-py3-none-any.whl (1.7 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.7/1.7 MB 174.1 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/psutil/psutil-7.2.2-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl (155 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/requests/requests-2.34.2-py3-none-any.whl (73 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/charset-normalizer/charset_normalizer-3.4.7-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (216 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/idna/idna-3.17-py3-none-any.whl (65 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/urllib3/urllib3-2.7.0-py3-none-any.whl (131 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/certifi/certifi-2026.5.20-py3-none-any.whl (134 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/sympy/sympy-1.14.0-py3-none-any.whl (6.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.3/6.3 MB 227.8 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/mpmath/mpmath-1.3.0-py3-none-any.whl (536 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 536.2/536.2 kB 572.0 MB/s eta 0:00:00
+Installing collected packages: pytz, mpmath, lit, urllib3, tzdata, typing-extensions, tqdm, sympy, six, safetensors, regex, pyyaml, psutil, packaging, nvidia-nvtx-cu11, nvidia-nccl-cu11, nvidia-cusparse-cu11, nvidia-curand-cu11, nvidia-cufft-cu11, nvidia-cuda-runtime-cu11, nvidia-cuda-nvrtc-cu11, nvidia-cuda-cupti-cu11, nvidia-cublas-cu11, numpy, networkx, MarkupSafe, idna, hf-xet, fsspec, filelock, einops, cmake, charset_normalizer, certifi, requests, python-dateutil, nvidia-cusolver-cu11, nvidia-cudnn-cu11, jinja2, h5py, pandas, huggingface-hub, tokenizers, transformers, triton, torch, accelerate
+
+Successfully installed MarkupSafe-3.0.3 accelerate-1.13.0 certifi-2026.5.20 charset_normalizer-3.4.7 cmake-4.3.2 einops-0.8.2 filelock-3.29.0 fsspec-2026.4.0 h5py-3.16.0 hf-xet-1.5.0 huggingface-hub-0.36.2 idna-3.17 jinja2-3.1.6 lit-18.1.8 mpmath-1.3.0 networkx-3.4.2 numpy-1.26.4 nvidia-cublas-cu11-11.10.3.66 nvidia-cuda-cupti-cu11-11.7.101 nvidia-cuda-nvrtc-cu11-11.7.99 nvidia-cuda-runtime-cu11-11.7.99 nvidia-cudnn-cu11-8.5.0.96 nvidia-cufft-cu11-10.9.0.58 nvidia-curand-cu11-10.2.10.91 nvidia-cusolver-cu11-11.4.0.1 nvidia-cusparse-cu11-11.7.4.91 nvidia-nccl-cu11-2.14.3 nvidia-nvtx-cu11-11.7.91 packaging-26.2 pandas-2.3.3 psutil-7.2.2 python-dateutil-2.9.0.post0 pytz-2026.2 pyyaml-6.0.3 regex-2026.5.9 requests-2.34.2 safetensors-0.7.0 six-1.17.0 sympy-1.14.0 tokenizers-0.19.1 torch-2.0.1 tqdm-4.67.3 transformers-4.44.2 triton-2.0.0 typing-extensions-4.15.0 tzdata-2026.2 urllib3-2.7.0
+
+[notice] A new release of pip is available: 25.1.1 -> 26.1.1
+[notice] To update, run: pip install --upgrade pip
+Saving image...
+Image saved, took 8.31s
+
+Built image im-LZMAdhVtscn1GMwBd2GvXP in 96.21s
+
+
+✓ Created objects.
+├── 🔨 Created mount /home/ec2-user/bmds273b-project/src/modal_app.py
+├── 🔨 Created mount /home/ec2-user/bmds273b-project/src
+├── 🔨 Created function download.
+├── 🔨 Created function build.
+├── 🔨 Created function extract.
+└── 🔨 Created function extract_dnabert.
+stage=smoke models=['dnabert_s'] limit=20 resume=False
++ /usr/local/bin/python /root/src/extract_embeddings.py --model dnabert_s --windows /vol/regulatory/windows_smoke_dnabert_s.tsv --out_dir /vol/regulatory/embeddings/_smoke_dnabert_s --device cuda
+A new version of the following files was downloaded from https://huggingface.co/zhihan1996/DNABERT-S:
+- configuration_bert.py
+. Make sure to double-check they do not contain any added malicious code. To avoid downloading new versions of the code file, you can pin a revision.
+A new version of the following files was downloaded from https://huggingface.co/zhihan1996/DNABERT-S:
+- flash_attn_triton.py
+. Make sure to double-check they do not contain any added malicious code. To avoid downloading new versions of the code file, you can pin a revision.
+A new version of the following files was downloaded from https://huggingface.co/zhihan1996/DNABERT-S:
+- bert_padding.py
+. Make sure to double-check they do not contain any added malicious code. To avoid downloading new versions of the code file, you can pin a revision.
+A new version of the following files was downloaded from https://huggingface.co/zhihan1996/DNABERT-S:
+- bert_layers.py
+- flash_attn_triton.py
+- bert_padding.py
+. Make sure to double-check they do not contain any added malicious code. To avoid downloading new versions of the code file, you can pin a revision.
+/usr/local/lib/python3.10/site-packages/torch/_utils.py:776: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
+  return self.fget.__get__(instance, owner)()
+20 windows from /vol/regulatory/windows_smoke_dnabert_s.tsv
+Loading dnabert_s (fp32) ...
+  n_layers=12, hidden_dim=768
+Traceback (most recent call last):
+  File "<string>", line 21, in _fwd_kernel
+KeyError: ('2-.-0-.-0--d6252949da17ceb5f3a278a70250af13-3b85c7bef5f0a641282f3b73af50f599-3d2aedeb40d6d81c66a42791e268f98b-3498c340fd4b6ee7805fd54b882a04f5-e1f133f98d04093da2078dfc51c36b72-b26258bf01f839199e39d64851821f26-d7c06e3b46e708006c15224aac7a1378-f585402118c8a136948ce0a49cfe122c', (torch.float16, torch.float16, torch.float16, torch.float16, torch.float16, torch.float32, torch.float32, 'fp32', 'i32', 'i32', 'i32', 'i32', 'i32', 'i32', 'i32', 'i32', 'i32', 'i32', 'i32', 'i32', 'i32', 'i32', 'i32', 'i32', 'i32', 'i32', 'i32', 'i32', 'i32', 'i32'), ('matrix', False, 64, True, True, True, 128, 128), (True, True, True, True, True, True, True, (False,), (True, False), (True, False), (True, False), (True, False), (True, False), (True, False), (True, False), (True, False), (True, False), (True, False), (True, False), (True, False), (True, False), (True, False), (True, False), (False, False), (True, False), (True, False), (True, False), (True, False), (True, False), (True, False)))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/triton/compiler.py", line 937, in build_triton_ir
+    generator.visit(fn.parse())
+  File "/usr/local/lib/python3.10/site-packages/triton/compiler.py", line 855, in visit
+    return super().visit(node)
+  File "/usr/local/lib/python3.10/ast.py", line 418, in visit
+    return visitor(node)
+  File "/usr/local/lib/python3.10/site-packages/triton/compiler.py", line 183, in visit_Module
+    ast.NodeVisitor.generic_visit(self, node)
+  File "/usr/local/lib/python3.10/ast.py", line 426, in generic_visit
+    self.visit(item)
+  File "/usr/local/lib/python3.10/site-packages/triton/compiler.py", line 855, in visit
+    return super().visit(node)
+  File "/usr/local/lib/python3.10/ast.py", line 418, in visit
+    return visitor(node)
+  File "/usr/local/lib/python3.10/site-packages/triton/compiler.py", line 252, in visit_FunctionDef
+    has_ret = self.visit_compound_statement(node.body)
+  File "/usr/local/lib/python3.10/site-packages/triton/compiler.py", line 177, in visit_compound_statement
+    self.last_ret_type = self.visit(stmt)
+  File "/usr/local/lib/python3.10/site-packages/triton/compiler.py", line 855, in visit
+    return super().visit(node)
+  File "/usr/local/lib/python3.10/ast.py", line 418, in visit
+    return visitor(node)
+  File "/usr/local/lib/python3.10/site-packages/triton/compiler.py", line 678, in visit_For
+    self.visit_compound_statement(node.body)
+  File "/usr/local/lib/python3.10/site-packages/triton/compiler.py", line 177, in visit_compound_statement
+    self.last_ret_type = self.visit(stmt)
+  File "/usr/local/lib/python3.10/site-packages/triton/compiler.py", line 855, in visit
+    return super().visit(node)
+  File "/usr/local/lib/python3.10/ast.py", line 418, in visit
+    return visitor(node)
+  File "/usr/local/lib/python3.10/site-packages/triton/compiler.py", line 319, in visit_AugAssign
+    self.visit(assign)
+  File "/usr/local/lib/python3.10/site-packages/triton/compiler.py", line 855, in visit
+    return super().visit(node)
+  File "/usr/local/lib/python3.10/ast.py", line 418, in visit
+    return visitor(node)
+  File "/usr/local/lib/python3.10/site-packages/triton/compiler.py", line 301, in visit_Assign
+    values = self.visit(node.value)
+  File "/usr/local/lib/python3.10/site-packages/triton/compiler.py", line 855, in visit
+    return super().visit(node)
+  File "/usr/local/lib/python3.10/ast.py", line 418, in visit
+    return visitor(node)
+  File "/usr/local/lib/python3.10/site-packages/triton/compiler.py", line 339, in visit_BinOp
+    rhs = self.visit(node.right)
+  File "/usr/local/lib/python3.10/site-packages/triton/compiler.py", line 855, in visit
+    return super().visit(node)
+  File "/usr/local/lib/python3.10/ast.py", line 418, in visit
+    return visitor(node)
+  File "/usr/local/lib/python3.10/site-packages/triton/compiler.py", line 797, in visit_Call
+    return fn(*args, _builder=self.builder, **kws)
+  File "/usr/local/lib/python3.10/site-packages/triton/impl/base.py", line 22, in wrapper
+    return fn(*args, **kwargs)
+TypeError: dot() got an unexpected keyword argument 'trans_b'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/src/extract_embeddings.py", line 228, in <module>
+    main()
+  File "/root/src/extract_embeddings.py", line 195, in main
+    probe = embed_one(seqs[0], tok, model, args.device, max_tok)
+  File "/usr/local/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+    return func(*args, **kwargs)
+  File "/root/src/extract_embeddings.py", line 129, in embed_one
+    out = model(input_ids=ids, output_hidden_states=True)
+  File "/usr/local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/root/.cache/huggingface/modules/transformers_modules/zhihan1996/DNABERT-S/00e47f96cdea35e4b6f5df89e5419cbe47d490c6/bert_layers.py", line 610, in forward
+    encoder_outputs = self.encoder(
+  File "/usr/local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/root/.cache/huggingface/modules/transformers_modules/zhihan1996/DNABERT-S/00e47f96cdea35e4b6f5df89e5419cbe47d490c6/bert_layers.py", line 447, in forward
+    hidden_states = layer_module(hidden_states,
+  File "/usr/local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/root/.cache/huggingface/modules/transformers_modules/zhihan1996/DNABERT-S/00e47f96cdea35e4b6f5df89e5419cbe47d490c6/bert_layers.py", line 328, in forward
+    attention_output = self.attention(hidden_states, cu_seqlens, seqlen,
+  File "/usr/local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/root/.cache/huggingface/modules/transformers_modules/zhihan1996/DNABERT-S/00e47f96cdea35e4b6f5df89e5419cbe47d490c6/bert_layers.py", line 241, in forward
+    self_output = self.self(input_tensor, cu_seqlens, max_s, indices,
+  File "/usr/local/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/root/.cache/huggingface/modules/transformers_modules/zhihan1996/DNABERT-S/00e47f96cdea35e4b6f5df89e5419cbe47d490c6/bert_layers.py", line 182, in forward
+    attention = flash_attn_qkvpacked_func(qkv, bias)
+  File "/usr/local/lib/python3.10/site-packages/torch/autograd/function.py", line 506, in apply
+    return super().apply(*args, **kwargs)  # type: ignore[misc]
+  File "/root/.cache/huggingface/modules/transformers_modules/zhihan1996/DNABERT-S/00e47f96cdea35e4b6f5df89e5419cbe47d490c6/flash_attn_triton.py", line 1021, in forward
+    o, lse, ctx.softmax_scale = _flash_attn_forward(
+  File "/root/.cache/huggingface/modules/transformers_modules/zhihan1996/DNABERT-S/00e47f96cdea35e4b6f5df89e5419cbe47d490c6/flash_attn_triton.py", line 826, in _flash_attn_forward
+    _fwd_kernel[grid](  # type: ignore
+  File "/usr/local/lib/python3.10/site-packages/triton/runtime/autotuner.py", line 90, in run
+    return self.fn.run(*args, num_warps=config.num_warps, num_stages=config.num_stages, **kwargs, **config.kwargs)
+  File "/usr/local/lib/python3.10/site-packages/triton/runtime/autotuner.py", line 199, in run
+    return self.fn.run(*args, **kwargs)
+  File "<string>", line 41, in _fwd_kernel
+  File "/usr/local/lib/python3.10/site-packages/triton/compiler.py", line 1621, in compile
+    next_module = compile(module)
+  File "/usr/local/lib/python3.10/site-packages/triton/compiler.py", line 1550, in <lambda>
+    lambda src: ast_to_ttir(src, signature, configs[0], constants)),
+  File "/usr/local/lib/python3.10/site-packages/triton/compiler.py", line 962, in ast_to_ttir
+    mod, _ = build_triton_ir(fn, signature, specialization, constants)
+  File "/usr/local/lib/python3.10/site-packages/triton/compiler.py", line 942, in build_triton_ir
+    raise CompilationError(fn.src, node) from e
+triton.compiler.CompilationError: at 114:24:
+def _fwd_kernel(
+    Q,
+    K,
+    V,
+    Bias,
+    Out,
+    Lse,
+    TMP,  # NOTE: TMP is a scratchpad buffer to workaround a compiler bug
+    softmax_scale,
+    stride_qb,
+    stride_qh,
+    stride_qm,
+    stride_kb,
+    stride_kh,
+    stride_kn,
+    stride_vb,
+    stride_vh,
+    stride_vn,
+    stride_bb,
+    stride_bh,
+    stride_bm,
+    stride_ob,
+    stride_oh,
+    stride_om,
+    nheads,
+    seqlen_q,
+    seqlen_k,
+    seqlen_q_rounded,
+    headdim,
+    CACHE_KEY_SEQLEN_Q,
+    CACHE_KEY_SEQLEN_K,
+    BIAS_TYPE: tl.constexpr,
+    IS_CAUSAL: tl.constexpr,
+    BLOCK_HEADDIM: tl.constexpr,
+    EVEN_M: tl.constexpr,
+    EVEN_N: tl.constexpr,
+    EVEN_HEADDIM: tl.constexpr,
+    BLOCK_M: tl.constexpr,
+    BLOCK_N: tl.constexpr,
+):
+    start_m = tl.program_id(0)
+    off_hb = tl.program_id(1)
+    off_b = off_hb // nheads
+    off_h = off_hb % nheads
+    # off_b = tl.program_id(1)
+    # off_h = tl.program_id(2)
+    # off_hb = off_b * nheads + off_h
+    # initialize offsets
+    offs_m = start_m * BLOCK_M + tl.arange(0, BLOCK_M)
+    offs_n = tl.arange(0, BLOCK_N)
+    offs_d = tl.arange(0, BLOCK_HEADDIM)
+    # Initialize pointers to Q, K, V
+    # Adding parenthesis around indexing might use int32 math instead of int64 math?
+    # https://github.com/openai/triton/issues/741
+    # I'm seeing a tiny bit of difference (5-7us)
+    q_ptrs = Q + off_b * stride_qb + off_h * stride_qh + (
+        offs_m[:, None] * stride_qm + offs_d[None, :])
+    k_ptrs = K + off_b * stride_kb + off_h * stride_kh + (
+        offs_n[:, None] * stride_kn + offs_d[None, :])
+    v_ptrs = V + off_b * stride_vb + off_h * stride_vh + (
+        offs_n[:, None] * stride_vn + offs_d[None, :])
+    if BIAS_TYPE == 'vector':
+        b_ptrs = Bias + off_b * stride_bb + off_h * stride_bh + offs_n
+    elif BIAS_TYPE == 'matrix':
+        b_ptrs = Bias + off_b * stride_bb + off_h * stride_bh + (
+            offs_m[:, None] * stride_bm + offs_n[None, :])
+    else:
+        raise ValueError("BIAS_TYPE must be one of {'vector', 'matrix'}")
+    # initialize pointer to m and l
+    t_ptrs = TMP + off_hb * seqlen_q_rounded + offs_m
+    lse_i = tl.zeros([BLOCK_M], dtype=tl.float32) - float('inf')
+    m_i = tl.zeros([BLOCK_M], dtype=tl.float32) - float('inf')
+    acc_o = tl.zeros([BLOCK_M, BLOCK_HEADDIM], dtype=tl.float32)
+    # load q: it will stay in SRAM throughout
+    # [2022-10-30] TD: Triton bug - in the case of EVEN_M=True and EVEN_N=False, if we just call
+    # tl.load(q_ptrs), we get the wrong output!
+    if EVEN_M & EVEN_N:
+        if EVEN_HEADDIM:
+            q = tl.load(q_ptrs)
+        else:
+            q = tl.load(q_ptrs, mask=offs_d[None, :] < headdim, other=0.0)
+    else:
+        if EVEN_HEADDIM:
+            q = tl.load(q_ptrs, mask=offs_m[:, None] < seqlen_q, other=0.0)
+        else:
+            q = tl.load(q_ptrs,
+                        mask=(offs_m[:, None] < seqlen_q) &
+                        (offs_d[None, :] < headdim),
+                        other=0.0)
+    # loop over k, v and update accumulator
+    end_n = seqlen_k if not IS_CAUSAL else tl.minimum(
+        (start_m + 1) * BLOCK_M, seqlen_k)
+    for start_n in range(0, end_n, BLOCK_N):
+        start_n = tl.multiple_of(start_n, BLOCK_N)
+        # -- compute qk ----
+        if EVEN_N & EVEN_M:  # If we just do "if EVEN_N", there seems to be some race condition
+            if EVEN_HEADDIM:
+                k = tl.load(k_ptrs + start_n * stride_kn)
+            else:
+                k = tl.load(k_ptrs + start_n * stride_kn,
+                            mask=offs_d[None, :] < headdim,
+                            other=0.0)
+        else:
+            if EVEN_HEADDIM:
+                k = tl.load(k_ptrs + start_n * stride_kn,
+                            mask=(start_n + offs_n)[:, None] < seqlen_k,
+                            other=0.0)
+            else:
+                k = tl.load(k_ptrs + start_n * stride_kn,
+                            mask=((start_n + offs_n)[:, None] < seqlen_k) &
+                            (offs_d[None, :] < headdim),
+                            other=0.0)
+        qk = tl.zeros([BLOCK_M, BLOCK_N], dtype=tl.float32)
+        qk += tl.dot(q, k, trans_b=True)
+                        ^
+Traceback (most recent call last):
+[dnabert_s] RUN FAILED: Command '['/usr/local/bin/python', '/root/src/extract_embeddings.py', '--model', 'dnabert_s', '--windows', '/vol/regulatory/windows_smoke_dnabert_s.tsv', '--out_dir', '/vol/regulatory/embeddings/_smoke_dnabert_s', '--device', 'cuda']' returned non-zero exit status 1.
+
+SUMMARY: 0/1 succeeded: []
+  failed: {'dnabert_s': "run: Command '['/usr/local/bin/python', '/root/src/extract_embeddings.py', '--model', 'dnabert_s', '--windows', '/vol/regulatory/windows_smoke_dnabert_s.tsv', '--out_dir', '/vol/regulatory/embeddings/_smoke_dnabert_s', '--device', 'cuda']' returned non-zero exit status 1."}
+  File "/pkg/modal/_runtime/container_io_manager.py", line 945, in handle_input_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 189, in run_input_sync
+    values = io_context.call_function_sync()
+  File "/pkg/modal/_runtime/container_io_manager.py", line 225, in call_function_sync
+    expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+  File "/root/modal_app.py", line 184, in extract_dnabert
+    return _extract_impl(model, limit, resume)
+  File "/root/modal_app.py", line 168, in _extract_impl
+    _run(cmd)
+  File "/root/modal_app.py", line 102, in _run
+    subprocess.run(cmd, check=True, cwd="/root")
+  File "/usr/local/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/usr/local/bin/python', '/root/src/extract_embeddings.py', '--model', 'dnabert_s', '--windows', '/vol/regulatory/windows_smoke_dnabert_s.tsv', '--out_dir', '/vol/regulatory/embeddings/_smoke_dnabert_s', '--device', 'cuda']' returned non-zero exit status 1.
+
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/autogkb/main/ap-mwjxvPBRao9sUvdBAVEq4b

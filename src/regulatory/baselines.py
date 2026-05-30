@@ -72,6 +72,7 @@ def build_tfidf(
     vec = TfidfVectorizer(
         analyzer="word",
         token_pattern=r"[ACGTN]+",
+        lowercase=False,  # keep ACGTN uppercase, else token_pattern matches nothing
         min_df=2,
         sublinear_tf=True,
     )

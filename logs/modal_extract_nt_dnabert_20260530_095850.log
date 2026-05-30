@@ -1,0 +1,95 @@
+✓ Initialized. View run at 
+https://modal.com/apps/autogkb/main/ap-iBrngiAIXbOKXvhfNHuB7P
+✓ Created objects.
+├── 🔨 Created mount /home/ec2-user/bmds273b-project/src/modal_app.py
+├── 🔨 Created mount /home/ec2-user/bmds273b-project/src
+├── 🔨 Created function extract_dnabert.
+├── 🔨 Created function extract.
+├── 🔨 Created function download.
+└── 🔨 Created function build.
+stage=extract models=['nt', 'dnabert_s'] limit=None resume=False
++ /usr/local/bin/python /root/src/extract_embeddings.py --model dnabert_s --windows /vol/regulatory/windows.tsv --out_dir /vol/regulatory/embeddings/dnabert_s --device cuda
++ /usr/local/bin/python /root/src/extract_embeddings.py --model nt --windows /vol/regulatory/windows.tsv --out_dir /vol/regulatory/embeddings/nt --device cuda
+A new version of the following files was downloaded from https://huggingface.co/zhihan1996/DNABERT-S:
+- configuration_bert.py
+. Make sure to double-check they do not contain any added malicious code. To avoid downloading new versions of the code file, you can pin a revision.
+A new version of the following files was downloaded from https://huggingface.co/zhihan1996/DNABERT-S:
+- flash_attn_triton.py
+. Make sure to double-check they do not contain any added malicious code. To avoid downloading new versions of the code file, you can pin a revision.
+A new version of the following files was downloaded from https://huggingface.co/zhihan1996/DNABERT-S:
+- bert_padding.py
+. Make sure to double-check they do not contain any added malicious code. To avoid downloading new versions of the code file, you can pin a revision.
+A new version of the following files was downloaded from https://huggingface.co/zhihan1996/DNABERT-S:
+- bert_layers.py
+- flash_attn_triton.py
+- bert_padding.py
+. Make sure to double-check they do not contain any added malicious code. To avoid downloading new versions of the code file, you can pin a revision.
+/usr/local/lib/python3.10/site-packages/torch/_utils.py:776: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
+  return self.fget.__get__(instance, owner)()
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+4024 windows from /vol/regulatory/windows.tsv
+Loading nt (fp16) ...
+
+[1AFetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]
+[1AFetching 2 files:  50%|█████     | 1/2 [00:53<00:53, 53.19s/it]Fetching 2 files: 100%|██████████| 2/2 [00:53<00:00, 26.59s/it]
+
+[1ALoading weights:   0%|          | 0/524 [00:00<?, ?it/s]
+[1ALoading weights:   3%|▎         | 18/524 [00:00<00:05, 97.87it/s]
+[1ALoading weights:   5%|▌         | 28/524 [00:00<00:11, 42.32it/s]
+[1ALoading weights:   7%|▋         | 36/524 [00:00<00:13, 37.09it/s]
+[1ALoading weights:  10%|▉         | 52/524 [00:01<00:13, 34.14it/s]
+[1ALoading weights:  13%|█▎        | 68/524 [00:01<00:11, 40.51it/s]
+[1ALoading weights:  14%|█▍        | 73/524 [00:01<00:10, 41.51it/s]
+[1ALoading weights:  16%|█▌        | 84/524 [00:02<00:12, 35.85it/s]
+[1ALoading weights:  19%|█▉        | 100/524 [00:02<00:10, 41.06it/s]
+[1ALoading weights:  22%|██▏       | 116/524 [00:02<00:10, 37.49it/s]
+[1ALoading weights:  25%|██▌       | 132/524 [00:03<00:09, 41.27it/s]
+[1ALoading weights:  26%|██▌       | 137/524 [00:03<00:09, 42.06it/s]
+[1ALoading weights:  28%|██▊       | 148/524 [00:03<00:10, 35.61it/s]
+[1ALoading weights:  31%|███▏      | 164/524 [00:04<00:08, 40.52it/s]
+[1ALoading weights:  34%|███▍      | 180/524 [00:04<00:09, 36.74it/s]
+[1ALoading weights:  37%|███▋      | 196/524 [00:04<00:07, 41.61it/s]
+[1ALoading weights:  40%|████      | 212/524 [00:05<00:07, 39.54it/s]
+[1ALoading weights:  44%|████▎     | 228/524 [00:05<00:06, 42.36it/s]
+[1ALoading weights:  47%|████▋     | 244/524 [00:06<00:07, 39.90it/s]
+[1ALoading weights:  50%|████▉     | 260/524 [00:06<00:06, 42.01it/s]
+[1ALoading weights:  53%|█████▎    | 276/524 [00:06<00:06, 39.84it/s]
+[1ALoading weights:  56%|█████▌    | 292/524 [00:07<00:05, 42.12it/s]
+[1ALoading weights:  59%|█████▉    | 308/524 [00:07<00:05, 40.49it/s]
+[1ALoading weights:  62%|██████▏   | 324/524 [00:08<00:04, 41.65it/s]
+[1ALoading weights:  65%|██████▍   | 340/524 [00:08<00:04, 40.30it/s]
+[1ALoading weights:  68%|██████▊   | 356/524 [00:08<00:04, 40.50it/s]
+[1ALoading weights:  71%|███████   | 372/524 [00:09<00:03, 41.35it/s]
+[1ALoading weights:  74%|███████▍  | 388/524 [00:09<00:03, 41.69it/s]
+[1ALoading weights:  77%|███████▋  | 404/524 [00:09<00:02, 42.28it/s]
+[1ALoading weights:  80%|████████  | 420/524 [00:10<00:02, 43.17it/s]
+[1ALoading weights:  83%|████████▎ | 436/524 [00:10<00:02, 40.78it/s]
+[1ALoading weights:  86%|████████▋ | 452/524 [00:11<00:01, 42.06it/s]
+[1ALoading weights:  89%|████████▉ | 468/524 [00:11<00:01, 39.85it/s]
+[1ALoading weights:  92%|█████████▏| 484/524 [00:11<00:01, 38.17it/s]
+[1ALoading weights:  95%|█████████▌| 500/524 [00:12<00:00, 39.12it/s]
+[1ALoading weights:  98%|█████████▊| 516/524 [00:12<00:00, 42.39it/s]
+[1ALoading weights: 100%|██████████| 524/524 [00:12<00:00, 41.25it/s]
+4024 windows from /vol/regulatory/windows.tsv
+Loading dnabert_s (fp32) ...
+  n_layers=12, hidden_dim=768
+  actual hidden states=13, hidden_dim=768
+Extracting (one seq/pass, max_tok=512) ...
+  1/4024 (0.0%)  101/4024 (2.5%)  201/4024 (5.0%)  301/4024 (7.5%)  401/4024 (10.0%)  501/4024 (12.5%)  601/4024 (14.9%)  701/4024 (17.4%)  801/4024 (19.9%)  901/4024 (22.4%)  1001/4024 (24.9%)  1101/4024 (27.4%)  1201/4024 (29.8%)  1301/4024 (32.3%)  1401/4024 (34.8%)  1501/4024 (37.3%)  1601/4024 (39.8%)  1701/4024 (42.3%)  1801/4024 (44.8%)  1901/4024 (47.2%)  2001/4024 (49.7%)  2101/4024 (52.2%)  2201/4024 (54.7%)  2301/4024 (57.2%)  2401/4024 (59.7%)  2501/4024 (62.2%)  2601/4024 (64.6%)  2701/4024 (67.1%)  2801/4024 (69.6%)  2901/4024 (72.1%)  3001/4024 (74.6%)  3101/4024 (77.1%)  3201/4024 (79.5%)  3301/4024 (82.0%)  3401/4024 (84.5%)  3501/4024 (87.0%)  3601/4024 (89.5%)  3701/4024 (92.0%)  3801/4024 (94.5%)  3901/4024 (96.9%)  4001/4024 (99.4%)  4024/4024 (100.0%)
+Done → /vol/regulatory/embeddings/dnabert_s/
+  layer_00: (4024, 768)
+  layer_12: (4024, 768)
+  n_layers=32, hidden_dim=2560
+  actual hidden states=33, hidden_dim=2560
+Extracting (one seq/pass, max_tok=1000) ...
+  1/4024 (0.0%)  101/4024 (2.5%)  201/4024 (5.0%)  301/4024 (7.5%)  401/4024 (10.0%)  501/4024 (12.5%)  601/4024 (14.9%)  701/4024 (17.4%)  801/4024 (19.9%)  901/4024 (22.4%)  1001/4024 (24.9%)  1101/4024 (27.4%)  1201/4024 (29.8%)  1301/4024 (32.3%)  1401/4024 (34.8%)  1501/4024 (37.3%)  1601/4024 (39.8%)  1701/4024 (42.3%)  1801/4024 (44.8%)  1901/4024 (47.2%)  2001/4024 (49.7%)  2101/4024 (52.2%)  2201/4024 (54.7%)  2301/4024 (57.2%)  2401/4024 (59.7%)  2501/4024 (62.2%)  2601/4024 (64.6%)  2701/4024 (67.1%)  2801/4024 (69.6%)  2901/4024 (72.1%)  3001/4024 (74.6%)  3101/4024 (77.1%)  3201/4024 (79.5%)  3301/4024 (82.0%)  3401/4024 (84.5%)  3501/4024 (87.0%)  3601/4024 (89.5%)  3701/4024 (92.0%)  3801/4024 (94.5%)  3901/4024 (96.9%)  4001/4024 (99.4%)  4024/4024 (100.0%)
+Done → /vol/regulatory/embeddings/nt/
+  layer_00: (4024, 2560)
+  layer_32: (4024, 2560)
+[nt] done → /vol/regulatory/embeddings/nt
+[dnabert_s] done → /vol/regulatory/embeddings/dnabert_s
+
+SUMMARY: 2/2 succeeded: ['nt', 'dnabert_s']
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/autogkb/main/ap-iBrngiAIXbOKXvhfNHuB7P

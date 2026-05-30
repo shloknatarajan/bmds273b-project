@@ -1,0 +1,365 @@
+✓ Initialized. View run at 
+https://modal.com/apps/autogkb/main/ap-Ah8iNtDm1iU3NgIun2uCob
+✓ Created objects.
+├── 🔨 Created mount /home/ec2-user/bmds273b-project/src/modal_app.py
+├── 🔨 Created mount /home/ec2-user/bmds273b-project/src
+├── 🔨 Created function download.
+├── 🔨 Created function build.
+└── 🔨 Created function extract.
+stage=smoke models=['hyenadna', 'nt', 'dnabert_s'] limit=30
++ /usr/local/bin/python /root/src/extract_embeddings.py --model hyenadna --windows /vol/regulatory/windows_smoke_hyenadna.tsv --out_dir /vol/regulatory/embeddings/_smoke_hyenadna --device cuda
++ /usr/local/bin/python /root/src/extract_embeddings.py --model nt --windows /vol/regulatory/windows_smoke_nt.tsv --out_dir /vol/regulatory/embeddings/_smoke_nt --device cuda
++ /usr/local/bin/python /root/src/extract_embeddings.py --model dnabert_s --windows /vol/regulatory/windows_smoke_dnabert_s.tsv --out_dir /vol/regulatory/embeddings/_smoke_dnabert_s --device cuda
+[transformers] A new version of the following files was downloaded from https://huggingface.co/zhihan1996/DNABERT-S:
+- configuration_bert.py
+. Make sure to double-check they do not contain any added malicious code. To avoid downloading new versions of the code file, you can pin a revision.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[transformers] A new version of the following files was downloaded from https://huggingface.co/LongSafari/hyenadna-large-1m-seqlen-hf:
+- configuration_hyena.py
+. Make sure to double-check they do not contain any added malicious code. To avoid downloading new versions of the code file, you can pin a revision.
+[transformers] A new version of the following files was downloaded from https://huggingface.co/LongSafari/hyenadna-large-1m-seqlen-hf:
+- tokenization_hyena.py
+. Make sure to double-check they do not contain any added malicious code. To avoid downloading new versions of the code file, you can pin a revision.
+[transformers] A new version of the following files was downloaded from https://huggingface.co/LongSafari/hyenadna-large-1m-seqlen-hf:
+- modeling_hyena.py
+. Make sure to double-check they do not contain any added malicious code. To avoid downloading new versions of the code file, you can pin a revision.
+[transformers] A new version of the following files was downloaded from https://huggingface.co/zhihan1996/DNABERT-S:
+- flash_attn_triton.py
+. Make sure to double-check they do not contain any added malicious code. To avoid downloading new versions of the code file, you can pin a revision.
+[transformers] A new version of the following files was downloaded from https://huggingface.co/zhihan1996/DNABERT-S:
+- bert_padding.py
+. Make sure to double-check they do not contain any added malicious code. To avoid downloading new versions of the code file, you can pin a revision.
+[transformers] A new version of the following files was downloaded from https://huggingface.co/zhihan1996/DNABERT-S:
+- bert_layers.py
+- flash_attn_triton.py
+- bert_padding.py
+. Make sure to double-check they do not contain any added malicious code. To avoid downloading new versions of the code file, you can pin a revision.
+30 windows from /vol/regulatory/windows_smoke_hyenadna.tsv
+Loading hyenadna (fp32) ...
+
+[1ALoading weights:   0%|          | 0/211 [00:00<?, ?it/s]
+[1ALoading weights: 100%|██████████| 211/211 [00:00<00:00, 4762.79it/s]
+[transformers] [1mHyenaDNAModel LOAD REPORT[0m from: LongSafari/hyenadna-large-1m-seqlen-hf
+Key            | Status     |  | 
+---------------+------------+--+-
+lm_head.weight | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:   can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[transformers] `use_return_dict` is deprecated! Use `return_dict` instead!
+30 windows from /vol/regulatory/windows_smoke_nt.tsv
+Loading nt (fp16) ...
+
+  n_layers=8, hidden_dim=256
+Extracting (one seq/pass, max_tok=1000000) ...
+[1AFetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Traceback (most recent call last):
+  File "/root/src/extract_embeddings.py", line 193, in <module>
+    main()
+  File "/root/src/extract_embeddings.py", line 176, in main
+    handles[layer_idx]["embeddings"][row] = emb
+    ~~~~~~~^^^^^^^^^^^
+KeyError: 9
+Traceback (most recent call last):
+[hyenadna] RUN FAILED: Command '['/usr/local/bin/python', '/root/src/extract_embeddings.py', '--model', 'hyenadna', '--windows', '/vol/regulatory/windows_smoke_hyenadna.tsv', '--out_dir', '/vol/regulatory/embeddings/_smoke_hyenadna', '--device', 'cuda']' returned non-zero exit status 1.
+  File "/pkg/modal/_runtime/container_io_manager.py", line 945, in handle_input_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 189, in run_input_sync
+    values = io_context.call_function_sync()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/pkg/modal/_runtime/container_io_manager.py", line 225, in call_function_sync
+    expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/modal_app.py", line 158, in extract
+    return _extract_impl(model, limit)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/modal_app.py", line 141, in _extract_impl
+    _run([
+  File "/root/modal_app.py", line 84, in _run
+    subprocess.run(cmd, check=True, cwd="/root")
+  File "/usr/local/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/usr/local/bin/python', '/root/src/extract_embeddings.py', '--model', 'hyenadna', '--windows', '/vol/regulatory/windows_smoke_hyenadna.tsv', '--out_dir', '/vol/regulatory/embeddings/_smoke_hyenadna', '--device', 'cuda']' returned non-zero exit status 1.
+30 windows from /vol/regulatory/windows_smoke_dnabert_s.tsv
+Loading dnabert_s (fp32) ...
+Traceback (most recent call last):
+  File "/root/src/extract_embeddings.py", line 193, in <module>
+    main()
+  File "/root/src/extract_embeddings.py", line 158, in main
+    tok, model, n_layers, hidden_dim = load_model(args.model, args.device)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/src/extract_embeddings.py", line 83, in load_model
+    model = _LOADERS[cfg["loader"]].from_pretrained(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/transformers/models/auto/auto_factory.py", line 390, in from_pretrained
+    return model_class.from_pretrained(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/transformers/modeling_utils.py", line 4252, in from_pretrained
+    model = cls(config, *model_args, **model_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.cache/huggingface/modules/transformers_modules/zhihan1996/DNABERT_hyphen_S/00e47f96cdea35e4b6f5df89e5419cbe47d490c6/bert_layers.py", line 572, in __init__
+    self.encoder = BertEncoder(config)
+                   ^^^^^^^^^^^^^^^^^^^
+  File "/root/.cache/huggingface/modules/transformers_modules/zhihan1996/DNABERT_hyphen_S/00e47f96cdea35e4b6f5df89e5419cbe47d490c6/bert_layers.py", line 360, in __init__
+    self.rebuild_alibi_tensor(size=config.alibi_starting_size)
+  File "/root/.cache/huggingface/modules/transformers_modules/zhihan1996/DNABERT_hyphen_S/00e47f96cdea35e4b6f5df89e5419cbe47d490c6/bert_layers.py", line 399, in rebuild_alibi_tensor
+    alibi = slopes.unsqueeze(1).unsqueeze(1) * -relative_position
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~
+  File "/usr/local/lib/python3.12/site-packages/torch/utils/_device.py", line 104, in __torch_function__
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/torch/_prims_common/wrappers.py", line 308, in _fn
+    result = fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/torch/_compile.py", line 51, in inner
+    return disable_fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py", line 838, in _fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/torch/_prims_common/wrappers.py", line 149, in _fn
+    result = fn(**bound.arguments)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/torch/_refs/__init__.py", line 1086, in _ref
+    output = prim(a, b)
+             ^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/torch/_refs/__init__.py", line 1693, in mul
+    return prims.mul(a, b)
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/torch/_ops.py", line 756, in __call__
+    return self._op(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/torch/_library/fake_impl.py", line 95, in meta_kernel
+    return fake_impl_holder.kernel(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/torch/_library/utils.py", line 32, in __call__
+    return self.func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/torch/library.py", line 1383, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/torch/_library/custom_ops.py", line 622, in fake_impl
+    return self._abstract_fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/torch/_prims/__init__.py", line 404, in _prim_elementwise_meta
+    utils.check_same_device(*args_, allow_cpu_scalar_tensors=True)
+  File "/usr/local/lib/python3.12/site-packages/torch/_prims_common/__init__.py", line 779, in check_same_device
+    raise RuntimeError(msg)
+RuntimeError: Tensor on device meta is not on the expected device cpu!
+Traceback (most recent call last):
+  File "/pkg/modal/_runtime/container_io_manager.py", line 945, in handle_input_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 189, in run_input_sync
+    values = io_context.call_function_sync()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/pkg/modal/_runtime/container_io_manager.py", line 225, in call_function_sync
+    expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/modal_app.py", line 158, in extract
+    return _extract_impl(model, limit)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/modal_app.py", line 141, in _extract_impl
+    _run([
+  File "/root/modal_app.py", line 84, in _run
+    subprocess.run(cmd, check=True, cwd="/root")
+  File "/usr/local/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/usr/local/bin/python', '/root/src/extract_embeddings.py', '--model', 'dnabert_s', '--windows', '/vol/regulatory/windows_smoke_dnabert_s.tsv', '--out_dir', '/vol/regulatory/embeddings/_smoke_dnabert_s', '--device', 'cuda']' returned non-zero exit status 1.
+
+[1AFetching 2 files:  50%|█████     | 1/2 [00:48<00:48, 48.71s/it]
+[1AFetching 2 files: 100%|██████████| 2/2 [00:48<00:00, 24.35s/it]
+
+[1ALoading weights:   0%|          | 0/524 [00:00<?, ?it/s]
+[1ALoading weights:   3%|▎         | 18/524 [00:00<00:05, 98.52it/s]
+[1ALoading weights:   5%|▌         | 28/524 [00:00<00:12, 40.07it/s]
+[1ALoading weights:   7%|▋         | 36/524 [00:00<00:13, 36.25it/s]
+[1ALoading weights:  10%|▉         | 52/524 [00:01<00:13, 35.26it/s]
+[1ALoading weights:  13%|█▎        | 68/524 [00:01<00:10, 41.65it/s]
+[1ALoading weights:  16%|█▌        | 84/524 [00:02<00:11, 37.60it/s]
+[1ALoading weights:  19%|█▉        | 100/524 [00:02<00:10, 42.04it/s]
+[1ALoading weights:  20%|██        | 105/524 [00:02<00:09, 42.67it/s]
+[1ALoading weights:  22%|██▏       | 116/524 [00:02<00:11, 36.18it/s]
+[1ALoading weights:  25%|██▌       | 132/524 [00:03<00:09, 39.57it/s]
+[1ALoading weights:  28%|██▊       | 148/524 [00:03<00:10, 35.59it/s]
+[1ALoading weights:  31%|███▏      | 164/524 [00:04<00:09, 39.41it/s]
+[1ALoading weights:  34%|███▍      | 180/524 [00:04<00:09, 36.53it/s]
+[1ALoading weights:  37%|███▋      | 196/524 [00:04<00:08, 40.31it/s]
+[1ALoading weights:  40%|████      | 212/524 [00:05<00:08, 37.24it/s]
+[1ALoading weights:  44%|████▎     | 228/524 [00:05<00:07, 39.56it/s]
+[1ALoading weights:  47%|████▋     | 244/524 [00:06<00:07, 35.35it/s]
+[1ALoading weights:  50%|████▉     | 260/524 [00:06<00:06, 38.58it/s]
+[1ALoading weights:  53%|█████▎    | 276/524 [00:07<00:06, 36.56it/s]
+[1ALoading weights:  56%|█████▌    | 292/524 [00:07<00:05, 40.87it/s]
+[1ALoading weights:  59%|█████▉    | 308/524 [00:07<00:05, 37.73it/s]
+[1ALoading weights:  62%|██████▏   | 324/524 [00:08<00:05, 39.50it/s]
+[1ALoading weights:  65%|██████▍   | 340/524 [00:08<00:04, 37.51it/s]
+[1ALoading weights:  66%|██████▌   | 344/524 [00:08<00:04, 37.36it/s]
+[1ALoading weights:  68%|██████▊   | 356/524 [00:09<00:04, 37.02it/s]
+[1ALoading weights:  69%|██████▊   | 360/524 [00:09<00:04, 36.50it/s]
+[1ALoading weights:  71%|███████   | 372/524 [00:09<00:04, 35.42it/s]
+[1ALoading weights:  74%|███████▍  | 388/524 [00:10<00:03, 38.64it/s]
+[1ALoading weights:  77%|███████▋  | 404/524 [00:10<00:03, 38.54it/s]
+[1ALoading weights:  80%|████████  | 420/524 [00:10<00:02, 40.55it/s]
+[1ALoading weights:  83%|████████▎ | 436/524 [00:11<00:02, 38.91it/s]
+[1ALoading weights:  86%|████████▋ | 452/524 [00:11<00:01, 39.06it/s]
+[1ALoading weights:  89%|████████▉ | 468/524 [00:12<00:01, 37.72it/s]
+[1ALoading weights:  92%|█████████▏| 484/524 [00:12<00:01, 37.79it/s]
+[1ALoading weights:  95%|█████████▌| 500/524 [00:13<00:00, 35.48it/s]
+[1ALoading weights:  98%|█████████▊| 516/524 [00:13<00:00, 41.38it/s]
+[1ALoading weights: 100%|██████████| 524/524 [00:13<00:00, 39.17it/s]
+/pytorch/aten/src/ATen/native/cuda/Indexing.cu:1553: indexSelectLargeIndex: block: [91,0,0], thread: [64,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+/pytorch/aten/src/ATen/native/cuda/Indexing.cu:1553: indexSelectLargeIndex: block: [91,0,0], thread: [65,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+/pytorch/aten/src/ATen/native/cuda/Indexing.cu:1553: indexSelectLargeIndex: block: [91,0,0], thread: [66,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+/pytorch/aten/src/ATen/native/cuda/Indexing.cu:1553: indexSelectLargeIndex: block: [91,0,0], thread: [67,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+/pytorch/aten/src/ATen/native/cuda/Indexing.cu:1553: indexSelectLargeIndex: block: [91,0,0], thread: [68,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+/pytorch/aten/src/ATen/native/cuda/Indexing.cu:1553: indexSelectLargeIndex: block: [91,0,0], thread: [69,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+/pytorch/aten/src/ATen/native/cuda/Indexing.cu:1553: indexSelectLargeIndex: block: [91,0,0], thread: [70,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+/pytorch/aten/src/ATen/native/cuda/Indexing.cu:1553: indexSelectLargeIndex: block: [91,0,0], thread: [71,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+/pytorch/aten/src/ATen/native/cuda/Indexing.cu:1553: indexSelectLargeIndex: block: [91,0,0], thread: [72,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+/pytorch/aten/src/ATen/native/cuda/Indexing.cu:1553: indexSelectLargeIndex: block: [91,0,0], thread: [73,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+/pytorch/aten/src/ATen/native/cuda/Indexing.cu:1553: indexSelectLargeIndex: block: [91,0,0], thread: [74,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+/pytorch/aten/src/ATen/native/cuda/Indexing.cu:1553: indexSelectLargeIndex: block: [91,0,0], thread: [75,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+/pytorch/aten/src/ATen/native/cuda/Indexing.cu:1553: indexSelectLargeIndex: block: [91,0,0], thread: [76,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+[gpu-health] [WARN] GPU-bddba699-fe1f-71de-673c-e38b57fda6e0: XID: NVRM: Xid (PCI:0000:00:1d): 43, pid=44932, name=exe, channel 0x00000008
+
+/pytorch/aten/src/ATen/native/cuda/Indexing.cu:1553: indexSelectLargeIndex: block: [91,0,0], thread: [77,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+/pytorch/aten/src/ATen/native/cuda/Indexing.cu:1553: indexSelectLargeIndex: block: [91,0,0], thread: [78,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+/pytorch/aten/src/ATen/native/cuda/Indexing.cu:1553: indexSelectLargeIndex: block: [91,0,0], thread: [79,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+/pytorch/aten/src/ATen/native/cuda/Indexing.cu:1553: indexSelectLargeIndex: block: [91,0,0], thread: [80,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+/pytorch/aten/src/ATen/native/cuda/Indexing.cu:1553: indexSelectLargeIndex: block: [91,0,0], thread: [81,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+/pytorch/aten/src/ATen/native/cuda/Indexing.cu:1553: indexSelectLargeIndex: block: [91,0,0], thread: [82,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+/pytorch/aten/src/ATen/native/cuda/Indexing.cu:1553: indexSelectLargeIndex: block: [91,0,0], thread: [83,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+/pytorch/aten/src/ATen/native/cuda/Indexing.cu:1553: indexSelectLargeIndex: block: [91,0,0], thread: [84,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+/pytorch/aten/src/ATen/native/cuda/Indexing.cu:1553: indexSelectLargeIndex: block: [91,0,0], thread: [85,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+/pytorch/aten/src/ATen/native/cuda/Indexing.cu:1553: indexSelectLargeIndex: block: [91,0,0], thread: [86,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+/pytorch/aten/src/ATen/native/cuda/Indexing.cu:1553: indexSelectLargeIndex: block: [91,0,0], thread: [87,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+/pytorch/aten/src/ATen/native/cuda/Indexing.cu:1553: indexSelectLargeIndex: block: [91,0,0], thread: [88,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+/pytorch/aten/src/ATen/native/cuda/Indexing.cu:1553: indexSelectLargeIndex: block: [91,0,0], thread: [89,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+/pytorch/aten/src/ATen/native/cuda/Indexing.cu:1553: indexSelectLargeIndex: block: [91,0,0], thread: [90,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+/pytorch/aten/src/ATen/native/cuda/Indexing.cu:1553: indexSelectLargeIndex: block: [91,0,0], thread: [91,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+/pytorch/aten/src/ATen/native/cuda/Indexing.cu:1553: indexSelectLargeIndex: block: [91,0,0], thread: [92,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+/pytorch/aten/src/ATen/native/cuda/Indexing.cu:1553: indexSelectLargeIndex: block: [91,0,0], thread: [93,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+/pytorch/aten/src/ATen/native/cuda/Indexing.cu:1553: indexSelectLargeIndex: block: [91,0,0], thread: [94,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+/pytorch/aten/src/ATen/native/cuda/Indexing.cu:1553: indexSelectLargeIndex: block: [91,0,0], thread: [95,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+  n_layers=32, hidden_dim=2560
+Extracting (one seq/pass, max_tok=2048) ...
+Traceback (most recent call last):
+  File "/root/src/extract_embeddings.py", line 193, in <module>
+    main()
+  File "/root/src/extract_embeddings.py", line 170, in main
+    layers = embed_one(seqs[row], tok, model, args.device, max_tok)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/src/extract_embeddings.py", line 122, in embed_one
+    out = model(input_ids=ids, output_hidden_states=True)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/transformers/utils/generic.py", line 903, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/transformers/models/esm/modeling_esm.py", line 859, in forward
+    outputs = self.esm(
+              ^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/transformers/utils/generic.py", line 1032, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/transformers/utils/output_capturing.py", line 252, in wrapper
+    outputs = func(self, *args, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/transformers/models/esm/modeling_esm.py", line 754, in forward
+    encoder_outputs = self.encoder(
+                      ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/transformers/utils/generic.py", line 903, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/transformers/models/esm/modeling_esm.py", line 556, in forward
+    hidden_states = layer_module(
+                    ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/transformers/modeling_layers.py", line 93, in __call__
+    return super().__call__(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1857, in _call_impl
+    return inner()
+           ^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1805, in inner
+    result = forward_call(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/transformers/models/esm/modeling_esm.py", line 504, in forward
+    attention_output = self.attention(
+                       ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/transformers/models/esm/modeling_esm.py", line 442, in forward
+    hidden_states_ln = self.LayerNorm(hidden_states)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/torch/nn/modules/normalization.py", line 217, in forward
+    return F.layer_norm(
+           ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/torch/nn/functional.py", line 2910, in layer_norm
+    return torch.layer_norm(
+           ^^^^^^^^^^^^^^^^^
+RuntimeError: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+Traceback (most recent call last):
+[nt] RUN FAILED: Command '['/usr/local/bin/python', '/root/src/extract_embeddings.py', '--model', 'nt', '--windows', '/vol/regulatory/windows_smoke_nt.tsv', '--out_dir', '/vol/regulatory/embeddings/_smoke_nt', '--device', 'cuda']' returned non-zero exit status 1.
+  File "/pkg/modal/_runtime/container_io_manager.py", line 945, in handle_input_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 189, in run_input_sync
+    values = io_context.call_function_sync()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/pkg/modal/_runtime/container_io_manager.py", line 225, in call_function_sync
+    expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/modal_app.py", line 158, in extract
+    return _extract_impl(model, limit)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/modal_app.py", line 141, in _extract_impl
+    _run([
+  File "/root/modal_app.py", line 84, in _run
+    subprocess.run(cmd, check=True, cwd="/root")
+  File "/usr/local/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/usr/local/bin/python', '/root/src/extract_embeddings.py', '--model', 'nt', '--windows', '/vol/regulatory/windows_smoke_nt.tsv', '--out_dir', '/vol/regulatory/embeddings/_smoke_nt', '--device', 'cuda']' returned non-zero exit status 1.
+[dnabert_s] RUN FAILED: Command '['/usr/local/bin/python', '/root/src/extract_embeddings.py', '--model', 'dnabert_s', '--windows', '/vol/regulatory/windows_smoke_dnabert_s.tsv', '--out_dir', '/vol/regulatory/embeddings/_smoke_dnabert_s', '--device', 'cuda']' returned non-zero exit status 1.
+
+SUMMARY: 0/3 succeeded: []
+  failed: {'hyenadna': "run: Command '['/usr/local/bin/python', '/root/src/extract_embeddings.py', '--model', 'hyenadna', '--windows', '/vol/regulatory/windows_smoke_hyenadna.tsv', '--out_dir', '/vol/regulatory/embeddings/_smoke_hyenadna', '--device', 'cuda']' returned non-zero exit status 1.", 'nt': "run: Command '['/usr/local/bin/python', '/root/src/extract_embeddings.py', '--model', 'nt', '--windows', '/vol/regulatory/windows_smoke_nt.tsv', '--out_dir', '/vol/regulatory/embeddings/_smoke_nt', '--device', 'cuda']' returned non-zero exit status 1.", 'dnabert_s': "run: Command '['/usr/local/bin/python', '/root/src/extract_embeddings.py', '--model', 'dnabert_s', '--windows', '/vol/regulatory/windows_smoke_dnabert_s.tsv', '--out_dir', '/vol/regulatory/embeddings/_smoke_dnabert_s', '--device', 'cuda']' returned non-zero exit status 1."}
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/autogkb/main/ap-Ah8iNtDm1iU3NgIun2uCob

@@ -1,0 +1,93 @@
+✓ Initialized. View run at 
+https://modal.com/apps/autogkb/main/ap-EoO1aJkAVxZhU1m7goYXCW
+✓ Created objects.
+├── 🔨 Created mount /home/ec2-user/bmds273b-project/src/modal_app.py
+├── 🔨 Created mount /home/ec2-user/bmds273b-project/src
+├── 🔨 Created function download.
+├── 🔨 Created function build.
+└── 🔨 Created function extract.
+stage=smoke models=['hyenadna', 'nt', 'dnabert_s'] limit=30
++ /usr/local/bin/python /root/src/extract_embeddings.py --model hyenadna --windows /vol/regulatory/windows_smoke_hyenadna.tsv --out_dir /vol/regulatory/embeddings/_smoke_hyenadna --batch_size 1 --device cuda
++ /usr/local/bin/python /root/src/extract_embeddings.py --model nt --windows /vol/regulatory/windows_smoke_nt.tsv --out_dir /vol/regulatory/embeddings/_smoke_nt --batch_size 4 --device cuda
++ /usr/local/bin/python /root/src/extract_embeddings.py --model dnabert_s --windows /vol/regulatory/windows_smoke_dnabert_s.tsv --out_dir /vol/regulatory/embeddings/_smoke_dnabert_s --batch_size 8 --device cuda
+usage: extract_embeddings.py [-h] --model
+                             {evo2,hyenadna,caduceus,nt,dnabert_s}
+                             [--windows WINDOWS] [--id_col ID_COL]
+                             [--out_dir OUT_DIR] [--device DEVICE] [--resume]
+extract_embeddings.py: error: unrecognized arguments: --batch_size 1
+[hyenadna] RUN FAILED: Command '['/usr/local/bin/python', '/root/src/extract_embeddings.py', '--model', 'hyenadna', '--windows', '/vol/regulatory/windows_smoke_hyenadna.tsv', '--out_dir', '/vol/regulatory/embeddings/_smoke_hyenadna', '--batch_size', '1', '--device', 'cuda']' returned non-zero exit status 2.
+Traceback (most recent call last):
+  File "/pkg/modal/_runtime/container_io_manager.py", line 945, in handle_input_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 189, in run_input_sync
+    values = io_context.call_function_sync()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/pkg/modal/_runtime/container_io_manager.py", line 225, in call_function_sync
+    expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/modal_app.py", line 157, in extract
+    return _extract_impl(model, limit)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/modal_app.py", line 139, in _extract_impl
+    _run([
+  File "/root/modal_app.py", line 84, in _run
+    subprocess.run(cmd, check=True, cwd="/root")
+  File "/usr/local/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/usr/local/bin/python', '/root/src/extract_embeddings.py', '--model', 'hyenadna', '--windows', '/vol/regulatory/windows_smoke_hyenadna.tsv', '--out_dir', '/vol/regulatory/embeddings/_smoke_hyenadna', '--batch_size', '1', '--device', 'cuda']' returned non-zero exit status 2.
+usage: extract_embeddings.py [-h] --model
+                             {evo2,hyenadna,caduceus,nt,dnabert_s}
+                             [--windows WINDOWS] [--id_col ID_COL]
+                             [--out_dir OUT_DIR] [--device DEVICE] [--resume]
+extract_embeddings.py: error: unrecognized arguments: --batch_size 8
+Traceback (most recent call last):
+  File "/pkg/modal/_runtime/container_io_manager.py", line 945, in handle_input_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 189, in run_input_sync
+    values = io_context.call_function_sync()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/pkg/modal/_runtime/container_io_manager.py", line 225, in call_function_sync
+    expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/modal_app.py", line 157, in extract
+    return _extract_impl(model, limit)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/modal_app.py", line 139, in _extract_impl
+    _run([
+  File "/root/modal_app.py", line 84, in _run
+    subprocess.run(cmd, check=True, cwd="/root")
+  File "/usr/local/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/usr/local/bin/python', '/root/src/extract_embeddings.py', '--model', 'dnabert_s', '--windows', '/vol/regulatory/windows_smoke_dnabert_s.tsv', '--out_dir', '/vol/regulatory/embeddings/_smoke_dnabert_s', '--batch_size', '8', '--device', 'cuda']' returned non-zero exit status 2.
+usage: extract_embeddings.py [-h] --model
+                             {evo2,hyenadna,caduceus,nt,dnabert_s}
+                             [--windows WINDOWS] [--id_col ID_COL]
+                             [--out_dir OUT_DIR] [--device DEVICE] [--resume]
+extract_embeddings.py: error: unrecognized arguments: --batch_size 4
+Traceback (most recent call last):
+[nt] RUN FAILED: Command '['/usr/local/bin/python', '/root/src/extract_embeddings.py', '--model', 'nt', '--windows', '/vol/regulatory/windows_smoke_nt.tsv', '--out_dir', '/vol/regulatory/embeddings/_smoke_nt', '--batch_size', '4', '--device', 'cuda']' returned non-zero exit status 2.
+  File "/pkg/modal/_runtime/container_io_manager.py", line 945, in handle_input_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 189, in run_input_sync
+    values = io_context.call_function_sync()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/pkg/modal/_runtime/container_io_manager.py", line 225, in call_function_sync
+    expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/modal_app.py", line 157, in extract
+    return _extract_impl(model, limit)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/modal_app.py", line 139, in _extract_impl
+    _run([
+  File "/root/modal_app.py", line 84, in _run
+    subprocess.run(cmd, check=True, cwd="/root")
+  File "/usr/local/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/usr/local/bin/python', '/root/src/extract_embeddings.py', '--model', 'nt', '--windows', '/vol/regulatory/windows_smoke_nt.tsv', '--out_dir', '/vol/regulatory/embeddings/_smoke_nt', '--batch_size', '4', '--device', 'cuda']' returned non-zero exit status 2.
+[dnabert_s] RUN FAILED: Command '['/usr/local/bin/python', '/root/src/extract_embeddings.py', '--model', 'dnabert_s', '--windows', '/vol/regulatory/windows_smoke_dnabert_s.tsv', '--out_dir', '/vol/regulatory/embeddings/_smoke_dnabert_s', '--batch_size', '8', '--device', 'cuda']' returned non-zero exit status 2.
+
+SUMMARY: 0/3 succeeded: []
+  failed: {'hyenadna': "run: Command '['/usr/local/bin/python', '/root/src/extract_embeddings.py', '--model', 'hyenadna', '--windows', '/vol/regulatory/windows_smoke_hyenadna.tsv', '--out_dir', '/vol/regulatory/embeddings/_smoke_hyenadna', '--batch_size', '1', '--device', 'cuda']' returned non-zero exit status 2.", 'nt': "run: Command '['/usr/local/bin/python', '/root/src/extract_embeddings.py', '--model', 'nt', '--windows', '/vol/regulatory/windows_smoke_nt.tsv', '--out_dir', '/vol/regulatory/embeddings/_smoke_nt', '--batch_size', '4', '--device', 'cuda']' returned non-zero exit status 2.", 'dnabert_s': "run: Command '['/usr/local/bin/python', '/root/src/extract_embeddings.py', '--model', 'dnabert_s', '--windows', '/vol/regulatory/windows_smoke_dnabert_s.tsv', '--out_dir', '/vol/regulatory/embeddings/_smoke_dnabert_s', '--batch_size', '8', '--device', 'cuda']' returned non-zero exit status 2."}
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/autogkb/main/ap-EoO1aJkAVxZhU1m7goYXCW
