@@ -1,0 +1,144 @@
+✓ Initialized. View run at 
+https://modal.com/apps/autogkb/main/ap-IeLy54Dhkn03GV2sdIgEie
+✓ Created objects.
+├── 🔨 Created mount /home/ec2-user/bmds273b-project/src/modal_app.py
+├── 🔨 Created mount /home/ec2-user/bmds273b-project/src
+├── 🔨 Created function download.
+├── 🔨 Created function build.
+└── 🔨 Created function extract.
+stage=extract models=['hyenadna', 'nt'] limit=None
++ /usr/local/bin/python /root/src/extract_embeddings.py --model hyenadna --windows /vol/regulatory/windows.tsv --out_dir /vol/regulatory/embeddings/hyenadna --device cuda
++ /usr/local/bin/python /root/src/extract_embeddings.py --model nt --windows /vol/regulatory/windows.tsv --out_dir /vol/regulatory/embeddings/nt --device cuda
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[transformers] A new version of the following files was downloaded from https://huggingface.co/LongSafari/hyenadna-large-1m-seqlen-hf:
+- configuration_hyena.py
+. Make sure to double-check they do not contain any added malicious code. To avoid downloading new versions of the code file, you can pin a revision.
+[transformers] A new version of the following files was downloaded from https://huggingface.co/LongSafari/hyenadna-large-1m-seqlen-hf:
+- tokenization_hyena.py
+. Make sure to double-check they do not contain any added malicious code. To avoid downloading new versions of the code file, you can pin a revision.
+[transformers] A new version of the following files was downloaded from https://huggingface.co/LongSafari/hyenadna-large-1m-seqlen-hf:
+- modeling_hyena.py
+. Make sure to double-check they do not contain any added malicious code. To avoid downloading new versions of the code file, you can pin a revision.
+4024 windows from /vol/regulatory/windows.tsv
+Loading hyenadna (fp32) ...
+
+[1ALoading weights:   0%|          | 0/211 [00:00<?, ?it/s]
+[1ALoading weights: 100%|██████████| 211/211 [00:00<00:00, 6218.41it/s]
+[transformers] [1mHyenaDNAModel LOAD REPORT[0m from: LongSafari/hyenadna-large-1m-seqlen-hf
+Key            | Status     |  | 
+---------------+------------+--+-
+lm_head.weight | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:   can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[transformers] `use_return_dict` is deprecated! Use `return_dict` instead!
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+4024 windows from /vol/regulatory/windows.tsv
+Loading nt (fp16) ...
+
+[1AFetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]
+[1AFetching 2 files:  50%|█████     | 1/2 [00:54<00:54, 54.74s/it]
+[1AFetching 2 files: 100%|██████████| 2/2 [00:54<00:00, 27.37s/it]
+
+[1ALoading weights:   0%|          | 0/524 [00:00<?, ?it/s]
+[1ALoading weights:   1%|          | 4/524 [00:00<00:14, 36.35it/s]
+[1ALoading weights:   4%|▍         | 20/524 [00:00<00:13, 36.50it/s]
+[1ALoading weights:   7%|▋         | 36/524 [00:00<00:10, 45.86it/s]
+[1ALoading weights:  10%|▉         | 52/524 [00:01<00:12, 39.33it/s]
+[1ALoading weights:  13%|█▎        | 68/524 [00:01<00:10, 43.81it/s]
+[1ALoading weights:  16%|█▌        | 84/524 [00:02<00:14, 30.67it/s]
+[1ALoading weights:  19%|█▉        | 100/524 [00:02<00:13, 30.66it/s]
+[1ALoading weights:  20%|█▉        | 104/524 [00:03<00:13, 31.42it/s]
+[1ALoading weights:  22%|██▏       | 116/524 [00:03<00:15, 26.18it/s]
+[1ALoading weights:  25%|██▌       | 132/524 [00:04<00:13, 29.27it/s]
+[1ALoading weights:  28%|██▊       | 148/524 [00:04<00:14, 25.36it/s]
+[1ALoading weights:  31%|███▏      | 164/524 [00:05<00:13, 25.98it/s]
+[1ALoading weights:  34%|███▍      | 180/524 [00:06<00:14, 23.63it/s]
+[1ALoading weights:  37%|███▋      | 196/524 [00:06<00:13, 25.11it/s]
+[1ALoading weights:  40%|████      | 212/524 [00:07<00:14, 21.56it/s]
+[1ALoading weights:  44%|████▎     | 228/524 [00:08<00:12, 24.55it/s]
+[1ALoading weights:  47%|████▋     | 244/524 [00:08<00:11, 24.02it/s]
+[1ALoading weights:  50%|████▉     | 260/524 [00:09<00:09, 26.47it/s]
+[1ALoading weights:  53%|█████▎    | 276/524 [00:09<00:09, 26.75it/s]
+[1ALoading weights:  56%|█████▌    | 292/524 [00:10<00:07, 30.60it/s]
+[1ALoading weights:  59%|█████▉    | 308/524 [00:10<00:06, 31.74it/s]
+[1ALoading weights:  62%|██████▏   | 324/524 [00:11<00:05, 34.45it/s]
+[1ALoading weights:  65%|██████▍   | 340/524 [00:11<00:05, 33.72it/s]
+[1ALoading weights:  68%|██████▊   | 356/524 [00:11<00:04, 37.32it/s]
+[1ALoading weights:  71%|███████   | 372/524 [00:12<00:03, 38.34it/s]
+[1ALoading weights:  74%|███████▍  | 388/524 [00:12<00:03, 41.51it/s]
+[1ALoading weights:  77%|███████▋  | 404/524 [00:13<00:02, 42.01it/s]
+[1ALoading weights:  80%|████████  | 420/524 [00:13<00:02, 45.37it/s]
+[1ALoading weights:  81%|████████  | 425/524 [00:13<00:02, 40.02it/s]
+[1ALoading weights:  83%|████████▎ | 436/524 [00:14<00:03, 24.56it/s]
+[1ALoading weights:  84%|████████▍ | 440/524 [00:14<00:03, 25.06it/s]
+[1ALoading weights:  86%|████████▋ | 452/524 [00:15<00:03, 19.04it/s]
+[1ALoading weights:  89%|████████▉ | 468/524 [00:16<00:02, 20.52it/s]
+[1ALoading weights:  90%|████████▉ | 471/524 [00:16<00:02, 19.76it/s]
+[1ALoading weights:  92%|█████████▏| 484/524 [00:16<00:01, 23.52it/s]
+[1ALoading weights:  95%|█████████▌| 500/524 [00:17<00:00, 25.38it/s]
+[1ALoading weights:  96%|█████████▌| 503/524 [00:17<00:00, 24.80it/s]
+[1ALoading weights:  98%|█████████▊| 516/524 [00:17<00:00, 30.60it/s]
+[1ALoading weights: 100%|██████████| 524/524 [00:17<00:00, 29.37it/s]
+  n_layers=8, hidden_dim=256
+  actual hidden states=10, hidden_dim=256
+Extracting (one seq/pass, max_tok=1000000) ...
+  1/4024 (0.0%)  101/4024 (2.5%)  201/4024 (5.0%)  301/4024 (7.5%)  401/4024 (10.0%)  501/4024 (12.5%)  601/4024 (14.9%)  701/4024 (17.4%)  801/4024 (19.9%)  901/4024 (22.4%)  1001/4024 (24.9%)  1101/4024 (27.4%)  1201/4024 (29.8%)  1301/4024 (32.3%)  1401/4024 (34.8%)  1501/4024 (37.3%)  1601/4024 (39.8%)  1701/4024 (42.3%)  1801/4024 (44.8%)  1901/4024 (47.2%)  2001/4024 (49.7%)  2101/4024 (52.2%)  2201/4024 (54.7%)  2301/4024 (57.2%)  2401/4024 (59.7%)  2501/4024 (62.2%)  2601/4024 (64.6%)  2701/4024 (67.1%)  2801/4024 (69.6%)  2901/4024 (72.1%)  3001/4024 (74.6%)  3101/4024 (77.1%)  3201/4024 (79.5%)  3301/4024 (82.0%)  3401/4024 (84.5%)  3501/4024 (87.0%)  3601/4024 (89.5%)  3701/4024 (92.0%)  3801/4024 (94.5%)  3901/4024 (96.9%)  4001/4024 (99.4%)  4024/4024 (100.0%)
+Done → /vol/regulatory/embeddings/hyenadna/
+  layer_00: (4024, 256)
+  layer_09: (4024, 256)
+[hyenadna] done → /vol/regulatory/embeddings/hyenadna
+Exception ignored in: <function WeakValueDictionary.__init__.<locals>.remove at 0x2b0d8ee6bc40>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/weakref.py", line 105, in remove
+    def remove(wr, selfref=ref(self), _atomic_removal=_remove_dead_weakref):
+
+KeyboardInterrupt: 
+Runner interrupted due to worker preemption. Your Function will be restarted with the same input. For more details, see https://modal.com/docs/guide/preemption
++ /usr/local/bin/python /root/src/extract_embeddings.py --model nt --windows /vol/regulatory/windows.tsv --out_dir /vol/regulatory/embeddings/nt --device cuda
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+4024 windows from /vol/regulatory/windows.tsv
+Loading nt (fp16) ...
+
+[1AFetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]
+[1AFetching 2 files:  50%|█████     | 1/2 [01:04<01:04, 64.42s/it]
+[1AFetching 2 files: 100%|██████████| 2/2 [01:04<00:00, 32.21s/it]
+
+[1ALoading weights:   0%|          | 0/524 [00:00<?, ?it/s]
+[1ALoading weights:   4%|▍         | 20/524 [00:00<00:04, 123.45it/s]
+[1ALoading weights:   7%|▋         | 38/524 [00:00<00:03, 142.80it/s]
+[1ALoading weights:  10%|█         | 53/524 [00:00<00:03, 121.71it/s]
+[1ALoading weights:  13%|█▎        | 70/524 [00:00<00:03, 132.73it/s]
+[1ALoading weights:  16%|█▌        | 84/524 [00:00<00:03, 118.98it/s]
+[1ALoading weights:  19%|█▉        | 102/524 [00:00<00:03, 130.25it/s]
+[1ALoading weights:  22%|██▏       | 116/524 [00:00<00:03, 116.62it/s]
+[1ALoading weights:  26%|██▌       | 134/524 [00:01<00:03, 122.79it/s]
+[1ALoading weights:  28%|██▊       | 148/524 [00:01<00:03, 119.38it/s]
+[1ALoading weights:  32%|███▏      | 166/524 [00:01<00:02, 124.14it/s]
+[1ALoading weights:  34%|███▍      | 180/524 [00:01<00:02, 122.62it/s]
+[1ALoading weights:  37%|███▋      | 196/524 [00:01<00:02, 124.89it/s]
+[1ALoading weights:  40%|████      | 212/524 [00:01<00:02, 114.97it/s]
+[1ALoading weights:  44%|████▍     | 230/524 [00:01<00:02, 120.23it/s]
+[1ALoading weights:  47%|████▋     | 244/524 [00:01<00:02, 118.64it/s]
+[1ALoading weights:  50%|█████     | 262/524 [00:02<00:02, 124.38it/s]
+[1ALoading weights:  53%|█████▎    | 276/524 [00:02<00:02, 120.30it/s]
+[1ALoading weights:  56%|█████▌    | 294/524 [00:02<00:01, 124.47it/s]
+[1ALoading weights:  59%|█████▉    | 308/524 [00:02<00:01, 115.27it/s]
+[1ALoading weights:  62%|██████▏   | 326/524 [00:02<00:01, 121.96it/s]
+[1ALoading weights:  65%|██████▍   | 340/524 [00:02<00:01, 118.98it/s]
+[1ALoading weights:  68%|██████▊   | 358/524 [00:02<00:01, 124.98it/s]
+[1ALoading weights:  71%|███████   | 372/524 [00:03<00:01, 121.15it/s]
+[1ALoading weights:  74%|███████▍  | 390/524 [00:03<00:01, 127.12it/s]
+[1ALoading weights:  77%|███████▋  | 404/524 [00:03<00:00, 121.78it/s]
+[1ALoading weights:  81%|████████  | 422/524 [00:03<00:00, 126.17it/s]
+[1ALoading weights:  83%|████████▎ | 436/524 [00:03<00:00, 113.55it/s]
+[1ALoading weights:  87%|████████▋ | 454/524 [00:03<00:00, 121.37it/s]
+[1ALoading weights:  89%|████████▉ | 468/524 [00:03<00:00, 116.22it/s]
+[1ALoading weights:  92%|█████████▏| 484/524 [00:03<00:00, 121.86it/s]
+[1ALoading weights:  95%|█████████▌| 500/524 [00:04<00:00, 111.92it/s]
+[1ALoading weights:  99%|█████████▉| 518/524 [00:04<00:00, 127.26it/s]
+[1ALoading weights: 100%|██████████| 524/524 [00:04<00:00, 123.54it/s]
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous
+WARNING: Logs may not be continuous

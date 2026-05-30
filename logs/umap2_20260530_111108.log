@@ -1,0 +1,28 @@
+/home/ec2-user/regvenv/lib/python3.12/site-packages/umap/umap_.py:1952: UserWarning: n_jobs value 1 overridden to 1 by setting random_state. Use no seed for parallelism.
+  warn(
+/home/ec2-user/regvenv/lib/python3.12/site-packages/umap/umap_.py:1952: UserWarning: n_jobs value 1 overridden to 1 by setting random_state. Use no seed for parallelism.
+  warn(
+/home/ec2-user/regvenv/lib/python3.12/site-packages/umap/umap_.py:1952: UserWarning: n_jobs value 1 overridden to 1 by setting random_state. Use no seed for parallelism.
+  warn(
+Models: ['dnabert_s', 'hyenadna', 'nt']
+290 windows from 'test' split  (4 chroms)
+
+=== dnabert_s ===
+  Layer 12 (layer_12.h5) ...
+  Running UMAP on shape (290, 768) ...
+  Saved data/regulatory/results/umap/dnabert_s_layer12_label.png
+  Saved data/regulatory/results/umap/dnabert_s_layer12_chrom.png
+
+=== hyenadna ===
+  Layer 09 (layer_09.h5) ...
+  Running UMAP on shape (290, 256) ...
+  Saved data/regulatory/results/umap/hyenadna_layer09_label.png
+  Saved data/regulatory/results/umap/hyenadna_layer09_chrom.png
+
+=== nt ===
+  Layer 32 (layer_32.h5) ...
+  Running UMAP on shape (290, 2560) ...
+  Saved data/regulatory/results/umap/nt_layer32_label.png
+  Saved data/regulatory/results/umap/nt_layer32_chrom.png
+
+UMAP visualizations complete.

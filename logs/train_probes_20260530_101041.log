@@ -1,0 +1,192 @@
+Available models : ['dnabert_s', 'hyenadna', 'nt']
+Running probes on: ['hyenadna', 'nt', 'dnabert_s']
+Windows: 4,024  (train=3,372 / val=362 / test=290)
+Labels : {'gene_body': 2012, 'regulatory': 2012}
+
+============================================================
+Model: hyenadna  (10 layers available)
+  Layer 00 (layer_00.h5)
+    [logistic]  F1=0.570  AUC=0.531  AUPRC=0.543
+    [mlp     ]  F1=0.579  AUC=0.470  AUPRC=0.509
+  Layer 01 (layer_01.h5)
+    [logistic]  F1=0.587  AUC=0.582  AUPRC=0.628
+    [mlp     ]  F1=0.344  AUC=0.537  AUPRC=0.567
+  Layer 02 (layer_02.h5)
+    [logistic]  F1=0.578  AUC=0.577  AUPRC=0.612
+    [mlp     ]  F1=0.545  AUC=0.546  AUPRC=0.601
+  Layer 03 (layer_03.h5)
+    [logistic]  F1=0.517  AUC=0.516  AUPRC=0.568
+    [mlp     ]  F1=0.530  AUC=0.514  AUPRC=0.552
+  Layer 04 (layer_04.h5)
+    [logistic]  F1=0.500  AUC=0.530  AUPRC=0.561
+    [mlp     ]  F1=0.565  AUC=0.491  AUPRC=0.548
+  Layer 05 (layer_05.h5)
+    [logistic]  F1=0.544  AUC=0.554  AUPRC=0.603
+    [mlp     ]  F1=0.532  AUC=0.537  AUPRC=0.563
+  Layer 06 (layer_06.h5)
+    [logistic]  F1=0.517  AUC=0.543  AUPRC=0.590
+    [mlp     ]  F1=0.474  AUC=0.577  AUPRC=0.590
+  Layer 07 (layer_07.h5)
+    [logistic]  F1=0.500  AUC=0.556  AUPRC=0.599
+    [mlp     ]  F1=0.519  AUC=0.518  AUPRC=0.587
+  Layer 08 (layer_08.h5)
+    [logistic]  F1=0.570  AUC=0.599  AUPRC=0.628
+    [mlp     ]  F1=0.580  AUC=0.541  AUPRC=0.559
+  Layer 09 (layer_09.h5)
+    [logistic]  F1=0.553  AUC=0.601  AUPRC=0.627
+    [mlp     ]  F1=0.463  AUC=0.560  AUPRC=0.601
+Saved data/regulatory/results/layer_curves_hyenadna.png
+
+============================================================
+Model: nt  (33 layers available)
+  Layer 00 (layer_00.h5)
+    [logistic]  F1=0.548  AUC=0.505  AUPRC=0.535
+    [mlp     ]  F1=0.571  AUC=0.481  AUPRC=0.530
+  Layer 01 (layer_01.h5)
+    [logistic]  F1=0.477  AUC=0.482  AUPRC=0.538
+    [mlp     ]  F1=0.591  AUC=0.499  AUPRC=0.521
+  Layer 02 (layer_02.h5)
+    [logistic]  F1=0.513  AUC=0.479  AUPRC=0.507
+    [mlp     ]  F1=0.535  AUC=0.480  AUPRC=0.521
+  Layer 03 (layer_03.h5)
+    [logistic]  F1=0.518  AUC=0.478  AUPRC=0.511
+    [mlp     ]  F1=0.520  AUC=0.548  AUPRC=0.567
+  Layer 04 (layer_04.h5)
+    [logistic]  F1=0.541  AUC=0.489  AUPRC=0.514
+    [mlp     ]  F1=0.581  AUC=0.469  AUPRC=0.492
+  Layer 05 (layer_05.h5)
+    [logistic]  F1=0.551  AUC=0.538  AUPRC=0.558
+    [mlp     ]  F1=0.526  AUC=0.538  AUPRC=0.559
+  Layer 06 (layer_06.h5)
+    [logistic]  F1=0.544  AUC=0.530  AUPRC=0.532
+    [mlp     ]  F1=0.376  AUC=0.490  AUPRC=0.532
+  Layer 07 (layer_07.h5)
+    [logistic]  F1=0.520  AUC=0.541  AUPRC=0.566
+    [mlp     ]  F1=0.525  AUC=0.495  AUPRC=0.516
+  Layer 08 (layer_08.h5)
+    [logistic]  F1=0.553  AUC=0.539  AUPRC=0.549
+    [mlp     ]  F1=0.492  AUC=0.543  AUPRC=0.581
+  Layer 09 (layer_09.h5)
+    [logistic]  F1=0.561  AUC=0.557  AUPRC=0.564
+    [mlp     ]  F1=0.544  AUC=0.535  AUPRC=0.540
+  Layer 10 (layer_10.h5)
+    [logistic]  F1=0.578  AUC=0.557  AUPRC=0.549
+    [mlp     ]  F1=0.601  AUC=0.529  AUPRC=0.541
+  Layer 11 (layer_11.h5)
+    [logistic]  F1=0.570  AUC=0.559  AUPRC=0.566
+    [mlp     ]  F1=0.466  AUC=0.557  AUPRC=0.572
+  Layer 12 (layer_12.h5)
+    [logistic]  F1=0.552  AUC=0.547  AUPRC=0.544
+    [mlp     ]  F1=0.534  AUC=0.534  AUPRC=0.546
+  Layer 13 (layer_13.h5)
+    [logistic]  F1=0.529  AUC=0.548  AUPRC=0.564
+    [mlp     ]  F1=0.583  AUC=0.540  AUPRC=0.543
+  Layer 14 (layer_14.h5)
+    [logistic]  F1=0.517  AUC=0.536  AUPRC=0.570
+    [mlp     ]  F1=0.588  AUC=0.556  AUPRC=0.565
+  Layer 15 (layer_15.h5)
+    [logistic]  F1=0.502  AUC=0.535  AUPRC=0.587
+    [mlp     ]  F1=0.626  AUC=0.592  AUPRC=0.605
+  Layer 16 (layer_16.h5)
+    [logistic]  F1=0.519  AUC=0.539  AUPRC=0.574
+    [mlp     ]  F1=0.547  AUC=0.530  AUPRC=0.552
+  Layer 17 (layer_17.h5)
+    [logistic]  F1=0.490  AUC=0.518  AUPRC=0.550
+    [mlp     ]  F1=0.573  AUC=0.546  AUPRC=0.586
+  Layer 18 (layer_18.h5)
+    [logistic]  F1=0.526  AUC=0.525  AUPRC=0.557
+    [mlp     ]  F1=0.571  AUC=0.528  AUPRC=0.551
+  Layer 19 (layer_19.h5)
+    [logistic]  F1=0.543  AUC=0.530  AUPRC=0.565
+    [mlp     ]  F1=0.548  AUC=0.537  AUPRC=0.560
+  Layer 20 (layer_20.h5)
+    [logistic]  F1=0.500  AUC=0.516  AUPRC=0.552
+    [mlp     ]  F1=0.580  AUC=0.541  AUPRC=0.565
+  Layer 21 (layer_21.h5)
+    [logistic]  F1=0.522  AUC=0.519  AUPRC=0.555
+    [mlp     ]  F1=0.494  AUC=0.551  AUPRC=0.586
+  Layer 22 (layer_22.h5)
+    [logistic]  F1=0.531  AUC=0.515  AUPRC=0.554
+    [mlp     ]  F1=0.561  AUC=0.540  AUPRC=0.583
+  Layer 23 (layer_23.h5)
+    [logistic]  F1=0.535  AUC=0.522  AUPRC=0.551
+    [mlp     ]  F1=0.565  AUC=0.547  AUPRC=0.570
+  Layer 24 (layer_24.h5)
+    [logistic]  F1=0.522  AUC=0.525  AUPRC=0.558
+    [mlp     ]  F1=0.573  AUC=0.541  AUPRC=0.570
+  Layer 25 (layer_25.h5)
+    [logistic]  F1=0.555  AUC=0.523  AUPRC=0.546
+    [mlp     ]  F1=0.540  AUC=0.528  AUPRC=0.558
+  Layer 26 (layer_26.h5)
+    [logistic]  F1=0.545  AUC=0.525  AUPRC=0.541
+    [mlp     ]  F1=0.537  AUC=0.576  AUPRC=0.582
+  Layer 27 (layer_27.h5)
+    [logistic]  F1=0.537  AUC=0.523  AUPRC=0.540
+    [mlp     ]  F1=0.580  AUC=0.531  AUPRC=0.547
+  Layer 28 (layer_28.h5)
+    [logistic]  F1=0.533  AUC=0.520  AUPRC=0.536
+    [mlp     ]  F1=0.510  AUC=0.514  AUPRC=0.542
+  Layer 29 (layer_29.h5)
+    [logistic]  F1=0.557  AUC=0.548  AUPRC=0.559
+    [mlp     ]  F1=0.529  AUC=0.557  AUPRC=0.585
+  Layer 30 (layer_30.h5)
+    [logistic]  F1=0.538  AUC=0.523  AUPRC=0.548
+    [mlp     ]  F1=0.435  AUC=0.561  AUPRC=0.591
+  Layer 31 (layer_31.h5)
+    [logistic]  F1=0.519  AUC=0.505  AUPRC=0.545
+    [mlp     ]  F1=0.539  AUC=0.559  AUPRC=0.606
+  Layer 32 (layer_32.h5)
+    [logistic]  F1=0.570  AUC=0.565  AUPRC=0.570
+    [mlp     ]  F1=0.598  AUC=0.557  AUPRC=0.563
+Saved data/regulatory/results/layer_curves_nt.png
+
+============================================================
+Model: dnabert_s  (13 layers available)
+  Layer 00 (layer_00.h5)
+    [logistic]  F1=0.532  AUC=0.541  AUPRC=0.562
+    [mlp     ]  F1=0.553  AUC=0.529  AUPRC=0.555
+  Layer 01 (layer_01.h5)
+    [logistic]  F1=0.497  AUC=0.504  AUPRC=0.544
+    [mlp     ]  F1=0.475  AUC=0.498  AUPRC=0.532
+  Layer 02 (layer_02.h5)
+    [logistic]  F1=0.504  AUC=0.505  AUPRC=0.542
+    [mlp     ]  F1=0.458  AUC=0.520  AUPRC=0.551
+  Layer 03 (layer_03.h5)
+    [logistic]  F1=0.513  AUC=0.517  AUPRC=0.539
+    [mlp     ]  F1=0.573  AUC=0.555  AUPRC=0.593
+  Layer 04 (layer_04.h5)
+    [logistic]  F1=0.521  AUC=0.513  AUPRC=0.545
+    [mlp     ]  F1=0.541  AUC=0.533  AUPRC=0.578
+  Layer 05 (layer_05.h5)
+    [logistic]  F1=0.506  AUC=0.488  AUPRC=0.548
+    [mlp     ]  F1=0.517  AUC=0.482  AUPRC=0.534
+  Layer 06 (layer_06.h5)
+    [logistic]  F1=0.532  AUC=0.510  AUPRC=0.549
+    [mlp     ]  F1=0.567  AUC=0.569  AUPRC=0.595
+  Layer 07 (layer_07.h5)
+    [logistic]  F1=0.485  AUC=0.478  AUPRC=0.533
+    [mlp     ]  F1=0.502  AUC=0.522  AUPRC=0.530
+  Layer 08 (layer_08.h5)
+    [logistic]  F1=0.483  AUC=0.501  AUPRC=0.562
+    [mlp     ]  F1=0.557  AUC=0.535  AUPRC=0.561
+  Layer 09 (layer_09.h5)
+    [logistic]  F1=0.462  AUC=0.448  AUPRC=0.511
+    [mlp     ]  F1=0.571  AUC=0.523  AUPRC=0.541
+  Layer 10 (layer_10.h5)
+    [logistic]  F1=0.512  AUC=0.500  AUPRC=0.552
+    [mlp     ]  F1=0.541  AUC=0.535  AUPRC=0.569
+  Layer 11 (layer_11.h5)
+    [logistic]  F1=0.536  AUC=0.502  AUPRC=0.535
+    [mlp     ]  F1=0.454  AUC=0.523  AUPRC=0.567
+  Layer 12 (layer_12.h5)
+    [logistic]  F1=0.514  AUC=0.521  AUPRC=0.545
+    [mlp     ]  F1=0.583  AUC=0.577  AUPRC=0.585
+Saved data/regulatory/results/layer_curves_dnabert_s.png
+
+Results saved to data/regulatory/results/probe_results.tsv
+Saved data/regulatory/results/model_comparison.png
+
+=== Summary (best layer per model, logistic probe, AUPRC) ===
+  hyenadna      layer=08  F1=0.570  AUC=0.599  AUPRC=0.628
+  nt            layer=15  F1=0.502  AUC=0.535  AUPRC=0.587
+  dnabert_s     layer=00  F1=0.532  AUC=0.541  AUPRC=0.562

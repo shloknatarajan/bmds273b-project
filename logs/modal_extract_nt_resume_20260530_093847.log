@@ -1,0 +1,102 @@
+✓ Initialized. View run at 
+https://modal.com/apps/autogkb/main/ap-hXymhJsspKMUuRqgSseaSe
+✓ Created objects.
+├── 🔨 Created mount /home/ec2-user/bmds273b-project/src/modal_app.py
+├── 🔨 Created mount /home/ec2-user/bmds273b-project/src
+├── 🔨 Created function extract.
+├── 🔨 Created function download.
+├── 🔨 Created function build.
+└── 🔨 Created function extract_dnabert.
+stage=extract models=['nt'] limit=None resume=True
++ /usr/local/bin/python /root/src/extract_embeddings.py --model nt --windows /vol/regulatory/windows.tsv --out_dir /vol/regulatory/embeddings/nt --device cuda --resume
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+4024 windows from /vol/regulatory/windows.tsv
+Loading nt (fp16) ...
+
+[1AFetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]
+[1AFetching 2 files:  50%|█████     | 1/2 [00:48<00:48, 48.67s/it]
+[1AFetching 2 files: 100%|██████████| 2/2 [00:48<00:00, 24.34s/it]
+
+[1ALoading weights:   0%|          | 0/524 [00:00<?, ?it/s]
+[1ALoading weights:   3%|▎         | 18/524 [00:00<00:05, 96.89it/s]
+[1ALoading weights:   5%|▌         | 28/524 [00:00<00:12, 40.00it/s]
+[1ALoading weights:   7%|▋         | 36/524 [00:00<00:13, 37.36it/s]
+[1ALoading weights:  10%|▉         | 52/524 [00:01<00:13, 35.43it/s]
+[1ALoading weights:  13%|█▎        | 68/524 [00:01<00:10, 41.65it/s]
+[1ALoading weights:  16%|█▌        | 84/524 [00:02<00:11, 36.68it/s]
+[1ALoading weights:  19%|█▉        | 100/524 [00:02<00:10, 40.34it/s]
+[1ALoading weights:  22%|██▏       | 116/524 [00:03<00:11, 36.25it/s]
+[1ALoading weights:  25%|██▌       | 132/524 [00:03<00:09, 39.75it/s]
+[1ALoading weights:  28%|██▊       | 148/524 [00:03<00:10, 36.99it/s]
+[1ALoading weights:  31%|███▏      | 164/524 [00:04<00:08, 40.16it/s]
+[1ALoading weights:  34%|███▍      | 180/524 [00:04<00:08, 38.39it/s]
+[1ALoading weights:  37%|███▋      | 196/524 [00:04<00:07, 41.34it/s]
+[1ALoading weights:  40%|████      | 212/524 [00:05<00:08, 37.65it/s]
+[1ALoading weights:  44%|████▎     | 228/524 [00:05<00:07, 40.50it/s]
+[1ALoading weights:  47%|████▋     | 244/524 [00:06<00:08, 34.00it/s]
+[1ALoading weights:  50%|████▉     | 260/524 [00:06<00:07, 36.96it/s]
+[1ALoading weights:  53%|█████▎    | 276/524 [00:07<00:06, 36.12it/s]
+[1ALoading weights:  56%|█████▌    | 292/524 [00:07<00:05, 39.70it/s]
+[1ALoading weights:  59%|█████▉    | 308/524 [00:08<00:05, 36.43it/s]
+[1ALoading weights:  62%|██████▏   | 324/524 [00:08<00:05, 38.35it/s]
+[1ALoading weights:  65%|██████▍   | 340/524 [00:08<00:05, 36.05it/s]
+[1ALoading weights:  68%|██████▊   | 356/524 [00:09<00:04, 39.26it/s]
+[1ALoading weights:  71%|███████   | 372/524 [00:09<00:04, 35.70it/s]
+[1ALoading weights:  74%|███████▍  | 388/524 [00:10<00:03, 39.50it/s]
+[1ALoading weights:  77%|███████▋  | 404/524 [00:10<00:03, 36.69it/s]
+[1ALoading weights:  80%|████████  | 420/524 [00:10<00:02, 41.71it/s]
+[1ALoading weights:  83%|████████▎ | 436/524 [00:11<00:02, 37.61it/s]
+[1ALoading weights:  86%|████████▋ | 452/524 [00:11<00:01, 40.34it/s]
+[1ALoading weights:  89%|████████▉ | 468/524 [00:12<00:01, 38.73it/s]
+[1ALoading weights:  92%|█████████▏| 484/524 [00:12<00:01, 39.80it/s]
+[1ALoading weights:  95%|█████████▌| 500/524 [00:13<00:00, 37.43it/s]
+[1ALoading weights:  98%|█████████▊| 516/524 [00:13<00:00, 41.80it/s]
+[1ALoading weights: 100%|██████████| 524/524 [00:13<00:00, 39.33it/s]
+  n_layers=32, hidden_dim=2560
+  resuming from row 1755
+  actual hidden states=33, hidden_dim=2560
+Traceback (most recent call last):
+  File "/root/src/extract_embeddings.py", line 215, in <module>
+    main()
+  File "/root/src/extract_embeddings.py", line 186, in main
+    handles = open_h5s(out_dir, n_hidden, n_windows, probe_dim, resume=resume_ok)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/src/extract_embeddings.py", line 136, in open_h5s
+    fh = h5py.File(path, "r+")  # keep prior rows, append remaining
+         ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/h5py/_hl/files.py", line 555, in __init__
+    fid = make_fid(name, mode, userblock_size, fapl, fcpl, swmr=swmr)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/h5py/_hl/files.py", line 234, in make_fid
+    fid = h5f.open(name, h5f.ACC_RDWR, fapl=fapl)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "h5py/h5f.pyx", line 106, in h5py.h5f.open
+OSError: Unable to synchronously open file (bad object header version number)
+Traceback (most recent call last):
+[nt] RUN FAILED: Command '['/usr/local/bin/python', '/root/src/extract_embeddings.py', '--model', 'nt', '--windows', '/vol/regulatory/windows.tsv', '--out_dir', '/vol/regulatory/embeddings/nt', '--device', 'cuda', '--resume']' returned non-zero exit status 1.
+
+SUMMARY: 0/1 succeeded: []
+  failed: {'nt': "run: Command '['/usr/local/bin/python', '/root/src/extract_embeddings.py', '--model', 'nt', '--windows', '/vol/regulatory/windows.tsv', '--out_dir', '/vol/regulatory/embeddings/nt', '--device', 'cuda', '--resume']' returned non-zero exit status 1."}
+  File "/pkg/modal/_runtime/container_io_manager.py", line 945, in handle_input_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 189, in run_input_sync
+    values = io_context.call_function_sync()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/pkg/modal/_runtime/container_io_manager.py", line 225, in call_function_sync
+    expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/modal_app.py", line 180, in extract
+    return _extract_impl(model, limit, resume)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/modal_app.py", line 169, in _extract_impl
+    _run(cmd)
+  File "/root/modal_app.py", line 103, in _run
+    subprocess.run(cmd, check=True, cwd="/root")
+  File "/usr/local/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/usr/local/bin/python', '/root/src/extract_embeddings.py', '--model', 'nt', '--windows', '/vol/regulatory/windows.tsv', '--out_dir', '/vol/regulatory/embeddings/nt', '--device', 'cuda', '--resume']' returned non-zero exit status 1.
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/autogkb/main/ap-hXymhJsspKMUuRqgSseaSe

@@ -1,0 +1,763 @@
+✓ Initialized. View run at 
+https://modal.com/apps/autogkb/main/ap-Aord7ZfK5t45L01BA8v10o
+Building image im-MoczBk6QCstSpCOwX6Id29
+
+=> Step 0: FROM base
+
+=> Step 1: RUN apt-get update
+Get:1 http://deb.debian.org/debian bookworm InRelease [151 kB]
+Get:2 http://deb.debian.org/debian bookworm-updates InRelease [55.4 kB]
+Get:3 http://deb.debian.org/debian-security bookworm-security InRelease [48.0 kB]
+Get:4 http://deb.debian.org/debian bookworm/main amd64 Packages [8790 kB]
+Get:5 http://deb.debian.org/debian bookworm-updates/main amd64 Packages.diff/Index [21.8 kB]
+Ign:5 http://deb.debian.org/debian bookworm-updates/main amd64 Packages.diff/Index
+Get:6 http://deb.debian.org/debian bookworm-updates/main amd64 Packages [6924 B]
+Get:7 http://deb.debian.org/debian-security bookworm-security/main amd64 Packages [305 kB]
+Fetched 9379 kB in 1s (7698 kB/s)
+Reading package lists...
+
+=> Step 2: RUN apt-get install -y git build-essential
+Reading package lists...
+Building dependency tree...
+Reading state information...
+build-essential is already the newest version (12.9).
+The following additional packages will be installed:
+  git-man less libcbor0.8 libcurl3-gnutls libedit2 liberror-perl libfido2-1
+  libnghttp2-14 libpsl5 librtmp1 libssh2-1 libssl3 libxext6 libxmuu1
+  openssh-client openssl publicsuffix xauth
+Suggested packages:
+  gettext-base git-daemon-run | git-daemon-sysvinit git-doc git-email git-gui
+  gitk gitweb git-cvs git-mediawiki git-svn keychain libpam-ssh monkeysphere
+  ssh-askpass
+The following NEW packages will be installed:
+  git git-man less libcbor0.8 libcurl3-gnutls libedit2 liberror-perl
+  libfido2-1 libnghttp2-14 libpsl5 librtmp1 libssh2-1 libxext6 libxmuu1
+  openssh-client publicsuffix xauth
+The following packages will be upgraded:
+  libssl3 openssl
+2 upgraded, 17 newly installed, 0 to remove and 55 not upgraded.
+Need to get 15.1 MB of archives.
+After this operation, 57.4 MB of additional disk space will be used.
+Get:1 http://deb.debian.org/debian bookworm/main amd64 less amd64 590-2.1~deb12u2 [132 kB]
+Get:2 http://deb.debian.org/debian bookworm/main amd64 libedit2 amd64 3.1-20221030-2 [93.0 kB]
+Get:3 http://deb.debian.org/debian bookworm/main amd64 libcbor0.8 amd64 0.8.0-2+b1 [27.4 kB]
+Get:4 http://deb.debian.org/debian bookworm/main amd64 libssl3 amd64 3.0.20-1~deb12u1 [2034 kB]
+Get:5 http://deb.debian.org/debian bookworm/main amd64 libfido2-1 amd64 1.12.0-2+b1 [77.2 kB]
+Get:6 http://deb.debian.org/debian bookworm/main amd64 openssh-client amd64 1:9.2p1-2+deb12u10 [994 kB]
+Get:7 http://deb.debian.org/debian-security bookworm-security/main amd64 libnghttp2-14 amd64 1.52.0-1+deb12u3 [72.4 kB]
+Get:8 http://deb.debian.org/debian bookworm/main amd64 libpsl5 amd64 0.21.2-1 [58.7 kB]
+Get:9 http://deb.debian.org/debian bookworm/main amd64 librtmp1 amd64 2.4+20151223.gitfa8646d.1-2+b2 [60.8 kB]
+Get:10 http://deb.debian.org/debian bookworm/main amd64 libssh2-1 amd64 1.10.0-3+b1 [179 kB]
+Get:11 http://deb.debian.org/debian bookworm/main amd64 libcurl3-gnutls amd64 7.88.1-10+deb12u14 [386 kB]
+Get:12 http://deb.debian.org/debian bookworm/main amd64 liberror-perl all 0.17029-2 [29.0 kB]
+Get:13 http://deb.debian.org/debian bookworm/main amd64 git-man all 1:2.39.5-0+deb12u3 [2053 kB]
+Get:14 http://deb.debian.org/debian bookworm/main amd64 git amd64 1:2.39.5-0+deb12u3 [7264 kB]
+Get:15 http://deb.debian.org/debian bookworm/main amd64 libxext6 amd64 2:1.3.4-1+b1 [52.9 kB]
+Get:16 http://deb.debian.org/debian bookworm/main amd64 libxmuu1 amd64 2:1.1.3-3 [23.9 kB]
+Get:17 http://deb.debian.org/debian bookworm/main amd64 openssl amd64 3.0.20-1~deb12u1 [1438 kB]
+Get:18 http://deb.debian.org/debian bookworm/main amd64 publicsuffix all 20230209.2326-1 [126 kB]
+Get:19 http://deb.debian.org/debian bookworm/main amd64 xauth amd64 1:1.1.2-1 [36.0 kB]
+debconf: delaying package configuration, since apt-utils is not installed
+Fetched 15.1 MB in 0s (123 MB/s)
+Selecting previously unselected package less.
+(Reading database ... 
+[1A(Reading database ... 5%
+[1A(Reading database ... 10%
+[1A(Reading database ... 15%
+[1A(Reading database ... 20%
+[1A(Reading database ... 25%
+[1A(Reading database ... 30%(Reading database ... 35%
+[1A(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%
+[1A(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%
+[1A(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%
+[1A(Reading database ... 100%(Reading database ... 16439 files and directories currently installed.)
+Preparing to unpack .../00-less_590-2.1~deb12u2_amd64.deb ...
+Unpacking less (590-2.1~deb12u2) ...
+Selecting previously unselected package libedit2:amd64.
+Preparing to unpack .../01-libedit2_3.1-20221030-2_amd64.deb ...
+Unpacking libedit2:amd64 (3.1-20221030-2) ...
+Selecting previously unselected package libcbor0.8:amd64.
+Preparing to unpack .../02-libcbor0.8_0.8.0-2+b1_amd64.deb ...
+Unpacking libcbor0.8:amd64 (0.8.0-2+b1) ...
+Preparing to unpack .../03-libssl3_3.0.20-1~deb12u1_amd64.deb ...
+Unpacking libssl3:amd64 (3.0.20-1~deb12u1) over (3.0.16-1~deb12u1) ...
+Selecting previously unselected package libfido2-1:amd64.
+Preparing to unpack .../04-libfido2-1_1.12.0-2+b1_amd64.deb ...
+Unpacking libfido2-1:amd64 (1.12.0-2+b1) ...
+Selecting previously unselected package openssh-client.
+Preparing to unpack .../05-openssh-client_1%3a9.2p1-2+deb12u10_amd64.deb ...
+Unpacking openssh-client (1:9.2p1-2+deb12u10) ...
+Selecting previously unselected package libnghttp2-14:amd64.
+Preparing to unpack .../06-libnghttp2-14_1.52.0-1+deb12u3_amd64.deb ...
+Unpacking libnghttp2-14:amd64 (1.52.0-1+deb12u3) ...
+Selecting previously unselected package libpsl5:amd64.
+Preparing to unpack .../07-libpsl5_0.21.2-1_amd64.deb ...
+Unpacking libpsl5:amd64 (0.21.2-1) ...
+Selecting previously unselected package librtmp1:amd64.
+Preparing to unpack .../08-librtmp1_2.4+20151223.gitfa8646d.1-2+b2_amd64.deb ...
+Unpacking librtmp1:amd64 (2.4+20151223.gitfa8646d.1-2+b2) ...
+Selecting previously unselected package libssh2-1:amd64.
+Preparing to unpack .../09-libssh2-1_1.10.0-3+b1_amd64.deb ...
+Unpacking libssh2-1:amd64 (1.10.0-3+b1) ...
+Selecting previously unselected package libcurl3-gnutls:amd64.
+Preparing to unpack .../10-libcurl3-gnutls_7.88.1-10+deb12u14_amd64.deb ...
+Unpacking libcurl3-gnutls:amd64 (7.88.1-10+deb12u14) ...
+Selecting previously unselected package liberror-perl.
+Preparing to unpack .../11-liberror-perl_0.17029-2_all.deb ...
+Unpacking liberror-perl (0.17029-2) ...
+Selecting previously unselected package git-man.
+Preparing to unpack .../12-git-man_1%3a2.39.5-0+deb12u3_all.deb ...
+Unpacking git-man (1:2.39.5-0+deb12u3) ...
+Selecting previously unselected package git.
+Preparing to unpack .../13-git_1%3a2.39.5-0+deb12u3_amd64.deb ...
+Unpacking git (1:2.39.5-0+deb12u3) ...
+Selecting previously unselected package libxext6:amd64.
+Preparing to unpack .../14-libxext6_2%3a1.3.4-1+b1_amd64.deb ...
+Unpacking libxext6:amd64 (2:1.3.4-1+b1) ...
+Selecting previously unselected package libxmuu1:amd64.
+Preparing to unpack .../15-libxmuu1_2%3a1.1.3-3_amd64.deb ...
+Unpacking libxmuu1:amd64 (2:1.1.3-3) ...
+Preparing to unpack .../16-openssl_3.0.20-1~deb12u1_amd64.deb ...
+Unpacking openssl (3.0.20-1~deb12u1) over (3.0.16-1~deb12u1) ...
+Selecting previously unselected package publicsuffix.
+Preparing to unpack .../17-publicsuffix_20230209.2326-1_all.deb ...
+Unpacking publicsuffix (20230209.2326-1) ...
+Selecting previously unselected package xauth.
+Preparing to unpack .../18-xauth_1%3a1.1.2-1_amd64.deb ...
+Unpacking xauth (1:1.1.2-1) ...
+Setting up libpsl5:amd64 (0.21.2-1) ...
+Setting up libcbor0.8:amd64 (0.8.0-2+b1) ...
+Setting up libedit2:amd64 (3.1-20221030-2) ...
+Setting up libssl3:amd64 (3.0.20-1~deb12u1) ...
+Setting up libnghttp2-14:amd64 (1.52.0-1+deb12u3) ...
+Setting up less (590-2.1~deb12u2) ...
+Setting up libxext6:amd64 (2:1.3.4-1+b1) ...
+Setting up liberror-perl (0.17029-2) ...
+Setting up librtmp1:amd64 (2.4+20151223.gitfa8646d.1-2+b2) ...
+Setting up git-man (1:2.39.5-0+deb12u3) ...
+Setting up libssh2-1:amd64 (1.10.0-3+b1) ...
+Setting up libfido2-1:amd64 (1.12.0-2+b1) ...
+Setting up openssl (3.0.20-1~deb12u1) ...
+Setting up publicsuffix (20230209.2326-1) ...
+Setting up libxmuu1:amd64 (2:1.1.3-3) ...
+Setting up openssh-client (1:9.2p1-2+deb12u10) ...
+Setting up libcurl3-gnutls:amd64 (7.88.1-10+deb12u14) ...
+Setting up git (1:2.39.5-0+deb12u3) ...
+Setting up xauth (1:1.1.2-1) ...
+Processing triggers for libc-bin (2.36-9+deb12u10) ...
+Saving image...
+Image saved, took 944.07ms
+
+Built image im-MoczBk6QCstSpCOwX6Id29 in 7.46s
+
+
+Building image im-YpqzfDYKX0CP2k5YPiqZ3F
+
+=> Step 0: FROM base
+
+=> Step 1: RUN python -m pip install h5py ninja numpy packaging pandas torch==2.6.0
+Looking in indexes: http://pypi-mirror.modal.local:5555/simple
+Collecting h5py
+  Downloading http://pypi-mirror.modal.local:5555/simple/h5py/h5py-3.16.0-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (3.0 kB)
+Collecting ninja
+  Downloading http://pypi-mirror.modal.local:5555/simple/ninja/ninja-1.13.0-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (5.1 kB)
+Collecting numpy
+  Downloading http://pypi-mirror.modal.local:5555/simple/numpy/numpy-2.4.6-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (6.6 kB)
+Collecting packaging
+  Downloading http://pypi-mirror.modal.local:5555/simple/packaging/packaging-26.2-py3-none-any.whl.metadata (3.5 kB)
+Collecting pandas
+  Downloading http://pypi-mirror.modal.local:5555/simple/pandas/pandas-3.0.3-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (79 kB)
+Collecting torch==2.6.0
+  Downloading http://pypi-mirror.modal.local:5555/simple/torch/torch-2.6.0-cp312-cp312-manylinux1_x86_64.whl.metadata (28 kB)
+Collecting filelock (from torch==2.6.0)
+  Downloading http://pypi-mirror.modal.local:5555/simple/filelock/filelock-3.29.0-py3-none-any.whl.metadata (2.0 kB)
+Collecting typing-extensions>=4.10.0 (from torch==2.6.0)
+  Downloading http://pypi-mirror.modal.local:5555/simple/typing-extensions/typing_extensions-4.15.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting networkx (from torch==2.6.0)
+  Downloading http://pypi-mirror.modal.local:5555/simple/networkx/networkx-3.6.1-py3-none-any.whl.metadata (6.8 kB)
+Collecting jinja2 (from torch==2.6.0)
+  Downloading http://pypi-mirror.modal.local:5555/simple/jinja2/jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+Collecting fsspec (from torch==2.6.0)
+  Downloading http://pypi-mirror.modal.local:5555/simple/fsspec/fsspec-2026.4.0-py3-none-any.whl.metadata (10 kB)
+Collecting nvidia-cuda-nvrtc-cu12==12.4.127 (from torch==2.6.0)
+  Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cuda-nvrtc-cu12/nvidia_cuda_nvrtc_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl.metadata (1.5 kB)
+Collecting nvidia-cuda-runtime-cu12==12.4.127 (from torch==2.6.0)
+  Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cuda-runtime-cu12/nvidia_cuda_runtime_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl.metadata (1.5 kB)
+Collecting nvidia-cuda-cupti-cu12==12.4.127 (from torch==2.6.0)
+  Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cuda-cupti-cu12/nvidia_cuda_cupti_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl.metadata (1.6 kB)
+Collecting nvidia-cudnn-cu12==9.1.0.70 (from torch==2.6.0)
+  Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cudnn-cu12/nvidia_cudnn_cu12-9.1.0.70-py3-none-manylinux2014_x86_64.whl.metadata (1.6 kB)
+Collecting nvidia-cublas-cu12==12.4.5.8 (from torch==2.6.0)
+  Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cublas-cu12/nvidia_cublas_cu12-12.4.5.8-py3-none-manylinux2014_x86_64.whl.metadata (1.5 kB)
+Collecting nvidia-cufft-cu12==11.2.1.3 (from torch==2.6.0)
+  Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cufft-cu12/nvidia_cufft_cu12-11.2.1.3-py3-none-manylinux2014_x86_64.whl.metadata (1.5 kB)
+Collecting nvidia-curand-cu12==10.3.5.147 (from torch==2.6.0)
+  Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-curand-cu12/nvidia_curand_cu12-10.3.5.147-py3-none-manylinux2014_x86_64.whl.metadata (1.5 kB)
+Collecting nvidia-cusolver-cu12==11.6.1.9 (from torch==2.6.0)
+  Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cusolver-cu12/nvidia_cusolver_cu12-11.6.1.9-py3-none-manylinux2014_x86_64.whl.metadata (1.6 kB)
+Collecting nvidia-cusparse-cu12==12.3.1.170 (from torch==2.6.0)
+  Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cusparse-cu12/nvidia_cusparse_cu12-12.3.1.170-py3-none-manylinux2014_x86_64.whl.metadata (1.6 kB)
+Collecting nvidia-cusparselt-cu12==0.6.2 (from torch==2.6.0)
+  Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cusparselt-cu12/nvidia_cusparselt_cu12-0.6.2-py3-none-manylinux2014_x86_64.whl.metadata (6.8 kB)
+Collecting nvidia-nccl-cu12==2.21.5 (from torch==2.6.0)
+  Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-nccl-cu12/nvidia_nccl_cu12-2.21.5-py3-none-manylinux2014_x86_64.whl.metadata (1.8 kB)
+Collecting nvidia-nvtx-cu12==12.4.127 (from torch==2.6.0)
+  Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-nvtx-cu12/nvidia_nvtx_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl.metadata (1.7 kB)
+Collecting nvidia-nvjitlink-cu12==12.4.127 (from torch==2.6.0)
+  Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-nvjitlink-cu12/nvidia_nvjitlink_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl.metadata (1.5 kB)
+Collecting triton==3.2.0 (from torch==2.6.0)
+  Downloading http://pypi-mirror.modal.local:5555/simple/triton/triton-3.2.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (1.4 kB)
+Collecting setuptools (from torch==2.6.0)
+  Downloading http://pypi-mirror.modal.local:5555/simple/setuptools/setuptools-82.0.1-py3-none-any.whl.metadata (6.5 kB)
+Collecting sympy==1.13.1 (from torch==2.6.0)
+  Downloading http://pypi-mirror.modal.local:5555/simple/sympy/sympy-1.13.1-py3-none-any.whl.metadata (12 kB)
+Collecting mpmath<1.4,>=1.1.0 (from sympy==1.13.1->torch==2.6.0)
+  Downloading http://pypi-mirror.modal.local:5555/simple/mpmath/mpmath-1.3.0-py3-none-any.whl.metadata (8.6 kB)
+Collecting python-dateutil>=2.8.2 (from pandas)
+  Downloading http://pypi-mirror.modal.local:5555/simple/python-dateutil/python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+Collecting six>=1.5 (from python-dateutil>=2.8.2->pandas)
+  Downloading http://pypi-mirror.modal.local:5555/simple/six/six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+Collecting MarkupSafe>=2.0 (from jinja2->torch==2.6.0)
+  Downloading http://pypi-mirror.modal.local:5555/simple/markupsafe/markupsafe-3.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/torch/torch-2.6.0-cp312-cp312-manylinux1_x86_64.whl (766.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 766.6/766.6 MB 156.2 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cublas-cu12/nvidia_cublas_cu12-12.4.5.8-py3-none-manylinux2014_x86_64.whl (363.4 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 363.4/363.4 MB 362.3 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cuda-cupti-cu12/nvidia_cuda_cupti_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl (13.8 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 13.8/13.8 MB 372.7 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cuda-nvrtc-cu12/nvidia_cuda_nvrtc_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl (24.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 24.6/24.6 MB 339.8 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cuda-runtime-cu12/nvidia_cuda_runtime_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl (883 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 883.7/883.7 kB 599.1 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cudnn-cu12/nvidia_cudnn_cu12-9.1.0.70-py3-none-manylinux2014_x86_64.whl (664.8 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 664.8/664.8 MB 364.4 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cufft-cu12/nvidia_cufft_cu12-11.2.1.3-py3-none-manylinux2014_x86_64.whl (211.5 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 211.5/211.5 MB 373.5 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-curand-cu12/nvidia_curand_cu12-10.3.5.147-py3-none-manylinux2014_x86_64.whl (56.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 56.3/56.3 MB 369.4 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cusolver-cu12/nvidia_cusolver_cu12-11.6.1.9-py3-none-manylinux2014_x86_64.whl (127.9 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 127.9/127.9 MB 359.6 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cusparse-cu12/nvidia_cusparse_cu12-12.3.1.170-py3-none-manylinux2014_x86_64.whl (207.5 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 207.5/207.5 MB 363.9 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-cusparselt-cu12/nvidia_cusparselt_cu12-0.6.2-py3-none-manylinux2014_x86_64.whl (150.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 150.1/150.1 MB 157.7 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-nccl-cu12/nvidia_nccl_cu12-2.21.5-py3-none-manylinux2014_x86_64.whl (188.7 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 188.7/188.7 MB 368.5 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-nvjitlink-cu12/nvidia_nvjitlink_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl (21.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 21.1/21.1 MB 362.0 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/nvidia-nvtx-cu12/nvidia_nvtx_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl (99 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/sympy/sympy-1.13.1-py3-none-any.whl (6.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.2/6.2 MB 392.1 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/triton/triton-3.2.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (253.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 253.2/253.2 MB 151.9 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/mpmath/mpmath-1.3.0-py3-none-any.whl (536 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 536.2/536.2 kB 596.1 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/h5py/h5py-3.16.0-cp312-cp312-manylinux_2_28_x86_64.whl (5.4 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.4/5.4 MB 151.6 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/ninja/ninja-1.13.0-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (180 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/numpy/numpy-2.4.6-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (16.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.6/16.6 MB 313.7 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/packaging/packaging-26.2-py3-none-any.whl (100 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/pandas/pandas-3.0.3-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (10.9 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10.9/10.9 MB 308.6 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/python-dateutil/python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/six/six-1.17.0-py2.py3-none-any.whl (11 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/typing-extensions/typing_extensions-4.15.0-py3-none-any.whl (44 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/filelock/filelock-3.29.0-py3-none-any.whl (39 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/fsspec/fsspec-2026.4.0-py3-none-any.whl (203 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/jinja2/jinja2-3.1.6-py3-none-any.whl (134 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/markupsafe/markupsafe-3.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/networkx/networkx-3.6.1-py3-none-any.whl (2.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 454.4 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/setuptools/setuptools-82.0.1-py3-none-any.whl (1.0 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.0/1.0 MB 344.2 MB/s eta 0:00:00
+Installing collected packages: triton, nvidia-cusparselt-cu12, mpmath, typing-extensions, sympy, six, setuptools, packaging, nvidia-nvtx-cu12, nvidia-nvjitlink-cu12, nvidia-nccl-cu12, nvidia-curand-cu12, nvidia-cufft-cu12, nvidia-cuda-runtime-cu12, nvidia-cuda-nvrtc-cu12, nvidia-cuda-cupti-cu12, nvidia-cublas-cu12, numpy, ninja, networkx, MarkupSafe, fsspec, filelock, python-dateutil, nvidia-cusparse-cu12, nvidia-cudnn-cu12, jinja2, h5py, pandas, nvidia-cusolver-cu12, torch
+
+Successfully installed MarkupSafe-3.0.3 filelock-3.29.0 fsspec-2026.4.0 h5py-3.16.0 jinja2-3.1.6 mpmath-1.3.0 networkx-3.6.1 ninja-1.13.0 numpy-2.4.6 nvidia-cublas-cu12-12.4.5.8 nvidia-cuda-cupti-cu12-12.4.127 nvidia-cuda-nvrtc-cu12-12.4.127 nvidia-cuda-runtime-cu12-12.4.127 nvidia-cudnn-cu12-9.1.0.70 nvidia-cufft-cu12-11.2.1.3 nvidia-curand-cu12-10.3.5.147 nvidia-cusolver-cu12-11.6.1.9 nvidia-cusparse-cu12-12.3.1.170 nvidia-cusparselt-cu12-0.6.2 nvidia-nccl-cu12-2.21.5 nvidia-nvjitlink-cu12-12.4.127 nvidia-nvtx-cu12-12.4.127 packaging-26.2 pandas-3.0.3 python-dateutil-2.9.0.post0 setuptools-82.0.1 six-1.17.0 sympy-1.13.1 torch-2.6.0 triton-3.2.0 typing-extensions-4.15.0
+
+[notice] A new release of pip is available: 25.1.1 -> 26.1.1
+[notice] To update, run: pip install --upgrade pip
+Saving image...
+Image saved, took 4.50s
+
+Built image im-YpqzfDYKX0CP2k5YPiqZ3F in 83.40s
+
+
+Building image im-5moZYiMTdygPzRsuzi8Tti
+
+=> Step 0: FROM base
+
+=> Step 1: RUN python -m pip install https://github.com/Dao-AILab/flash-attention/releases/download/v2.7.4.post1/flash_attn-2.7.4.post1+cu12torch2.6cxx11abiFALSE-cp312-cp312-linux_x86_64.whl
+Looking in indexes: http://pypi-mirror.modal.local:5555/simple
+Collecting flash-attn==2.7.4.post1+cu12torch2.6cxx11abifalse
+  Downloading https://github.com/Dao-AILab/flash-attention/releases/download/v2.7.4.post1/flash_attn-2.7.4.post1+cu12torch2.6cxx11abiFALSE-cp312-cp312-linux_x86_64.whl (187.8 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 187.8/187.8 MB 105.7 MB/s eta 0:00:00
+Requirement already satisfied: torch in /usr/local/lib/python3.12/site-packages (from flash-attn==2.7.4.post1+cu12torch2.6cxx11abifalse) (2.6.0)
+Collecting einops (from flash-attn==2.7.4.post1+cu12torch2.6cxx11abifalse)
+  Downloading http://pypi-mirror.modal.local:5555/simple/einops/einops-0.8.2-py3-none-any.whl.metadata (13 kB)
+Requirement already satisfied: filelock in /usr/local/lib/python3.12/site-packages (from torch->flash-attn==2.7.4.post1+cu12torch2.6cxx11abifalse) (3.29.0)
+Requirement already satisfied: typing-extensions>=4.10.0 in /usr/local/lib/python3.12/site-packages (from torch->flash-attn==2.7.4.post1+cu12torch2.6cxx11abifalse) (4.15.0)
+Requirement already satisfied: networkx in /usr/local/lib/python3.12/site-packages (from torch->flash-attn==2.7.4.post1+cu12torch2.6cxx11abifalse) (3.6.1)
+Requirement already satisfied: jinja2 in /usr/local/lib/python3.12/site-packages (from torch->flash-attn==2.7.4.post1+cu12torch2.6cxx11abifalse) (3.1.6)
+Requirement already satisfied: fsspec in /usr/local/lib/python3.12/site-packages (from torch->flash-attn==2.7.4.post1+cu12torch2.6cxx11abifalse) (2026.4.0)
+Requirement already satisfied: nvidia-cuda-nvrtc-cu12==12.4.127 in /usr/local/lib/python3.12/site-packages (from torch->flash-attn==2.7.4.post1+cu12torch2.6cxx11abifalse) (12.4.127)
+Requirement already satisfied: nvidia-cuda-runtime-cu12==12.4.127 in /usr/local/lib/python3.12/site-packages (from torch->flash-attn==2.7.4.post1+cu12torch2.6cxx11abifalse) (12.4.127)
+Requirement already satisfied: nvidia-cuda-cupti-cu12==12.4.127 in /usr/local/lib/python3.12/site-packages (from torch->flash-attn==2.7.4.post1+cu12torch2.6cxx11abifalse) (12.4.127)
+Requirement already satisfied: nvidia-cudnn-cu12==9.1.0.70 in /usr/local/lib/python3.12/site-packages (from torch->flash-attn==2.7.4.post1+cu12torch2.6cxx11abifalse) (9.1.0.70)
+Requirement already satisfied: nvidia-cublas-cu12==12.4.5.8 in /usr/local/lib/python3.12/site-packages (from torch->flash-attn==2.7.4.post1+cu12torch2.6cxx11abifalse) (12.4.5.8)
+Requirement already satisfied: nvidia-cufft-cu12==11.2.1.3 in /usr/local/lib/python3.12/site-packages (from torch->flash-attn==2.7.4.post1+cu12torch2.6cxx11abifalse) (11.2.1.3)
+Requirement already satisfied: nvidia-curand-cu12==10.3.5.147 in /usr/local/lib/python3.12/site-packages (from torch->flash-attn==2.7.4.post1+cu12torch2.6cxx11abifalse) (10.3.5.147)
+Requirement already satisfied: nvidia-cusolver-cu12==11.6.1.9 in /usr/local/lib/python3.12/site-packages (from torch->flash-attn==2.7.4.post1+cu12torch2.6cxx11abifalse) (11.6.1.9)
+Requirement already satisfied: nvidia-cusparse-cu12==12.3.1.170 in /usr/local/lib/python3.12/site-packages (from torch->flash-attn==2.7.4.post1+cu12torch2.6cxx11abifalse) (12.3.1.170)
+Requirement already satisfied: nvidia-cusparselt-cu12==0.6.2 in /usr/local/lib/python3.12/site-packages (from torch->flash-attn==2.7.4.post1+cu12torch2.6cxx11abifalse) (0.6.2)
+Requirement already satisfied: nvidia-nccl-cu12==2.21.5 in /usr/local/lib/python3.12/site-packages (from torch->flash-attn==2.7.4.post1+cu12torch2.6cxx11abifalse) (2.21.5)
+Requirement already satisfied: nvidia-nvtx-cu12==12.4.127 in /usr/local/lib/python3.12/site-packages (from torch->flash-attn==2.7.4.post1+cu12torch2.6cxx11abifalse) (12.4.127)
+Requirement already satisfied: nvidia-nvjitlink-cu12==12.4.127 in /usr/local/lib/python3.12/site-packages (from torch->flash-attn==2.7.4.post1+cu12torch2.6cxx11abifalse) (12.4.127)
+Requirement already satisfied: triton==3.2.0 in /usr/local/lib/python3.12/site-packages (from torch->flash-attn==2.7.4.post1+cu12torch2.6cxx11abifalse) (3.2.0)
+Requirement already satisfied: setuptools in /usr/local/lib/python3.12/site-packages (from torch->flash-attn==2.7.4.post1+cu12torch2.6cxx11abifalse) (82.0.1)
+Requirement already satisfied: sympy==1.13.1 in /usr/local/lib/python3.12/site-packages (from torch->flash-attn==2.7.4.post1+cu12torch2.6cxx11abifalse) (1.13.1)
+Requirement already satisfied: mpmath<1.4,>=1.1.0 in /usr/local/lib/python3.12/site-packages (from sympy==1.13.1->torch->flash-attn==2.7.4.post1+cu12torch2.6cxx11abifalse) (1.3.0)
+Requirement already satisfied: MarkupSafe>=2.0 in /usr/local/lib/python3.12/site-packages (from jinja2->torch->flash-attn==2.7.4.post1+cu12torch2.6cxx11abifalse) (3.0.3)
+Downloading http://pypi-mirror.modal.local:5555/simple/einops/einops-0.8.2-py3-none-any.whl (65 kB)
+Installing collected packages: einops, flash-attn
+
+Successfully installed einops-0.8.2 flash-attn-2.7.4.post1
+
+[notice] A new release of pip is available: 25.1.1 -> 26.1.1
+[notice] To update, run: pip install --upgrade pip
+Saving image...
+Image saved, took 1.92s
+
+Built image im-5moZYiMTdygPzRsuzi8Tti in 10.26s
+
+
+Building image im-41FbOytN5MRgPfPg8r31rE
+
+=> Step 0: FROM base
+
+=> Step 1: RUN python -m pip install evo2
+Looking in indexes: http://pypi-mirror.modal.local:5555/simple
+Collecting evo2
+  Downloading http://pypi-mirror.modal.local:5555/simple/evo2/evo2-0.5.5-py3-none-any.whl.metadata (42 kB)
+Collecting biopython (from evo2)
+  Downloading http://pypi-mirror.modal.local:5555/simple/biopython/biopython-1.87-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (13 kB)
+Collecting huggingface_hub (from evo2)
+  Downloading http://pypi-mirror.modal.local:5555/simple/huggingface-hub/huggingface_hub-1.17.0-py3-none-any.whl.metadata (14 kB)
+Requirement already satisfied: torch in /usr/local/lib/python3.12/site-packages (from evo2) (2.6.0)
+Collecting vtx>=0.0.8 (from evo2)
+  Downloading http://pypi-mirror.modal.local:5555/simple/vtx/vtx-1.0.8.tar.gz (26.4 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 26.4/26.4 MB 204.1 MB/s eta 0:00:00
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: numpy in /usr/local/lib/python3.12/site-packages (from vtx>=0.0.8->evo2) (2.4.6)
+Collecting einops==0.8.1 (from vtx>=0.0.8->evo2)
+  Downloading http://pypi-mirror.modal.local:5555/simple/einops/einops-0.8.1-py3-none-any.whl.metadata (13 kB)
+Requirement already satisfied: packaging in /usr/local/lib/python3.12/site-packages (from vtx>=0.0.8->evo2) (26.2)
+Collecting rich (from vtx>=0.0.8->evo2)
+  Downloading http://pypi-mirror.modal.local:5555/simple/rich/rich-15.0.0-py3-none-any.whl.metadata (18 kB)
+Collecting tqdm (from vtx>=0.0.8->evo2)
+  Downloading http://pypi-mirror.modal.local:5555/simple/tqdm/tqdm-4.67.3-py3-none-any.whl.metadata (57 kB)
+Collecting PyYAML (from vtx>=0.0.8->evo2)
+  Downloading http://pypi-mirror.modal.local:5555/simple/pyyaml/pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+Collecting click>=8.4.0 (from huggingface_hub->evo2)
+  Downloading http://pypi-mirror.modal.local:5555/simple/click/click-8.4.1-py3-none-any.whl.metadata (2.6 kB)
+Requirement already satisfied: filelock>=3.10.0 in /usr/local/lib/python3.12/site-packages (from huggingface_hub->evo2) (3.29.0)
+Requirement already satisfied: fsspec>=2023.5.0 in /usr/local/lib/python3.12/site-packages (from huggingface_hub->evo2) (2026.4.0)
+Collecting hf-xet<2.0.0,>=1.4.3 (from huggingface_hub->evo2)
+  Downloading http://pypi-mirror.modal.local:5555/simple/hf-xet/hf_xet-1.5.0-cp37-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (4.9 kB)
+Collecting httpx<1,>=0.23.0 (from huggingface_hub->evo2)
+  Downloading http://pypi-mirror.modal.local:5555/simple/httpx/httpx-0.28.1-py3-none-any.whl.metadata (7.1 kB)
+Collecting typer<0.26.0,>=0.20.0 (from huggingface_hub->evo2)
+  Downloading http://pypi-mirror.modal.local:5555/simple/typer/typer-0.25.1-py3-none-any.whl.metadata (15 kB)
+Requirement already satisfied: typing-extensions>=4.1.0 in /usr/local/lib/python3.12/site-packages (from huggingface_hub->evo2) (4.15.0)
+Collecting anyio (from httpx<1,>=0.23.0->huggingface_hub->evo2)
+  Downloading http://pypi-mirror.modal.local:5555/simple/anyio/anyio-4.13.0-py3-none-any.whl.metadata (4.5 kB)
+Collecting certifi (from httpx<1,>=0.23.0->huggingface_hub->evo2)
+  Downloading http://pypi-mirror.modal.local:5555/simple/certifi/certifi-2026.5.20-py3-none-any.whl.metadata (2.5 kB)
+Collecting httpcore==1.* (from httpx<1,>=0.23.0->huggingface_hub->evo2)
+  Downloading http://pypi-mirror.modal.local:5555/simple/httpcore/httpcore-1.0.9-py3-none-any.whl.metadata (21 kB)
+Collecting idna (from httpx<1,>=0.23.0->huggingface_hub->evo2)
+  Downloading http://pypi-mirror.modal.local:5555/simple/idna/idna-3.17-py3-none-any.whl.metadata (6.4 kB)
+Collecting h11>=0.16 (from httpcore==1.*->httpx<1,>=0.23.0->huggingface_hub->evo2)
+  Downloading http://pypi-mirror.modal.local:5555/simple/h11/h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+Collecting shellingham>=1.3.0 (from typer<0.26.0,>=0.20.0->huggingface_hub->evo2)
+  Downloading http://pypi-mirror.modal.local:5555/simple/shellingham/shellingham-1.5.4-py2.py3-none-any.whl.metadata (3.5 kB)
+Collecting annotated-doc>=0.0.2 (from typer<0.26.0,>=0.20.0->huggingface_hub->evo2)
+  Downloading http://pypi-mirror.modal.local:5555/simple/annotated-doc/annotated_doc-0.0.4-py3-none-any.whl.metadata (6.6 kB)
+Collecting markdown-it-py>=2.2.0 (from rich->vtx>=0.0.8->evo2)
+  Downloading http://pypi-mirror.modal.local:5555/simple/markdown-it-py/markdown_it_py-4.2.0-py3-none-any.whl.metadata (7.4 kB)
+Collecting pygments<3.0.0,>=2.13.0 (from rich->vtx>=0.0.8->evo2)
+  Downloading http://pypi-mirror.modal.local:5555/simple/pygments/pygments-2.20.0-py3-none-any.whl.metadata (2.5 kB)
+Collecting mdurl~=0.1 (from markdown-it-py>=2.2.0->rich->vtx>=0.0.8->evo2)
+  Downloading http://pypi-mirror.modal.local:5555/simple/mdurl/mdurl-0.1.2-py3-none-any.whl.metadata (1.6 kB)
+Requirement already satisfied: networkx in /usr/local/lib/python3.12/site-packages (from torch->evo2) (3.6.1)
+Requirement already satisfied: jinja2 in /usr/local/lib/python3.12/site-packages (from torch->evo2) (3.1.6)
+Requirement already satisfied: nvidia-cuda-nvrtc-cu12==12.4.127 in /usr/local/lib/python3.12/site-packages (from torch->evo2) (12.4.127)
+Requirement already satisfied: nvidia-cuda-runtime-cu12==12.4.127 in /usr/local/lib/python3.12/site-packages (from torch->evo2) (12.4.127)
+Requirement already satisfied: nvidia-cuda-cupti-cu12==12.4.127 in /usr/local/lib/python3.12/site-packages (from torch->evo2) (12.4.127)
+Requirement already satisfied: nvidia-cudnn-cu12==9.1.0.70 in /usr/local/lib/python3.12/site-packages (from torch->evo2) (9.1.0.70)
+Requirement already satisfied: nvidia-cublas-cu12==12.4.5.8 in /usr/local/lib/python3.12/site-packages (from torch->evo2) (12.4.5.8)
+Requirement already satisfied: nvidia-cufft-cu12==11.2.1.3 in /usr/local/lib/python3.12/site-packages (from torch->evo2) (11.2.1.3)
+Requirement already satisfied: nvidia-curand-cu12==10.3.5.147 in /usr/local/lib/python3.12/site-packages (from torch->evo2) (10.3.5.147)
+Requirement already satisfied: nvidia-cusolver-cu12==11.6.1.9 in /usr/local/lib/python3.12/site-packages (from torch->evo2) (11.6.1.9)
+Requirement already satisfied: nvidia-cusparse-cu12==12.3.1.170 in /usr/local/lib/python3.12/site-packages (from torch->evo2) (12.3.1.170)
+Requirement already satisfied: nvidia-cusparselt-cu12==0.6.2 in /usr/local/lib/python3.12/site-packages (from torch->evo2) (0.6.2)
+Requirement already satisfied: nvidia-nccl-cu12==2.21.5 in /usr/local/lib/python3.12/site-packages (from torch->evo2) (2.21.5)
+Requirement already satisfied: nvidia-nvtx-cu12==12.4.127 in /usr/local/lib/python3.12/site-packages (from torch->evo2) (12.4.127)
+Requirement already satisfied: nvidia-nvjitlink-cu12==12.4.127 in /usr/local/lib/python3.12/site-packages (from torch->evo2) (12.4.127)
+Requirement already satisfied: triton==3.2.0 in /usr/local/lib/python3.12/site-packages (from torch->evo2) (3.2.0)
+Requirement already satisfied: setuptools in /usr/local/lib/python3.12/site-packages (from torch->evo2) (82.0.1)
+Requirement already satisfied: sympy==1.13.1 in /usr/local/lib/python3.12/site-packages (from torch->evo2) (1.13.1)
+Requirement already satisfied: mpmath<1.4,>=1.1.0 in /usr/local/lib/python3.12/site-packages (from sympy==1.13.1->torch->evo2) (1.3.0)
+Requirement already satisfied: MarkupSafe>=2.0 in /usr/local/lib/python3.12/site-packages (from jinja2->torch->evo2) (3.0.3)
+Downloading http://pypi-mirror.modal.local:5555/simple/evo2/evo2-0.5.5-py3-none-any.whl (44 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/einops/einops-0.8.1-py3-none-any.whl (64 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/biopython/biopython-1.87-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (3.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.2/3.2 MB 324.4 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/huggingface-hub/huggingface_hub-1.17.0-py3-none-any.whl (671 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 671.5/671.5 kB 872.2 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/hf-xet/hf_xet-1.5.0-cp37-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (4.5 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.5/4.5 MB 690.7 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/httpx/httpx-0.28.1-py3-none-any.whl (73 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/httpcore/httpcore-1.0.9-py3-none-any.whl (78 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/typer/typer-0.25.1-py3-none-any.whl (58 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/annotated-doc/annotated_doc-0.0.4-py3-none-any.whl (5.3 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/click/click-8.4.1-py3-none-any.whl (116 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/h11/h11-0.16.0-py3-none-any.whl (37 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/pyyaml/pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (807 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 807.9/807.9 kB 287.9 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/rich/rich-15.0.0-py3-none-any.whl (310 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/pygments/pygments-2.20.0-py3-none-any.whl (1.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 501.2 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/markdown-it-py/markdown_it_py-4.2.0-py3-none-any.whl (91 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/mdurl/mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/shellingham/shellingham-1.5.4-py2.py3-none-any.whl (9.8 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/tqdm/tqdm-4.67.3-py3-none-any.whl (78 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/anyio/anyio-4.13.0-py3-none-any.whl (114 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/idna/idna-3.17-py3-none-any.whl (65 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/certifi/certifi-2026.5.20-py3-none-any.whl (134 kB)
+Building wheels for collected packages: vtx
+  Building wheel for vtx (pyproject.toml): started
+  Building wheel for vtx (pyproject.toml): finished with status 'done'
+  Created wheel for vtx: filename=vtx-1.0.8-py3-none-any.whl size=30111601 sha256=9bb6f4a60019f9713dc92e63be81f4432a2f89c3680e265d22e0625f261fbabf
+  Stored in directory: /tmp/pip-ephem-wheel-cache-l75gocss/wheels/0f/bd/7b/6c5ee3dba80f5dbd395e9ed665f90918ae13f75dec372f405a
+Successfully built vtx
+Installing collected packages: tqdm, shellingham, PyYAML, pygments, mdurl, idna, hf-xet, h11, einops, click, certifi, biopython, annotated-doc, markdown-it-py, httpcore, anyio, rich, httpx, vtx, typer, huggingface_hub, evo2
+  Attempting uninstall: einops
+    Found existing installation: einops 0.8.2
+    Uninstalling einops-0.8.2:
+      Successfully uninstalled einops-0.8.2
+
+Successfully installed PyYAML-6.0.3 annotated-doc-0.0.4 anyio-4.13.0 biopython-1.87 certifi-2026.5.20 click-8.4.1 einops-0.8.1 evo2-0.5.5 h11-0.16.0 hf-xet-1.5.0 httpcore-1.0.9 httpx-0.28.1 huggingface_hub-1.17.0 idna-3.17 markdown-it-py-4.2.0 mdurl-0.1.2 pygments-2.20.0 rich-15.0.0 shellingham-1.5.4 tqdm-4.67.3 typer-0.25.1 vtx-1.0.8
+
+[notice] A new release of pip is available: 25.1.1 -> 26.1.1
+[notice] To update, run: pip install --upgrade pip
+Saving image...
+Image saved, took 996.14ms
+
+Built image im-41FbOytN5MRgPfPg8r31rE in 21.36s
+
+
+✓ Created objects.
+├── 🔨 Created mount /home/ec2-user/bmds273b-project/src/modal_evo2.py
+├── 🔨 Created mount /home/ec2-user/bmds273b-project/src
+└── 🔨 Created function extract_evo2.
++ /usr/local/bin/python /root/src/extract_embeddings_evo2.py --windows /vol/regulatory/windows_smoke_evo2.tsv --out_dir /vol/regulatory/embeddings/_smoke_evo2 --device cuda:0
+10 windows; Evo 2 blocks [3, 7, 11, 15, 19, 23, 27, 31]
+Loading evo2_7b via evo2 package ...
+[05/30/26 10:45:46] INFO     httpx - INFO - HTTP Request: GET    _client.py:1025
+                             https://huggingface.co/api/models/a                
+                             rcinstitute/evo2_7b/revision/main                  
+                             "HTTP/1.1 200 OK"                                  
+
+                    INFO     httpx - INFO - HTTP Request: HEAD   _client.py:1025
+                             https://huggingface.co/arcinstitute                
+                             /evo2_7b/resolve/bda0089f92582d5baa                
+                             bf0f22d9fc85f3588f6b58/.gitattribut                
+                             es "HTTP/1.1 307 Temporary                         
+                             Redirect"                                          
+[1AFetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+                    WARNING  huggingface_hub.utils._http - WARNING  _http.py:904
+                             - Warning: You are sending                         
+                             unauthenticated requests to the HF                 
+                             Hub. Please set a HF_TOKEN to enable               
+                             higher rate limits and faster                      
+                             downloads.                                         
+                    INFO     httpx - INFO - HTTP Request: HEAD   _client.py:1025
+                             https://huggingface.co/api/resolve-                
+                             cache/models/arcinstitute/evo2_7b/b                
+                             da0089f92582d5baabf0f22d9fc85f3588f                
+                             6b58/.gitattributes "HTTP/1.1 200                  
+                             OK"                                                
+                    INFO     httpx - INFO - HTTP Request: GET    _client.py:1025
+                             https://huggingface.co/api/resolve-                
+                             cache/models/arcinstitute/evo2_7b/b                
+                             da0089f92582d5baabf0f22d9fc85f3588f                
+                             6b58/.gitattributes "HTTP/1.1 200                  
+                             OK"                                                
+                    INFO     httpx - INFO - HTTP Request: HEAD   _client.py:1025
+                             https://huggingface.co/arcinstitute                
+                             /evo2_7b/resolve/bda0089f92582d5baa                
+                             bf0f22d9fc85f3588f6b58/README.md                   
+                             "HTTP/1.1 307 Temporary Redirect"                  
+                    INFO     httpx - INFO - HTTP Request: HEAD   _client.py:1025
+                             https://huggingface.co/arcinstitute                
+                             /evo2_7b/resolve/bda0089f92582d5baa                
+                             bf0f22d9fc85f3588f6b58/config.json                 
+                             "HTTP/1.1 307 Temporary Redirect"                  
+                    INFO     httpx - INFO - HTTP Request: HEAD   _client.py:1025
+                             https://huggingface.co/arcinstitute                
+                             /evo2_7b/resolve/bda0089f92582d5baa                
+                             bf0f22d9fc85f3588f6b58/evo2_7b.pt                  
+                             "HTTP/1.1 302 Found"                               
+                    INFO     httpx - INFO - HTTP Request: HEAD   _client.py:1025
+                             https://huggingface.co/api/resolve-                
+                             cache/models/arcinstitute/evo2_7b/b                
+                             da0089f92582d5baabf0f22d9fc85f3588f                
+                             6b58/config.json "HTTP/1.1 200 OK"                 
+                    INFO     httpx - INFO - HTTP Request: HEAD   _client.py:1025
+                             https://huggingface.co/api/resolve-                
+                             cache/models/arcinstitute/evo2_7b/b                
+                             da0089f92582d5baabf0f22d9fc85f3588f                
+                             6b58/README.md "HTTP/1.1 200 OK"                   
+[05/30/26 10:45:47] INFO     httpx - INFO - HTTP Request: GET    _client.py:1025
+                             https://huggingface.co/api/resolve-                
+                             cache/models/arcinstitute/evo2_7b/b                
+                             da0089f92582d5baabf0f22d9fc85f3588f                
+                             6b58/README.md "HTTP/1.1 200 OK"                   
+                    INFO     httpx - INFO - HTTP Request: GET    _client.py:1025
+                             https://huggingface.co/api/resolve-                
+                             cache/models/arcinstitute/evo2_7b/b                
+                             da0089f92582d5baabf0f22d9fc85f3588f                
+                             6b58/config.json "HTTP/1.1 200 OK"                 
+
+                    INFO     httpx - INFO - HTTP Request: GET    _client.py:1025
+                             https://huggingface.co/api/models/a                
+                             rcinstitute/evo2_7b/xet-read-token/                
+                             bda0089f92582d5baabf0f22d9fc85f3588                
+                             f6b58 "HTTP/1.1 200 OK"                            
+[1AFetching 4 files:  50%|█████     | 2/4 [00:00<00:00, 14.49it/s]
+[1AFetching 4 files:  50%|█████     | 2/4 [00:19<00:00, 14.49it/s]
+[1AFetching 4 files: 100%|██████████| 4/4 [01:54<00:00, 33.79s/it]
+[1AFetching 4 files: 100%|██████████| 4/4 [01:54<00:00, 28.73s/it]
+/usr/local/lib/python3.12/site-packages/evo2/models.py:282: UserWarning: Transformer Engine not installed. Falling back to bf16 projections (use_fp8_input_projections=False). 
+  warnings.warn(
+Found complete file in repo: evo2_7b.pt
+[05/30/26 10:47:41] INFO     StripedHyena - INFO - Initializing     model.py:627
+                             StripedHyena with config:                          
+                             {'model_name': 'shc-evo2-7b-8k-2T-v2',             
+                             'vocab_size': 512, 'hidden_size':                  
+                             4096, 'num_filters': 4096,                         
+                             'hcl_layer_idxs': [2, 6, 9, 13, 16,                
+                             20, 23, 27, 30], 'hcm_layer_idxs': [1,             
+                             5, 8, 12, 15, 19, 22, 26, 29],                     
+                             'hcs_layer_idxs': [0, 4, 7, 11, 14,                
+                             18, 21, 25, 28], 'attn_layer_idxs':                
+                             [3, 10, 17, 24, 31],                               
+                             'hcm_filter_length': 128,                          
+                             'hcl_filter_groups': 4096,                         
+                             'hcm_filter_groups': 256,                          
+                             'hcs_filter_groups': 256,                          
+                             'hcs_filter_length': 7, 'num_layers':              
+                             32, 'short_filter_length': 3,                      
+                             'num_attention_heads': 32,                         
+                             'short_filter_bias': False,                        
+                             'mlp_init_method':                                 
+                             'torch.nn.init.zeros_',                            
+                             'mlp_output_init_method':                          
+                             'torch.nn.init.zeros_', 'eps': 1e-06,              
+                             'state_size': 16, 'rotary_emb_base':               
+                             10000, 'rotary_emb_scaling_factor':                
+                             128,                                               
+                             'use_interpolated_rotary_pos_emb':                 
+                             True, 'make_vocab_size_divisible_by':              
+                             8, 'inner_size_multiple_of': 16,                   
+                             'inner_mlp_size': 11264,                           
+                             'log_intermediate_values': False,                  
+                             'proj_groups': 1,                                  
+                             'hyena_filter_groups': 1,                          
+                             'column_split_hyena': False,                       
+                             'column_split': True, 'interleave':                
+                             True, 'evo2_style_activations': True,              
+                             'model_parallel_size': 1,                          
+                             'pipe_parallel_size': 1,                           
+                             'tie_embeddings': True,                            
+                             'mha_out_proj_bias': True,                         
+                             'hyena_out_proj_bias': True,                       
+                             'hyena_flip_x1x2': False,                          
+                             'qkv_proj_bias': False,                            
+                             'use_fp8_input_projections': False,                
+                             'max_seqlen': 1048576,                             
+                             'max_batch_size': 1, 'final_norm':                 
+                             True, 'use_flash_attn': True,                      
+                             'use_flash_rmsnorm': False,                        
+                             'use_flash_depthwise': False,                      
+                             'use_flashfft': False,                             
+                             'use_laughing_hyena': False,                       
+                             'inference_mode': True,                            
+                             'tokenizer_type':                                  
+                             'CharLevelTokenizer', 'prefill_style':             
+                             'fft', 'mlp_activation': 'gelu',                   
+                             'print_activations': False, 'Loader':              
+                             <class 'yaml.loader.FullLoader'>}                  
+[05/30/26 10:47:42] INFO     StripedHyena - INFO - Initializing 32  model.py:646
+                             blocks...                                          
+                    INFO     StripedHyena - INFO - Distributing     model.py:653
+                             across 1 GPUs, approximately 32 layers             
+                             per GPU                                            
+
+                    INFO     StripedHyena - INFO - Assigned         model.py:671
+                             layer_idx=0 to device='cuda:0'                     
+                    INFO     StripedHyena - INFO - Parameter count  model.py:672
+                             for block 0: 205571840                             
+[1A  0%|          | 0/32 [00:00<?, ?it/s]
+                    INFO     StripedHyena - INFO - Assigned         model.py:671
+                             layer_idx=1 to device='cuda:0'                     
+                    INFO     StripedHyena - INFO - Parameter count  model.py:672
+                             for block 1: 205606912                             
+                    INFO     StripedHyena - INFO - Assigned         model.py:671
+                             layer_idx=2 to device='cuda:0'                     
+                    INFO     StripedHyena - INFO - Parameter count  model.py:672
+                             for block 2: 205705216                             
+                    INFO     StripedHyena - INFO - Assigned         model.py:671
+                             layer_idx=3 to device='cuda:0'                     
+                    INFO     StripedHyena - INFO - Parameter count  model.py:672
+                             for block 3: 205533184                             
+[1A  3%|▎         | 1/32 [00:00<00:04,  7.54it/s]
+                    INFO     StripedHyena - INFO - Assigned         model.py:671
+                             layer_idx=4 to device='cuda:0'                     
+                    INFO     StripedHyena - INFO - Parameter count  model.py:672
+                             for block 4: 205571840                             
+                    INFO     StripedHyena - INFO - Assigned         model.py:671
+                             layer_idx=5 to device='cuda:0'                     
+                    INFO     StripedHyena - INFO - Parameter count  model.py:672
+                             for block 5: 205606912                             
+                    INFO     StripedHyena - INFO - Assigned         model.py:671
+                             layer_idx=6 to device='cuda:0'                     
+                    INFO     StripedHyena - INFO - Parameter count  model.py:672
+                             for block 6: 205705216                             
+                    INFO     StripedHyena - INFO - Assigned         model.py:671
+                             layer_idx=7 to device='cuda:0'                     
+                    INFO     StripedHyena - INFO - Parameter count  model.py:672
+                             for block 7: 205571840                             
+                    INFO     StripedHyena - INFO - Assigned         model.py:671
+                             layer_idx=8 to device='cuda:0'                     
+                    INFO     StripedHyena - INFO - Parameter count  model.py:672
+                             for block 8: 205606912                             
+                    INFO     StripedHyena - INFO - Assigned         model.py:671
+                             layer_idx=9 to device='cuda:0'                     
+                    INFO     StripedHyena - INFO - Parameter count  model.py:672
+                             for block 9: 205705216                             
+                    INFO     StripedHyena - INFO - Assigned         model.py:671
+                             layer_idx=10 to device='cuda:0'                    
+                    INFO     StripedHyena - INFO - Parameter count  model.py:672
+                             for block 10: 205533184                            
+                    INFO     StripedHyena - INFO - Assigned         model.py:671
+                             layer_idx=11 to device='cuda:0'                    
+                    INFO     StripedHyena - INFO - Parameter count  model.py:672
+                             for block 11: 205571840                            
+[05/30/26 10:47:43] INFO     StripedHyena - INFO - Assigned         model.py:671
+                             layer_idx=12 to device='cuda:0'                    
+                    INFO     StripedHyena - INFO - Parameter count  model.py:672
+                             for block 12: 205606912                            
+                    INFO     StripedHyena - INFO - Assigned         model.py:671
+                             layer_idx=13 to device='cuda:0'                    
+                    INFO     StripedHyena - INFO - Parameter count  model.py:672
+                             for block 13: 205705216                            
+                    INFO     StripedHyena - INFO - Assigned         model.py:671
+                             layer_idx=14 to device='cuda:0'                    
+                    INFO     StripedHyena - INFO - Parameter count  model.py:672
+                             for block 14: 205571840                            
+[1A 12%|█▎        | 4/32 [00:00<00:02, 10.05it/s]
+                    INFO     StripedHyena - INFO - Assigned         model.py:671
+                             layer_idx=15 to device='cuda:0'                    
+                    INFO     StripedHyena - INFO - Parameter count  model.py:672
+                             for block 15: 205606912                            
+                    INFO     StripedHyena - INFO - Assigned         model.py:671
+                             layer_idx=16 to device='cuda:0'                    
+                    INFO     StripedHyena - INFO - Parameter count  model.py:672
+                             for block 16: 205705216                            
+                    INFO     StripedHyena - INFO - Assigned         model.py:671
+                             layer_idx=17 to device='cuda:0'                    
+                    INFO     StripedHyena - INFO - Parameter count  model.py:672
+                             for block 17: 205533184                            
+                    INFO     StripedHyena - INFO - Assigned         model.py:671
+                             layer_idx=18 to device='cuda:0'                    
+                    INFO     StripedHyena - INFO - Parameter count  model.py:672
+                             for block 18: 205571840                            
+                    INFO     StripedHyena - INFO - Assigned         model.py:671
+                             layer_idx=19 to device='cuda:0'                    
+                    INFO     StripedHyena - INFO - Parameter count  model.py:672
+                             for block 19: 205606912                            
+                    INFO     StripedHyena - INFO - Assigned         model.py:671
+                             layer_idx=20 to device='cuda:0'                    
+                    INFO     StripedHyena - INFO - Parameter count  model.py:672
+                             for block 20: 205705216                            
+                    INFO     StripedHyena - INFO - Assigned         model.py:671
+                             layer_idx=21 to device='cuda:0'                    
+                    INFO     StripedHyena - INFO - Parameter count  model.py:672
+                             for block 21: 205571840                            
+                    INFO     StripedHyena - INFO - Assigned         model.py:671
+                             layer_idx=22 to device='cuda:0'                    
+                    INFO     StripedHyena - INFO - Parameter count  model.py:672
+                             for block 22: 205606912                            
+                    INFO     StripedHyena - INFO - Assigned         model.py:671
+                             layer_idx=23 to device='cuda:0'                    
+                    INFO     StripedHyena - INFO - Parameter count  model.py:672
+                             for block 23: 205705216                            
+                    INFO     StripedHyena - INFO - Assigned         model.py:671
+                             layer_idx=24 to device='cuda:0'                    
+                    INFO     StripedHyena - INFO - Parameter count  model.py:672
+                             for block 24: 205533184                            
+[1A 47%|████▋     | 15/32 [00:00<00:00, 37.50it/s]
+                    INFO     StripedHyena - INFO - Assigned         model.py:671
+                             layer_idx=25 to device='cuda:0'                    
+                    INFO     StripedHyena - INFO - Parameter count  model.py:672
+                             for block 25: 205571840                            
+                    INFO     StripedHyena - INFO - Assigned         model.py:671
+                             layer_idx=26 to device='cuda:0'                    
+                    INFO     StripedHyena - INFO - Parameter count  model.py:672
+                             for block 26: 205606912                            
+                    INFO     StripedHyena - INFO - Assigned         model.py:671
+                             layer_idx=27 to device='cuda:0'                    
+                    INFO     StripedHyena - INFO - Parameter count  model.py:672
+                             for block 27: 205705216                            
+                    INFO     StripedHyena - INFO - Assigned         model.py:671
+                             layer_idx=28 to device='cuda:0'                    
+                    INFO     StripedHyena - INFO - Parameter count  model.py:672
+                             for block 28: 205571840                            
+                    INFO     StripedHyena - INFO - Assigned         model.py:671
+                             layer_idx=29 to device='cuda:0'                    
+                    INFO     StripedHyena - INFO - Parameter count  model.py:672
+                             for block 29: 205606912                            
+                    INFO     StripedHyena - INFO - Assigned         model.py:671
+                             layer_idx=30 to device='cuda:0'                    
+                    INFO     StripedHyena - INFO - Parameter count  model.py:672
+                             for block 30: 205705216                            
+                    INFO     StripedHyena - INFO - Assigned         model.py:671
+                             layer_idx=31 to device='cuda:0'                    
+                    INFO     StripedHyena - INFO - Parameter count  model.py:672
+                             for block 31: 205533184                            
+[1A 78%|███████▊  | 25/32 [00:00<00:00, 53.80it/s]
+[1A100%|██████████| 32/32 [00:00<00:00, 44.67it/s]
+                    INFO     StripedHyena - INFO - Initialized      model.py:691
+                             model                                              
+                    INFO     vortex.model.utils - INFO - Loading     utils.py:92
+                             /root/.cache/huggingface/hub/models--ar            
+                             cinstitute--evo2_7b/snapshots/bda0089f9            
+                             2582d5baabf0f22d9fc85f3588f6b58/evo2_7b            
+                             .pt                                                
+Extra keys in state_dict: {'blocks.16.mixer.mixer.filter.t', 'blocks.3.mixer.dense._extra_state', 'blocks.16.projections._extra_state', 'blocks.30.projections._extra_state', 'blocks.7.projections._extra_state', 'blocks.0.projections._extra_state', 'blocks.10.mixer.dense._extra_state', 'blocks.9.mixer.mixer.filter.t', 'blocks.19.projections._extra_state', 'blocks.6.projections._extra_state', 'blocks.23.mixer.mixer.filter.t', 'blocks.21.projections._extra_state', 'blocks.11.projections._extra_state', 'blocks.25.projections._extra_state', 'blocks.27.mixer.mixer.filter.t', 'blocks.10.mixer.attn._extra_state', 'blocks.14.projections._extra_state', 'blocks.22.projections._extra_state', 'blocks.27.projections._extra_state', 'unembed.weight', 'blocks.29.projections._extra_state', 'blocks.31.mixer.dense._extra_state', 'blocks.13.projections._extra_state', 'blocks.1.projections._extra_state', 'blocks.9.projections._extra_state', 'blocks.31.mixer.attn._extra_state', 'blocks.18.projections._extra_state', 'blocks.26.projections._extra_state', 'blocks.4.projections._extra_state', 'blocks.2.mixer.mixer.filter.t', 'blocks.2.projections._extra_state', 'blocks.15.projections._extra_state', 'blocks.17.mixer.attn._extra_state', 'blocks.24.mixer.attn._extra_state', 'blocks.23.projections._extra_state', 'blocks.30.mixer.mixer.filter.t', 'blocks.8.projections._extra_state', 'blocks.12.projections._extra_state', 'blocks.6.mixer.mixer.filter.t', 'blocks.5.projections._extra_state', 'blocks.28.projections._extra_state', 'blocks.20.mixer.mixer.filter.t', 'blocks.17.mixer.dense._extra_state', 'blocks.3.mixer.attn._extra_state', 'blocks.20.projections._extra_state', 'blocks.13.mixer.mixer.filter.t', 'blocks.24.mixer.dense._extra_state'}
+[05/30/26 10:48:25] INFO     StripedHyena - INFO - Adjusting Wqkv   model.py:976
+                             for column split (permuting rows)                  
+  hidden_dim=4096
+  1/10 (10.0%)  10/10 (100.0%)
+Done → /vol/regulatory/embeddings/_smoke_evo2/
+evo2 done → /vol/regulatory/embeddings/_smoke_evo2
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/autogkb/main/ap-Aord7ZfK5t45L01BA8v10o

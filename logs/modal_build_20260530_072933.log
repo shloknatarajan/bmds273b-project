@@ -1,0 +1,56 @@
+✓ Initialized. View run at 
+https://modal.com/apps/autogkb/main/ap-6oc2VlUCQsTpymQtwin5yW
+✓ Created objects.
+├── 🔨 Created mount /home/ec2-user/bmds273b-project/src/modal_app.py
+├── 🔨 Created mount /home/ec2-user/bmds273b-project/src
+├── 🔨 Created function download.
+├── 🔨 Created function build.
+└── 🔨 Created function extract.
++ /usr/local/bin/python /root/src/regulatory/build_windows.py --gencode_gtf /vol/regulatory/gencode.v47.annotation.gtf.gz --encode_bed /vol/regulatory/GRCh38-cCREs.bed --genome_fasta /vol/regulatory/hg38.fa --out_dir /vol/regulatory --n_windows 5000 --pool_size 40000
+Loading GENCODE GTF: /vol/regulatory/gencode.v47.annotation.gtf.gz
+  78724 gene records, 2155005 exon records
+Loading ENCODE cCREs: /vol/regulatory/GRCh38-cCREs.bed
+  2348854 cCRE records
+
+Building labeled intervals ...
+Building gene_body intervals (genes - cCREs) 
+Building regulatory intervals (cCREs - exons) 
+  gene_body: 2244177 intervals
+  regulatory: 2248566 intervals
+
+Opening genome FASTA: /vol/regulatory/hg38.fa
+
+Building centered candidate windows (window_size=10,000 bp) ...
+  1,875,484 gene_body / 2,248,566 regulatory candidate sites
+
+Materializing sequences for pool (<= 40,000/class) ...
+  39,996 gene_body / 39,986 regulatory after N-filter
+
+GC-matched sampling (target=5000/class, 10 bins) ...
+  2,012 gene_body windows retained
+  2,012 regulatory windows retained
+
+Saved 4,024 windows to /vol/regulatory/windows.tsv
+
+Total windows : 4,024
+  gene_body   : 2,012
+  regulatory  : 2,012
+
+Split breakdown:
+  train: 3,372 total  (1,688 gene_body / 1,684 regulatory)
+  val  :   362 total  (187 gene_body / 175 regulatory)
+  test :   290 total  (137 gene_body / 153 regulatory)
+  other:     0 total  (0 gene_body / 0 regulatory)
++ cat /vol/regulatory/split_stats.txt
+Total windows : 4,024
+  gene_body   : 2,012
+  regulatory  : 2,012
+
+Split breakdown:
+  train: 3,372 total  (1,688 gene_body / 1,684 regulatory)
+  val  :   362 total  (187 gene_body / 175 regulatory)
+  test :   290 total  (137 gene_body / 153 regulatory)
+  other:     0 total  (0 gene_body / 0 regulatory)
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/autogkb/main/ap-6oc2VlUCQsTpymQtwin5yW

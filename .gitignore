@@ -10,3 +10,12 @@ __pycache__
 *.egg-info
 dist
 .venv
+
+# Heavy data artifacts (downloadable references / regenerable embeddings)
+*.fa
+*.fa.gz
+*.fai
+*.h5
+*.bed
+*.gtf.gz
+data/regulatory/windows.tsv
